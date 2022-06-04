@@ -19,24 +19,28 @@
   home.homeDirectory = "/home/cakemix";
 
   home.packages = with pkgs; [
-      # basics
+      # shell basics
       alacritty bashInteractive
       # wm
       i3
       # util
       ripgrep fzf exa fd bat
+      # fonts
+      iosevka
+
       # dev - other
       git nixfmt shellcheck
       # dev - C / C++
       gdb clang-tools
       # dev - rust
       rustc cargo
-      # fonts
-      iosevka emacs-all-the-icons-fonts
+
       # editing
       emacs ispell libreoffice
+
       # other apps
-      openscad
+      firefox openscad feh imagemagick
+
       # unfree apps
       spotify
   ];
@@ -71,6 +75,7 @@
     export HISTFILE=~/.bash_eternal_history
     export PROMPT_COMMAND="history -a"
     export EDITOR="vim"
+    export PATH="$HOME/bin:$PATH"
     '';
   };
 
