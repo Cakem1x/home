@@ -74,6 +74,17 @@
     '';
   };
 
+  programs.git = {
+    delta.enable = true;
+    enable = true;
+    userName = "Matthias Holoch";
+    userEmail = "mholoch@gmail.com";
+    aliases = {
+      "co" = "checkout";
+      "st" = "status -s";
+    };
+  };
+
   # regenerate fonts
   fonts.fontconfig.enable = true;
 }
