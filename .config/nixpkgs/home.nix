@@ -48,7 +48,6 @@
   programs.bash = {
     enable = true;
     sessionVariables = {
-      EDITOR = "vim";
       TERMINFO_DIRS = "/lib/terminfo";
     };
     shellAliases = {
@@ -71,6 +70,7 @@
     export HISTSIZE=-1
     export HISTFILE=~/.bash_eternal_history
     export PROMPT_COMMAND="history -a"
+    export EDITOR="vim"
     '';
   };
 
