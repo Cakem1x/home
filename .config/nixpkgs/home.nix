@@ -24,14 +24,16 @@
       # wm
       i3
       # util
-      ripgrep fzf exa fd bat
+      ripgrep fzf exa fd bat unzip
       # fonts
       iosevka
 
       # dev - other
-      git nixfmt shellcheck
+      git nixfmt shellcheck htop
       # dev - C / C++
       gdb clang-tools
+      # dev - python
+      python3
       # dev - rust
       rustc cargo
 
@@ -39,7 +41,14 @@
       emacs ispell libreoffice
 
       # other apps
-      firefox openscad feh imagemagick
+      firefox
+      signal-desktop
+      openscad
+      feh
+      imagemagick
+      gnucash aqbanking
+      gnupg pinentry
+      nextcloud-client
 
       # unfree apps
       spotify
@@ -92,4 +101,5 @@
 
   # regenerate fonts
   fonts.fontconfig.enable = true;
+
 }
