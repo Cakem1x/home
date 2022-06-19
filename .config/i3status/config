@@ -3,18 +3,21 @@ general {
         interval = 5
 }
 
-#order += "ipv6"
 order += "disk /"
-#order += "run_watch DHCP"
-#order += "run_watch VPNC"
-#order += "path_exists VPN"
 order += "wireless wlp170s0"
-order += "battery 1"
-order += "cpu_temperature 0"
 order += "memory"
 order += "load"
+order += "cpu_temperature 0"
+order += "battery 1"
+order += "volume master"
 order += "tztime local"
 order += "tztime berlin"
+
+volume master {
+  format = "♪: %volume"
+  format_muted = "♪: muted (%volume)"
+  device = "pulse:0"
+}
 
 wireless wlp170s0 {
         format_up = "W: (%quality at %essid, %bitrate) %ip"
@@ -57,7 +60,7 @@ tztime berlin {
 }
 
 load {
-        format = "%5min"
+        format = "5m: %5min"
 }
 
 cpu_temperature 0 {
@@ -66,15 +69,11 @@ cpu_temperature 0 {
 }
 
 memory {
-        format = "%used"
+        format = "RAM: %used used"
         threshold_degraded = "10%"
-        format_degraded = "MEMORY: %free"
+        format_degraded = "RAM: %free free"
 }
 
 disk "/" {
         format = "%free"
-}
-
-read_file uptime {
-        path = "/proc/uptime"
 }
