@@ -84,7 +84,7 @@
     export HISTFILE=~/.bash_eternal_history
     export PROMPT_COMMAND="history -a"
     export EDITOR="vim"
-    export PATH="$HOME/bin:$PATH"
+    export PATH="$HOME/bin:$HOME/.emacs.d/bin:$PATH"
     '';
   };
 
