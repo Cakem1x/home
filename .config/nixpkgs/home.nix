@@ -47,6 +47,7 @@
     xss-lock
     networkmanagerapplet
     pavucontrol
+    playerctl
 
     # editing
     emacs
