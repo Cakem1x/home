@@ -24,14 +24,14 @@
       # wm
       i3
       # util
-      ripgrep fzf exa fd bat unzip
+      ripgrep fzf exa fd bat unzip pavucontrol
       # fonts
       iosevka
 
       # dev - other
-      git nixfmt shellcheck htop
+      git nixfmt shellcheck htop tig
       # dev - C / C++
-      gdb clang-tools
+      gdb clang-tools gcc cmake gnumake
       # dev - python
       python3
       # dev - rust
@@ -95,7 +95,8 @@
     userEmail = "mholoch@gmail.com";
     aliases = {
       "co" = "checkout";
-      "st" = "status -s";
+      "st" = "status";
+      "lg" = "git log --graph --pretty=oneline --abbrev-commit";
     };
   };
 
