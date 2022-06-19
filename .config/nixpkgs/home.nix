@@ -24,12 +24,13 @@
       # wm
       i3
       # util
-      ripgrep fzf exa fd bat unzip pavucontrol
+      ripgrep fzf exa fd bat unzip
+      networkmanagerapplet pavucontrol
       # fonts
       iosevka fira-code fira-code-symbols
 
       # dev - other
-      git nixfmt shellcheck htop tig
+      git shellcheck htop tig
       # dev - C / C++
       gdb clang-tools gcc cmake gnumake
       # dev - python
