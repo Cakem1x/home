@@ -101,6 +101,14 @@
     };
   };
 
+  programs.alacritty = {
+    enable = true;
+    settings.font = {
+      size = 7;
+      normal.family = "Fira Code";
+    };
+  };
+
   # regenerate fonts
   fonts.fontconfig.enable = true;
 
