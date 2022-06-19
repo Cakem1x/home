@@ -26,7 +26,7 @@
       # util
       ripgrep fzf exa fd bat unzip pavucontrol
       # fonts
-      iosevka
+      iosevka fira-code fira-code-symbols
 
       # dev - other
       git nixfmt shellcheck htop tig
