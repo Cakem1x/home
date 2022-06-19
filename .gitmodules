@@ -1,6 +1,3 @@
-[submodule "doomemacs"]
-	path = doomemacs
-	url = git@github.com:doomemacs/doomemacs.git
 [submodule ".emacs.d"]
 	path = .emacs.d
 	url = git@github.com:doomemacs/doomemacs.git
