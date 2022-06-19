@@ -63,6 +63,7 @@
     sessionVariables = {
       TERMINFO_DIRS = "/lib/terminfo";
     };
+
     shellAliases = {
       home = "git --work-tree=$HOME --git-dir=$HOME/.git_home"; # use "home config status.showUntrackedFiles no" once on new setup
       ssh = "TERM=xterm-256color ssh";
