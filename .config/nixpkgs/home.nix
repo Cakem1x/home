@@ -19,51 +19,75 @@
   home.homeDirectory = "/home/cakemix";
 
   home.packages = with pkgs; [
-      # shell basics
-      alacritty bashInteractive
-      # CLI util
-      ripgrep fzf exa fd bat unzip imagemagick git htop tig
-      # file viewers
-      feh evince
+    # shell basics
+    alacritty
+    bashInteractive
+    # CLI util
+    ripgrep
+    fzf
+    exa
+    fd
+    bat
+    unzip
+    imagemagick
+    git
+    htop
+    tig
+    # file viewers
+    feh
+    evince
 
-      # fonts
-      iosevka fira-code fira-code-symbols
+    # fonts
+    iosevka
+    fira-code
+    fira-code-symbols
 
-      # wm, wm system components, UI utils
-      i3 xss-lock networkmanagerapplet pavucontrol
+    # wm, wm system components, UI utils
+    i3
+    xss-lock
+    networkmanagerapplet
+    pavucontrol
 
-      # editing
-      emacs ispell libreoffice
-      # lang - C / C++
-      gdb clang-tools gcc cmake gnumake
-      # lang - python
-      python3
-      # lang - rust
-      rustc cargo
+    # editing
+    emacs
+    ispell
+    libreoffice
+    # lang - C / C++
+    gdb
+    clang-tools
+    gcc
+    cmake
+    gnumake
+    # lang - python
+    python3
+    # lang - rust
+    rustc
+    cargo
+    # lang - nix
+    nixfmt
 
-      # other apps
-      firefox
-      signal-desktop
-      openscad
-      gnucash aqbanking
-      gnupg pinentry
-      nextcloud-client
-      # unfree
-      spotify
+    # other apps
+    firefox
+    signal-desktop
+    openscad
+    gnucash
+    aqbanking
+    gnupg
+    pinentry
+    nextcloud-client
+    # unfree
+    spotify
   ];
 
-  programs.fzf = {
-    enable = true;
-  };
+  programs.fzf = { enable = true; };
 
   programs.bash = {
     enable = true;
-    sessionVariables = {
-      TERMINFO_DIRS = "/lib/terminfo";
-    };
+    sessionVariables = { TERMINFO_DIRS = "/lib/terminfo"; };
 
     shellAliases = {
-      home = "git --work-tree=$HOME --git-dir=$HOME/.git_home"; # use "home config status.showUntrackedFiles no" once on new setup
+      home =
+        "git --work-tree=$HOME --git-dir=$HOME/.git_home"; # use "home config status.showUntrackedFiles no" once on new setup
       ssh = "TERM=xterm-256color ssh";
       rg = "rg -S";
       e = "emacsclient -n";
@@ -76,14 +100,14 @@
 
     # only for interactive shells
     initExtra = ''
-    set -o vi
-    # hist
-    export HISTFILESIZE=-1
-    export HISTSIZE=-1
-    export HISTFILE=~/.bash_eternal_history
-    export PROMPT_COMMAND="history -a"
-    export EDITOR="vim"
-    export PATH="$HOME/bin:$HOME/.emacs.d/bin:$PATH"
+      set -o vi
+      # hist
+      export HISTFILESIZE=-1
+      export HISTSIZE=-1
+      export HISTFILE=~/.bash_eternal_history
+      export PROMPT_COMMAND="history -a"
+      export EDITOR="vim"
+      export PATH="$HOME/bin:$HOME/.emacs.d/bin:$PATH"
     '';
   };
 
