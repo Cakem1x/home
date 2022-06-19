@@ -21,37 +21,34 @@
   home.packages = with pkgs; [
       # shell basics
       alacritty bashInteractive
-      # wm
-      i3
-      # util
-      ripgrep fzf exa fd bat unzip
-      networkmanagerapplet pavucontrol
+      # CLI util
+      ripgrep fzf exa fd bat unzip imagemagick git htop tig
+      # file viewers
+      feh evince
+
       # fonts
       iosevka fira-code fira-code-symbols
 
-      # dev - other
-      git shellcheck htop tig
-      # dev - C / C++
-      gdb clang-tools gcc cmake gnumake
-      # dev - python
-      python3
-      # dev - rust
-      rustc cargo
+      # wm, wm system components, UI utils
+      i3 xss-lock networkmanagerapplet pavucontrol
 
       # editing
       emacs ispell libreoffice
+      # lang - C / C++
+      gdb clang-tools gcc cmake gnumake
+      # lang - python
+      python3
+      # lang - rust
+      rustc cargo
 
       # other apps
       firefox
       signal-desktop
       openscad
-      feh
-      imagemagick
       gnucash aqbanking
       gnupg pinentry
       nextcloud-client
-
-      # unfree apps
+      # unfree
       spotify
   ];
 
