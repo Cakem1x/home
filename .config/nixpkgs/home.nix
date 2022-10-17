@@ -66,6 +66,8 @@
     cargo
     # lang - nix
     nixfmt
+    # latex
+    texlive.combined.scheme-full
 
     # other apps
     firefox
