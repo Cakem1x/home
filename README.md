@@ -1,5 +1,5 @@
 This is my NixOS home on `trnstr`. Contains dotfiles / configuration of the system.
-Feel free to have a look around, but note that files in this repo are just a bunch of notes for myself.
+Feel free to have a look around, but be aware that files in this repo are just a bunch of notes for myself.
 
 How to use this repo
 =====================
