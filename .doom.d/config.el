@@ -74,6 +74,7 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(setq default-tab-width 2)                 ;; Set default indent width
 (setq lsp-clients-clangd-args '("-j=7"
 				"--background-index"
 				"--clang-tidy"
