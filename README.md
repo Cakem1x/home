@@ -12,6 +12,6 @@ Cloning might not work, use `home init` instead. Then, setup upstream, pull.
 
 System setup
 ============
-- The global NixOS config is not yet in here (TODO?).
-- Most things are managed by home-manager anyhow -> install `home-manager`!
-- Editor is doomemacs, which comes via submodule -> `git submodule init`! (Do you need to rum `doom install` when cfg files come via this repo?)
+- The global NixOS configs are stored in `.config/nix_machines`. Make them usable via symlink, e.g. `sudo ln -s /home/cakemix/.config/nix_machines/trnstr.nix /etc/nixos/configuration.nix`.
+- Most things are managed by home-manager anyhow -> install `home-manager`! Relevant files are in `.config/nixpkgs/`.
+- Editor is doomemacs, which comes via submodule -> `git submodule init`! (Do you need to run `doom install` when cfg files come via this repo?)
