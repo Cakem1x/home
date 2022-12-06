@@ -4,7 +4,7 @@ general {
 }
 
 order += "disk /"
-order += "wireless wlp170s0"
+order += "wireless wlan0"
 order += "memory"
 order += "load"
 order += "cpu_temperature 0"
@@ -19,7 +19,7 @@ volume master {
   device = "pulse:0"
 }
 
-wireless wlp170s0 {
+wireless wlan0 {
         format_up = "W: (%quality at %essid, %bitrate) %ip"
         format_down = "W: down"
 }
