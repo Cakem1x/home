@@ -5,9 +5,6 @@
 { config, pkgs, ... }:
 
 {
-  # fix issues with drivers (bluetooth and wifi)
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
@@ -32,17 +29,8 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    autorun = true;
-    dpi = 175;
-    displayManager = {
-      defaultSession = "none+i3";
-      autoLogin.enable = true;
-      autoLogin.user = "cakemix";
-    };
 
     layout = "us,de";
-    # Enable touchpad support (enabled default in most desktopManager).
-    libinput.enable = true;
     xkbOptions = "grp:win_space_toggle";
     exportConfiguration = true; # fixes localectl
 
@@ -52,14 +40,6 @@
   programs.dconf = {
     enable = true;
   };
-
-  programs.light.enable = true;
-
-  # might help with high dpi scaling
-  # environment.variables = {
-  #   GDK_SCALE = "1.5";
-  #   GDK_DPI_SCALE = "0.666667";
-  # };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
