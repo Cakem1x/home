@@ -7,6 +7,8 @@
     ./common.nix
   ];
 
+  networking.hostName = "firefly";
+
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
@@ -17,6 +19,4 @@
 
   # Enable GPU acceleration
   hardware.raspberry-pi."4".fkms-3d.enable = true;
-
-  networking.hostName = "firefly";
 }
