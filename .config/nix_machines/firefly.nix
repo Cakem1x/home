@@ -19,4 +19,20 @@
 
   # Enable GPU acceleration
   hardware.raspberry-pi."4".fkms-3d.enable = true;
+
+  # Home Assistant cfg
+  services.home-assistant = {
+    enable = true;
+    extraComponents = [
+      # Components required to complete the onboarding
+      "met"
+      "radio_browser"
+      "securetar"
+    ];
+    config = {
+      # Includes dependencies for a basic setup
+      # https://www.home-assistant.io/integrations/default_config/
+      default_config = {};
+    };
+  };
 }
