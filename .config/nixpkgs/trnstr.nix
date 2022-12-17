@@ -30,7 +30,7 @@
     # other apps
     firefox
     signal-desktop
-    openscad
+    #openscad
     gnucash
     aqbanking
     gnupg
