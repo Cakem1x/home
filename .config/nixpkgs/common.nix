@@ -21,15 +21,17 @@
     # shell basics
     bashInteractive
     # CLI util
-    ripgrep
-    fzf
+    bat
     exa
     fd
-    bat
-    unzip
+    fzf
     git
     htop
+    ripgrep
+    sshfs
     tig
+    tree
+    unzip
     # file viewers
     feh
 
