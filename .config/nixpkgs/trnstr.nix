@@ -25,7 +25,7 @@
     ispell
     libreoffice
     # latex
-    texlive.combined.scheme-full
+    #texlive.combined.scheme-full
 
     # other apps
     firefox
