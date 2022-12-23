@@ -54,7 +54,7 @@
     rustc
     cargo
     # lang - nix
-    nixfmt
+    nixfmt nixos-option
   ];
 
   programs.fzf = { enable = true; };
