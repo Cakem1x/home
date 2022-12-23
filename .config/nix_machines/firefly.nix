@@ -1,7 +1,8 @@
-
 { config, pkgs, lib, ... }:
 
-{
+let
+  mqttPort = 1898;
+in {
   imports = [
     <nixos-hardware/raspberry-pi/4>
     ./common.nix
@@ -25,6 +26,18 @@
     i2c1.enable = true;
   };
   users.users.cakemix.extraGroups = ["i2c"];
+
+  services.mosquitto = {
+    enable = true;
+    listeners = [
+      # listener for loopback 127.0.0.1, allows access without auth
+      {
+        port = mqttPort;
+        settings.allow_anonymous = true;
+        settings.bind_interface = "lo";
+      }
+    ];
+  };
 
   # Home Assistant cfg
   services.home-assistant = {
