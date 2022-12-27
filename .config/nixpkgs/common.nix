@@ -24,6 +24,7 @@
     bat
     exa
     fd
+    findutils
     fzf
     git
     htop
