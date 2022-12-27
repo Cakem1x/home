@@ -39,13 +39,9 @@
 
   # Enable the X11 windowing system.
   services.xserver = {
-    enable = true;
-
     layout = "us,de";
     xkbOptions = "grp:win_space_toggle";
     exportConfiguration = true; # fixes localectl
-
-    windowManager.i3.enable = true;
   };
 
   programs.dconf = {

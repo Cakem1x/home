@@ -51,7 +51,9 @@
   hardware.video.hidpi.enable = true;
 
   services.xserver = {
+    enable = true;
     autorun = true;
+    windowManager.i3.enable = true;
     dpi = 175;
     displayManager = {
       defaultSession = "none+i3";
