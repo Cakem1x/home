@@ -35,6 +35,7 @@ in {
         port = mqttPort;
         settings.allow_anonymous = true;
         settings.bind_interface = "lo";
+        acl = [ "pattern readwrite #" ];
       }
     ];
   };
@@ -42,17 +43,28 @@ in {
   # Home Assistant cfg
   services.home-assistant = {
     enable = true;
-    extraComponents = [
-      # Components required to complete the onboarding
-      "met"
-      "radio_browser"
-      "backup"
-    ];
-    config = {
-      # Includes dependencies for a basic setup
-      # https://www.home-assistant.io/integrations/default_config/
-      default_config = {};
-    };
     openFirewall = true;
+
+    extraComponents = [
+      "backup"
+      "file_upload"
+      "met"
+      "mqtt"
+      "radio_browser"
+    ];
+
+    config = {
+      default_config = {};
+
+      homeassistant = {
+        name = "flat_h10";
+        unit_system = "metric";
+        country = "DE";
+      };
+
+      mqtt = {
+        broker = "127.0.0.1:1898";
+      };
+    };
   };
 }
