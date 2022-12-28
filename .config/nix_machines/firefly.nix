@@ -40,6 +40,12 @@ in {
     ];
   };
 
+  # symlink sops secrets for home assistant to special location where home assistant expects its secrets.
+  sops.secrets."home-assistant.yaml" = {
+    owner = "hass";
+    path = "/var/lib/hass/secret.yaml";
+    restartUnits = [ "home-assistant.service" ];
+  };
   # Home Assistant cfg
   services.home-assistant = {
     enable = true;
@@ -57,10 +63,10 @@ in {
       default_config = {};
 
       homeassistant = {
-        # name = TODO
-        # latitude = TODO
-        # longitude = TODO
-        # elevation = TODO
+        name = "!secret name";
+        latitude = "!secret latitude";
+        longitude = "!secret longitude";
+        elevation = "!secret elevation";
         unit_system = "metric";
         country = "DE";
       };

@@ -5,6 +5,29 @@
 { config, pkgs, ... }:
 
 {
+  imports = let
+    sops-commit = "855b8d51fc3991bd817978f0f093aa6ae0fae738";
+  in [
+    "${builtins.fetchTarball {
+      url = "https://github.com/Mic92/sops-nix/archive/${sops-commit}.tar.gz";
+      # replace this with an actual hash
+      sha256 = "1mnnjxf4wrv91kzy0pj2f8pw1vrkaqs3cn4ixix4ghwbx43qvmk2";
+    }}/modules/sops"
+  ];
+
+  sops = {
+    # This will add secrets.yml to the nix store
+    # You can avoid this by adding a string to the full path instead, i.e.
+    # sops.defaultSopsFile = "/root/.sops/secrets/example.yaml";
+    defaultSopsFile = ./secrets/home-assistant.yaml;
+    # This will automatically import SSH keys as age keys
+    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    # This is using an age key that is expected to already be in the filesystem
+    age.keyFile = "/var/lib/sops-nix/key.txt";
+    # This will generate a new key if the key specified above does not exist
+    age.generateKey = true;
+  };
+
   networking = {
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
     # (the default) this is the recommended approach. When using systemd-networkd it's

@@ -29,6 +29,7 @@
     git
     htop
     ripgrep
+    sops # used via nix-sops for handling secrets in system cfg
     sshfs
     tig
     tree
