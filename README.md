@@ -20,3 +20,8 @@ Managed Machines
 ===============
 - `trnstr`, framework notebook
 - `firefly`, rasberry pi 4
+
+Secrets
+=======
+Secrets are managed via [sops-nix](https://github.com/Mic92/sops-nix).
+Use `nix-shell -p ssh-to-age --run 'ssh-keyscan example.com | ssh-to-age' to get public key of new machines to deploy to.
