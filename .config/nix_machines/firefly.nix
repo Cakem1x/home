@@ -41,7 +41,7 @@ in {
   };
 
   # symlink sops secrets for home assistant to special location where home assistant expects its secrets.
-  sops.secrets."home-assistant.yaml" = {
+  sops.secrets."home_assistant" = {
     owner = "hass";
     path = "/var/lib/hass/secret.yaml";
     restartUnits = [ "home-assistant.service" ];
