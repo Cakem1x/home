@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  mqttPort = 1898;
+  mqttPort = 1883;
 in {
   imports = [
     <nixos-hardware/raspberry-pi/4>
@@ -57,14 +57,15 @@ in {
       default_config = {};
 
       homeassistant = {
-        name = "flat_h10";
+        # name = TODO
+        # latitude = TODO
+        # longitude = TODO
+        # elevation = TODO
         unit_system = "metric";
         country = "DE";
       };
 
-      mqtt = {
-        broker = "127.0.0.1:1898";
-      };
+      mqtt = {};
     };
   };
 }
