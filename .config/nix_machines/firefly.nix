@@ -2,6 +2,10 @@
 
 let
   mqttPort = 1883;
+  topic_prefix = "h10/floor1/living_room";
+  status_topic = "${topic_prefix}/mqtt_on_pi/status";
+  bmp280_topic = "${topic_prefix}/bmp280";
+  pi_topic = "${topic_prefix}/pi";
 in {
   imports = [
     <nixos-hardware/raspberry-pi/4>
@@ -46,6 +50,7 @@ in {
     path = "/var/lib/hass/secrets.yaml";
     restartUnits = [ "home-assistant.service" ];
   };
+
   # Home Assistant cfg
   services.home-assistant = {
     enable = true;
@@ -77,13 +82,22 @@ in {
             name = "BMP280 Living Room Pressure";
             unit_of_measurement = "hPa";
             device_class = "pressure";
-            state_topic = "h10/floor1/living_room/bmp280/pressure";
+            state_topic = "${bmp280_topic}/pressure";
+            availability_topic = status_topic;
           }
           {
             name = "BMP280 Living Room Temperature";
             unit_of_measurement = "°C";
             device_class = "temperature";
-            state_topic = "h10/floor1/living_room/bmp280/temperature";
+            state_topic = "${bmp280_topic}/temperature";
+            availability_topic = status_topic;
+          }
+          {
+            name = "Pi CPU Temperature";
+            unit_of_measurement = "°C";
+            device_class = "temperature";
+            state_topic = "${pi_topic}/cpu_temperature";
+            availability_topic = status_topic;
           }
         ];
       };
