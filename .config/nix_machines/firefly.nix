@@ -74,8 +74,15 @@ in {
       mqtt = {
         sensor = [
           {
-            name = "temperature";
+            name = "BMP280 Living Room Pressure";
+            unit_of_measurement = "hPa";
+            device_class = "pressure";
+            state_topic = "h10/floor1/living_room/bmp280/pressure";
+          }
+          {
+            name = "BMP280 Living Room Temperature";
             unit_of_measurement = "°C";
+            device_class = "temperature";
             state_topic = "h10/floor1/living_room/bmp280/temperature";
           }
         ];
