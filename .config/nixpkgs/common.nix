@@ -34,8 +34,10 @@
     tig
     tree
     unzip
+    pdftk
     # file viewers
     feh
+    evince
 
     # fonts
     iosevka
