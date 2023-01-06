@@ -71,7 +71,15 @@ in {
         country = "DE";
       };
 
-      mqtt = {};
+      mqtt = {
+        sensor = [
+          {
+            name = "temperature";
+            unit_of_measurement = "°C";
+            state_topic = "h10/floor1/living_room/bmp280/temperature";
+          }
+        ];
+      };
     };
   };
 }
