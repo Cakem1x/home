@@ -34,6 +34,8 @@
     tig
     tree
     unzip
+    usbutils # lsusb
+    udisks # mount disks
 
     # editing
     emacs
@@ -64,6 +66,8 @@
       ssh = "TERM=xterm-256color ssh";
       rg = "rg -S";
       e = "emacsclient -n";
+      cat = "bat";
+
       l = "exa";
       ls = "exa";
       la = "exa -la";
