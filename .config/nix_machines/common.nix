@@ -34,7 +34,6 @@
     # (the default) this is the recommended approach. When using systemd-networkd it's
     # still possible to use this option, but it's recommended to use it in conjunction
     # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-    interfaces.wlan0.useDHCP = true;
     networkmanager.enable = true;  # Easiest to use and most distros use this by default.
     # true would yield names like wlp3s0 instead of wlan0.
     # wlan0 is easier, bc e.g. i3bar cfgs can use the same string over multiple machines.
