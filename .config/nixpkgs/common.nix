@@ -36,6 +36,7 @@
     unzip
     usbutils # lsusb
     udisks # mount disks
+    autorandr
 
     # editing
     emacs
