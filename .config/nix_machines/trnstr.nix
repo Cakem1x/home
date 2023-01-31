@@ -41,7 +41,10 @@
   programs.light.enable = true;
 
   # enable fingerprint reader
-  services.fprintd.enable = true;
+  # services.fprintd.enable = true;
+
+  # allows mounting (USB) storage devices more easily
+  services.udisks2.enable = true;
 
   swapDevices = [ ];
 
