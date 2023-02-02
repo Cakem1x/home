@@ -15,6 +15,7 @@
     # file viewers
     evince
     feh
+    vlc
 
     # wm, wm system components, UI utils
     i3
