@@ -57,7 +57,7 @@
     enable = true;
     autorun = true;
     windowManager.i3.enable = true;
-    dpi = 175;
+    dpi = 175; # adjusted for framework notebook screen, scale other screens with lower res / bigger size via xrandr
     displayManager = {
       defaultSession = "none+i3";
       autoLogin.enable = true;
@@ -66,4 +66,6 @@
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = true;
   };
+
+  services.autorandr.enable = true;
 }
