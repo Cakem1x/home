@@ -9,6 +9,7 @@ let
 in {
   imports = [
     <nixos-hardware/raspberry-pi/4>
+    /home/cakemix/devel/pi_local_mqtt_client/service.nix # for local testing
     ./common.nix
   ];
 
@@ -43,6 +44,9 @@ in {
       }
     ];
   };
+
+  # add my local python script for publishing sensor info from the pi via mqtt
+  services.pi-local-mqtt-client.enable = true;
 
   # symlink sops secrets for home assistant to special location where home assistant expects its secrets.
   sops.secrets."home_assistant" = {
