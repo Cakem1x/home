@@ -73,6 +73,11 @@
       la = "exa -la";
       ll = "exa -l";
       lh = "exa -lh";
+
+      update-user = "nix-channel --update && home-manager switch";
+      update-system = "sudo nix-channel --update && sudo nixos-rebuild switch";
+      update-all = "update-system && update-user";
+      clean-all = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
     };
 
     # only for interactive shells
