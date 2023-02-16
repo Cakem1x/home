@@ -46,7 +46,7 @@
   # allows mounting (USB) storage devices more easily
   services.udisks2.enable = true;
 
-  swapDevices = [ ];
+  swapDevices = [ { device = "/swapfile"; size = 16384; } ];
 
   powerManagement.cpuFreqGovernor = "powersave";
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
