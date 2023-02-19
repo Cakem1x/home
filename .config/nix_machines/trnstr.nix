@@ -68,4 +68,7 @@
   };
 
   services.autorandr.enable = true;
+
+  virtualisation.docker.enable = true;
+  users.users.cakemix.extraGroups = ["docker"];
 }
