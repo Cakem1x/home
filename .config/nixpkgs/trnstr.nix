@@ -36,6 +36,7 @@
 
     # other apps
     firefox
+    gimp
     signal-desktop
     openscad
     gnucash
@@ -43,8 +44,14 @@
     gnupg
     pinentry
     nextcloud-client
+
+    # javascript dev
+    nodejs
+    postman
+
     # unfree
     spotify
+    jetbrains.webstorm
   ];
 
   programs.alacritty = {
