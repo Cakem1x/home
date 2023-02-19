@@ -4,7 +4,7 @@ let
   mqttPort = 1883;
   topic_prefix = "h10/floor1/living_room";
   status_topic = "${topic_prefix}/mqtt_on_pi/status";
-  bmp280_topic = "${topic_prefix}/bmp280";
+  bme680_topic = "${topic_prefix}/bme680";
   pi_topic = "${topic_prefix}/pi";
 in {
   imports = [
@@ -89,17 +89,17 @@ in {
       mqtt = {
         sensor = [
           {
-            name = "BMP280 Living Room Pressure";
+            name = "BME680 Living Room Pressure";
             unit_of_measurement = "hPa";
             device_class = "pressure";
-            state_topic = "${bmp280_topic}/pressure";
+            state_topic = "${bme680_topic}/pressure";
             availability_topic = status_topic;
           }
           {
-            name = "BMP280 Living Room Temperature";
+            name = "BME680 Living Room Temperature";
             unit_of_measurement = "°C";
             device_class = "temperature";
-            state_topic = "${bmp280_topic}/temperature";
+            state_topic = "${bme680_topic}/temperature";
             availability_topic = status_topic;
           }
           {
