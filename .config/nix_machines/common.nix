@@ -39,6 +39,10 @@
     # wlan0 is easier, bc e.g. i3bar cfgs can use the same string over multiple machines.
     # when having multiple interfaces of the same type on a machine, setting this to true might be important to get reproducable names.
     usePredictableInterfaceNames = false;
+    extraHosts =
+      ''
+        192.168.0.3 firefly
+      '';
   };
 
   # Set your time zone.
