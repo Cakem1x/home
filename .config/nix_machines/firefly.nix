@@ -103,6 +103,20 @@ in {
             availability_topic = status_topic;
           }
           {
+            name = "BME680 Living Room Relative Humidity";
+            unit_of_measurement = "%";
+            device_class = "humidity";
+            state_topic = "${bme680_topic}/relative_humidity";
+            availability_topic = status_topic;
+          }
+          {
+            name = "BME680 Living Room Gas Resistance";
+            unit_of_measurement = "Ω";
+            device_class = "gas";
+            state_topic = "${bme680_topic}/gas_resistance";
+            availability_topic = status_topic;
+          }
+          {
             name = "Pi CPU Temperature";
             unit_of_measurement = "°C";
             device_class = "temperature";
