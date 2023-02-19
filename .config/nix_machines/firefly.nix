@@ -17,10 +17,16 @@ in {
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-label/NIXOS_SD";
+      device = "/dev/disk/by-label/root"; # on SSD, connected via USB
       fsType = "ext4";
       options = [ "noatime" ];
     };
+
+    "/nix" = {
+      device = "/dev/disk/by-label/nix"; # on SSD, connected via USB
+      fsType = "ext4";
+      options = [ "noatime" ];
+   };
   };
 
   hardware.raspberry-pi."4" = {
