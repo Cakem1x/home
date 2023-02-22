@@ -9,7 +9,9 @@ on_click = "alacritty -e nmtui"
 [[block]]
 block = "music"
 buttons = ["play", "next"]
-on_collapsed_click = "spotify"
+marquee = false
+dynamic_width = true
+max_width = 50
 
 [[block]]
 alert = 10.0
