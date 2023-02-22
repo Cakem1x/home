@@ -19,6 +19,7 @@
 
     # wm, wm system components, UI utils
     i3
+    i3status-rust
     xss-lock
     networkmanagerapplet
     pavucontrol
@@ -31,6 +32,7 @@
     texlive.combined.scheme-full
     # fonts
     iosevka
+    font-awesome # used as symbols in i3bar-rust
     fira-code
     fira-code-symbols
 

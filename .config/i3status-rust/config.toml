@@ -1,0 +1,49 @@
+icons = "awesome5"
+[[block]]
+alert = 10.0
+block = "disk_space"
+interval = 60
+path = "/"
+unit = "GB"
+warning = 50.0
+
+[[block]]
+block = "backlight"
+
+[[block]]
+ap_format = "{strength} {ssid}"
+block = "networkmanager"
+interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
+on_click = "alacritty -e nmtui"
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{mem_used_percents}"
+format_swap = "{swap_used_percents}"
+
+[[block]]
+block = "cpu"
+interval = 5
+
+[[block]]
+block = "load"
+format = "{1m}"
+interval = 1
+
+[[block]]
+block = "sound"
+device_kind = "source" # show mic state
+
+[[block]]
+block = "sound"
+max_vol = 100
+headphones_indicator = true
+
+[[block]]
+block = "time"
+format = "%a %d/%m %R"
+interval = 60
+
+[theme]
+name = "solarized-dark"
