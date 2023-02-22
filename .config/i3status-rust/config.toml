@@ -1,4 +1,16 @@
 icons = "awesome5"
+
+[[block]]
+ap_format = "{strength} {ssid}"
+block = "networkmanager"
+interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
+on_click = "alacritty -e nmtui"
+
+[[block]]
+block = "music"
+buttons = ["play", "next"]
+on_collapsed_click = "spotify"
+
 [[block]]
 alert = 10.0
 block = "disk_space"
@@ -6,15 +18,6 @@ interval = 60
 path = "/"
 unit = "GB"
 warning = 50.0
-
-[[block]]
-block = "backlight"
-
-[[block]]
-ap_format = "{strength} {ssid}"
-block = "networkmanager"
-interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
-on_click = "alacritty -e nmtui"
 
 [[block]]
 block = "memory"
@@ -39,6 +42,13 @@ device_kind = "source" # show mic state
 block = "sound"
 max_vol = 100
 headphones_indicator = true
+
+[[block]]
+block = "battery"
+
+[[block]]
+block = "backlight"
+invert_icons = true
 
 [[block]]
 block = "time"
