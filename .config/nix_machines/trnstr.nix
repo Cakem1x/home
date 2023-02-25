@@ -57,7 +57,8 @@
     enable = true;
     autorun = true;
     windowManager.i3.enable = true;
-    dpi = 175; # adjusted for framework notebook screen, scale other screens with lower res / bigger size via xrandr
+    # dpi = 175; # adjusted for framework notebook screen, scale other screens with lower res / bigger size via xrandr
+    dpi = 150; # adjusted for external screen, but also ok for notebook screen
     displayManager = {
       defaultSession = "none+i3";
       autoLogin.enable = true;
