@@ -20,6 +20,7 @@
     # wm, wm system components, UI utils
     i3
     i3status-rust
+    xkb-switch-i3
     xss-lock
     networkmanagerapplet
     pavucontrol

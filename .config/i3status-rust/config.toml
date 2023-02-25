@@ -1,8 +1,14 @@
 icons = "awesome5"
 
 [[block]]
-ap_format = "{strength} {ssid}"
+block = "keyboard_layout"
+driver = "xkbswitch"
+on_click = "xkb-switch -n"
+interval = 5
+
+[[block]]
 block = "networkmanager"
+ap_format = "{strength} {ssid}"
 interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
 on_click = "alacritty -e nmtui"
 
