@@ -38,6 +38,9 @@ block = "cpu"
 interval = 5
 
 [[block]]
+block = "temperature"
+
+[[block]]
 block = "load"
 format = "{1m}"
 interval = 1
