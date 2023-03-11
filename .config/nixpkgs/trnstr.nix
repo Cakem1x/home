@@ -12,6 +12,7 @@
     # CLI util
     imagemagick
     pdftk
+    xournal
     # file viewers
     evince
     feh
@@ -47,6 +48,7 @@
     gnupg
     pinentry
     nextcloud-client
+    steam
 
     # javascript dev
     nodejs

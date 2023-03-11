@@ -72,4 +72,6 @@
 
   virtualisation.docker.enable = true;
   users.users.cakemix.extraGroups = ["docker"];
+  # fix steam
+  hardware.opengl.driSupport32Bit = true;
 }
