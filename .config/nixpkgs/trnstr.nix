@@ -49,6 +49,7 @@
     pinentry
     nextcloud-client
     steam
+    cura # 3d printing
 
     # javascript dev
     nodejs

@@ -71,7 +71,7 @@
   services.autorandr.enable = true;
 
   virtualisation.docker.enable = true;
-  users.users.cakemix.extraGroups = ["docker"];
+  users.users.cakemix.extraGroups = ["docker" "dialout"];
   # fix steam
   hardware.opengl.driSupport32Bit = true;
 }
