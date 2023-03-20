@@ -1,5 +1,11 @@
 { config, pkgs, ... }:
 
+
+let
+  nix-alien-pkgs = import (
+    builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
+  ) { };
+in
 {
   imports =
     [
@@ -13,10 +19,12 @@
     imagemagick
     pdftk
     xournal
+    docker-compose
     # file viewers
     evince
     feh
     vlc
+    nix-alien-pkgs.nix-alien
 
     # wm, wm system components, UI utils
     i3
