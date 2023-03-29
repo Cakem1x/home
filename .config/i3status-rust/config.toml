@@ -3,7 +3,7 @@ icons = "awesome6"
 [theme]
 theme = "solarized-dark"
 
-[[block]]
+#[[block]]
 #block = "keyboard_layout"
 #driver = "localebus"
 ## on_click = "xkb-switch -n"
