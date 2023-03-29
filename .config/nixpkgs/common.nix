@@ -101,7 +101,7 @@
     aliases = {
       "co" = "checkout";
       "st" = "status";
-      "lg" = "git log --graph --pretty=oneline --abbrev-commit";
+      "lg" = "log --graph --pretty=oneline --abbrev-commit";
     };
   };
 }
