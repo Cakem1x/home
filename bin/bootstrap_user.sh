@@ -2,7 +2,7 @@
 
 update_bootstrap_cmd()
 {
-    BOOTSTRAP_CMD="ln -s ${HOME}/.config/nixpkgs/${MACHINE_NAME}.nix ${HOME}/.config/nixpkgs/home.nix"
+    BOOTSTRAP_CMD="ln -s ${HOME}/.config/home-manager/${MACHINE_NAME}.nix ${HOME}/.config/home-manager/home.nix"
 }
 
 MACHINE_NAME="MACHINE_NAME"
