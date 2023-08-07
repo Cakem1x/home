@@ -50,8 +50,8 @@
 
   powerManagement.cpuFreqGovernor = "powersave";
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
-  # high-resolution display
-  hardware.video.hidpi.enable = true;
+
+  hardware.bluetooth.enable = true;
 
   services.xserver = {
     enable = true;
@@ -59,6 +59,7 @@
     windowManager.i3.enable = true;
     # dpi = 175; # adjusted for framework notebook screen, scale other screens with lower res / bigger size via xrandr
     dpi = 150; # adjusted for external screen, but also ok for notebook screen
+    # dpi = 100; # adjusted for 1080p external screen
     displayManager = {
       defaultSession = "none+i3";
       autoLogin.enable = true;
