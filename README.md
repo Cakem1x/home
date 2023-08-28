@@ -13,7 +13,7 @@ System Setup
 ============
 - The NixOS system configurations are stored in `.config/nix_machines`. Make a system config active via `bin/bootstrap-system.sh`
 - The userspace programs (and their configs) are managed by home-manager. See https://nix-community.github.io/home-manager/index.html#sec-install-standalone on how to install `home-manager` in standalone mode.
-  Relevant files are in `.config/nixpkgs/`. Make a user config active via `bin/bootstrap-user.sh`.
+  Relevant files are in `.config/home-manager/`. Make a user config active via `bin/bootstrap-user.sh`.
 - Editor is doomemacs, which comes via submodule. Run `home submodule init` and `home submodule update`. Finally, run `doom install`.
 
 Managed Machines
