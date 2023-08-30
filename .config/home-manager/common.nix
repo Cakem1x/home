@@ -21,6 +21,7 @@
     # shell basics
     bashInteractive
     # CLI util
+    autorandr
     bat
     exa
     fd
@@ -28,16 +29,16 @@
     fzf
     git
     htop
+    lazydocker
+    ncdu
     ripgrep
     sops # used via nix-sops for handling secrets in system cfg
     sshfs
     tig
     tree
+    udisks # mount disks
     unzip
     usbutils # lsusb
-    udisks # mount disks
-    autorandr
-    lazydocker
 
     # editing
     vim
