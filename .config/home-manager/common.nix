@@ -39,6 +39,7 @@
     udisks # mount disks
     unzip
     usbutils # lsusb
+    xclip
 
     # editing
     vim
