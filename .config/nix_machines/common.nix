@@ -30,6 +30,7 @@
   };
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.trusted-users = ["root" "cakemix"];
 
   networking = {
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
