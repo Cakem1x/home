@@ -23,7 +23,7 @@
     # CLI util
     autorandr
     bat
-    exa
+    eza
     fd
     findutils
     fzf
@@ -74,11 +74,11 @@
       rg = "rg -S";
       e = "emacsclient -n";
 
-      l = "exa";
-      ls = "exa";
-      la = "exa -la";
-      ll = "exa -l";
-      lh = "exa -lh";
+      l = "eza";
+      ls = "eza";
+      la = "eza -la";
+      ll = "eza -l";
+      lh = "eza -lh";
 
       update-user = "nix-channel --update && home-manager switch";
       update-system = "sudo nix-channel --update && sudo nixos-rebuild switch";
