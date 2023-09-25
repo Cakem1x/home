@@ -76,9 +76,9 @@
 
       l = "eza";
       ls = "eza";
-      la = "eza -la";
-      ll = "eza -l";
-      lh = "eza -lh";
+      la = "eza --git-repos -la";
+      ll = "eza --git-repos -l";
+      lh = "eza --git-repos -lh";
 
       update-user = "nix-channel --update && home-manager switch";
       update-system = "sudo nix-channel --update && sudo nixos-rebuild switch";
