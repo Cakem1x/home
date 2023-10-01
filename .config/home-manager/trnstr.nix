@@ -60,13 +60,8 @@ in
     steam
     cura # 3d printing
 
-    # javascript dev
-    nodejs
-    postman
-
     # unfree
     spotify
-    jetbrains.webstorm
   ];
 
   programs.alacritty = {
