@@ -41,6 +41,9 @@
     usbutils # lsusb
     xclip
 
+    # nix tools
+    cachix
+
     # editing
     vim
     emacs
