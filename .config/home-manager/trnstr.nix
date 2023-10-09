@@ -39,6 +39,7 @@ in
     # editing
     ispell
     libreoffice
+    vscode
     # latex
     texlive.combined.scheme-full
     # fonts
