@@ -99,6 +99,7 @@
       export PROMPT_COMMAND="history -a"
       export EDITOR="vim"
       export PATH="$HOME/bin:$HOME/.emacs.d/bin:$PATH"
+      [[ -f "$HOME/nature_robots/devel/dev_tooling/setup/setup.bash" ]] && source "$HOME/nature_robots/devel/dev_tooling/setup/setup.bash"
     '';
   };
 
