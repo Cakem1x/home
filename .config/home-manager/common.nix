@@ -55,7 +55,7 @@
     cmake
     gnumake
     # lang - python
-    python3
+    (import ./python-packages.nix { inherit pkgs; })
     # lang - rust
     rustc
     cargo
