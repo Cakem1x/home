@@ -7,5 +7,6 @@ pkgs.python3.withPackages (p: with p; [
   opencv4
   pylint
   pyyaml
+  scikit-learn
   setuptools
 ])
