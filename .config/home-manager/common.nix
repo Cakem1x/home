@@ -58,6 +58,7 @@
     (import ./python-packages.nix { inherit pkgs; })
     # lang - rust
     rustc
+    clippy
     cargo
     # lang - nix
     nixfmt nixos-option
