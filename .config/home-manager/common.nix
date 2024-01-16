@@ -104,7 +104,12 @@
   };
 
   programs.git = {
-    delta.enable = true;
+    delta = {
+      enable = true;
+      options = {
+        features = "line-numbers";
+      };
+    };
     enable = true;
     userName = "Matthias Holoch";
     userEmail = "mholoch@gmail.com";
