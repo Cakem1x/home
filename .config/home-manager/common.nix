@@ -34,7 +34,7 @@
     ripgrep
     sops # used via nix-sops for handling secrets in system cfg
     sshfs
-    gitui
+    tig
     tree
     udisks # mount disks
     unzip
