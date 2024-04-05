@@ -71,6 +71,13 @@
 
   services.autorandr.enable = true;
 
+  services.printing.enable = true;
+  services.avahi = { # discover network printers
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   virtualisation.docker = {
     enable = true;
     daemon.settings = { # fix for WifiOnICE; Moves docker network IP ranges away from what the Deutsche Bahn wifi uses.
