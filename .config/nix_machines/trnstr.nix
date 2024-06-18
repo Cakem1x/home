@@ -60,14 +60,14 @@
     # dpi = 175; # adjusted for framework notebook screen, scale other screens with lower res / bigger size via xrandr
     dpi = 150; # adjusted for external screen, but also ok for notebook screen
     # dpi = 100; # adjusted for 1080p external screen
-    displayManager = {
-      defaultSession = "none+i3";
-      autoLogin.enable = true;
-      autoLogin.user = "cakemix";
-    };
-    # Enable touchpad support (enabled default in most desktopManager).
-    libinput.enable = true;
   };
+  services.displayManager = {
+    defaultSession = "none+i3";
+    autoLogin.enable = true;
+    autoLogin.user = "cakemix";
+  };
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.libinput.enable = true;
 
   services.autorandr.enable = true;
 
