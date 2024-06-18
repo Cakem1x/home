@@ -69,10 +69,7 @@
 
   # Enable the X11 windowing system.
   services.xserver = {
-    xkb = {
-      options = "grp:win_space_toggle";
-      layout = "us,de";
-    };
+    xkb.layout = "eu";
     exportConfiguration = true; # fixes localectl
   };
 
