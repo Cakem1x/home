@@ -61,7 +61,7 @@
     clippy
     cargo
     # lang - nix
-    nixfmt nixos-option
+    nixfmt-classic nixos-option
     nil
   ];
 
