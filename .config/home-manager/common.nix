@@ -84,10 +84,10 @@
       ll = "eza --git-repos -l";
       lh = "eza --git-repos -lh";
 
-      update-user = "nix-channel --update && home-manager switch";
-      update-system = "sudo nix-channel --update && sudo nixos-rebuild switch";
-      update-all = "update-system && update-user";
-      clean-all = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
+      os-update-user = "nix-channel --update && home-manager switch";
+      os-update-system = "sudo nix-channel --update && sudo nixos-rebuild switch";
+      os-update-all = "update-system && update-user";
+      os-clean-all = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
     };
 
     # only for interactive shells
