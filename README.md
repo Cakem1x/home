@@ -7,7 +7,7 @@ This repo is meant to live directly in `~`.
 For convenience, use git alias with special `git-dir`, so other `git` invocations won't find the home repo.
 - `alias home="git --work-tree=$HOME --git-dir=$HOME/.git_home"`
 - use `"home config status.showUntrackedFiles no"` once on new setup to avoid clutter when doing `home status`.
-- Cloning might not work, use `home init` instead. Then, setup upstream: `home remote add origin git@github.com:Cakem1x/home.git`, track branch `home branch --set-upstream-to=origin/master master`, `home pull`
+- Cloning might not work, use `home init` instead. Then, setup upstream: `home remote add origin git@github.com:Cakem1x/home.git`, track branch `home branch --set-upstream-to=origin/main main`, `home pull`
 
 System Setup
 ============
