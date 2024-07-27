@@ -86,7 +86,7 @@
 
       os-update-user = "nix-channel --update && home-manager switch";
       os-update-system = "sudo nix-channel --update && sudo nixos-rebuild switch";
-      os-update-all = "update-system && update-user";
+      os-update-all = "os-update-system && os-update-user";
       os-clean-all = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
     };
 
