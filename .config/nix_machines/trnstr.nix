@@ -93,5 +93,5 @@
 
   users.users.cakemix.extraGroups = ["docker" "dialout"];
   # fix steam
-  hardware.opengl.driSupport32Bit = true;
+  hardware.graphics.enable32Bit = true;
 }
