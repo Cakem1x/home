@@ -59,7 +59,7 @@ in
     pinentry
     nextcloud-client
     steam
-    cura # 3d printing
+    #cura # 3d printing
 
     # unfree
     spotify
