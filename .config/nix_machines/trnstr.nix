@@ -9,18 +9,24 @@
 
   networking.hostName = "trnstr"; # Define your hostname.
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelParams = [ "mem_sleep_default=deep" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    kernelModules = [ "kvm-intel" ];
+    kernelParams = [ "mem_sleep_default=deep" ];
+    extraModulePackages = [ ];
 
-  # support dual boot
-  boot.loader.grub.useOSProber = true;
+    initrd = {
+      availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
+      kernelModules = [ ];
+    };
+    loader = {
+      # support dual boot
+      grub.useOSProber = true;
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+      # Use the systemd-boot EFI boot loader.
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
   # filesystem setup
   boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/2042cd58-521b-40cf-8512-c682da50301f";
@@ -33,47 +39,40 @@
       fsType = "vfat";
     };
 
-  # backlight
-  programs.light.enable = true;
-
-  # enable fingerprint reader
-  # services.fprintd.enable = true;
-
-  # allows mounting (USB) storage devices more easily
-  services.udisks2.enable = true;
-
+  programs.light.enable = true; # backlight
   swapDevices = [ { device = "/swapfile"; size = 16384; } ];
-
   powerManagement.cpuFreqGovernor = "powersave";
-
-  hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
-  hardware.bluetooth.enable = true;
-  # fix steam
-  hardware.graphics.enable32Bit = true;
-
-  services.xserver = {
-    enable = true;
-    autorun = true;
-    windowManager.i3.enable = true;
-    # dpi = 175; # adjusted for framework notebook screen, scale other screens with lower res / bigger size via xrandr
-    dpi = 150; # adjusted for external screen, but also ok for notebook screen
-    # dpi = 100; # adjusted for 1080p external screen
+  hardware = {
+    cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
+    bluetooth.enable = true;
+    # fix steam
+    graphics.enable32Bit = true;
   };
-  services.displayManager = {
-    defaultSession = "none+i3";
-    autoLogin.enable = true;
-    autoLogin.user = "cakemix";
-  };
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
 
-  services.autorandr.enable = true;
+  services = {
+    xserver = {
+      enable = true;
+      autorun = true;
+      windowManager.i3.enable = true;
+      # dpi = 175; # adjusted for framework notebook screen, scale other screens with lower res / bigger size via xrandr
+      dpi = 150; # adjusted for external screen, but also ok for notebook screen
+      # dpi = 100; # adjusted for 1080p external screen
+    };
+    displayManager = {
+      defaultSession = "none+i3";
+      autoLogin.enable = true;
+      autoLogin.user = "cakemix";
+    };
 
-  services.printing.enable = true;
-  services.avahi = { # discover network printers
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
+    libinput.enable = true; # touchpad support
+    udisks2.enable = true;  # allows mounting (USB) storage devices more easily
+    autorandr.enable = true; # automatically restore xrandr configurations, based on detected screens
+    printing.enable = true;
+    avahi = { # discover network printers
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
   };
 
   virtualisation.docker = {
