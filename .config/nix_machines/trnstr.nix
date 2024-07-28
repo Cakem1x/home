@@ -3,6 +3,7 @@
 {
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
+      <nixos-hardware/framework/13-inch/11th-gen-intel>
       ./common.nix
     ];
 
@@ -10,11 +11,9 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-
+  boot.kernelModules = [ "kvm-intel" ];
   # fix issues with drivers (bluetooth and wifi)
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  boot.kernelModules = [ "kvm-intel" ];
   boot.kernelParams = [ "mem_sleep_default=deep" ];
   boot.extraModulePackages = [ ];
 
@@ -25,13 +24,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # filesystem setup
   boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/2042cd58-521b-40cf-8512-c682da50301f";
-
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/ac1856a7-8d41-46cf-924f-02c7f2d8efb5";
       fsType = "ext4";
     };
-
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/CCAC-B1B4";
       fsType = "vfat";
@@ -49,9 +47,11 @@
   swapDevices = [ { device = "/swapfile"; size = 16384; } ];
 
   powerManagement.cpuFreqGovernor = "powersave";
-  hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
+  hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
   hardware.bluetooth.enable = true;
+  # fix steam
+  hardware.graphics.enable32Bit = true;
 
   services.xserver = {
     enable = true;
@@ -92,6 +92,4 @@
   };
 
   users.users.cakemix.extraGroups = ["docker" "dialout"];
-  # fix steam
-  hardware.graphics.enable32Bit = true;
 }
