@@ -11,13 +11,8 @@
 
   boot = {
     kernelModules = [ "kvm-intel" ];
-    kernelParams = [ "mem_sleep_default=deep" ];
-    extraModulePackages = [ ];
 
-    initrd = {
-      availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
-      kernelModules = [ ];
-    };
+    initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
     loader = {
       # support dual boot
       grub.useOSProber = true;
@@ -50,6 +45,9 @@
   };
 
   services = {
+    fwupd.enable = true; # firmware update tool
+    fwupd.extraRemotes = [ "lvfs-testing" ];
+    fwupd.uefiCapsuleSettings.DisableCapsuleUpdateOnDisk = true;
     xserver = {
       enable = true;
       autorun = true;
