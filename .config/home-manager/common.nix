@@ -32,6 +32,7 @@
     lazydocker
     ncdu
     ripgrep
+    repgrep # rgr (rg based search and replace)
     sops # used via nix-sops for handling secrets in system cfg
     sshfs
     tig
@@ -92,16 +93,34 @@
 
     # only for interactive shells
     initExtra = ''
+      # History settings
+      # - share common history between shells
+      # - remove duplicates
+      # according to: https://unix.stackexchange.com/questions/18212/bash-history-ignoredups-and-erasedups-setting-conflict-with-common-history/18443#18443
+      HISTCONTROL=ignoredups:erasedups
+      shopt -s histappend
+      PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+      # keep infinite history
+      HISTFILESIZE=-1 # inifite history size (bytes)
+      HISTSIZE=-1 # inifite history size (lines)
+      HISTFILE=~/.bash_eternal_history
+
+      # I like vim
       set -o vi
-      # hist
-      export HISTFILESIZE=-1
-      export HISTSIZE=-1
-      export HISTFILE=~/.bash_eternal_history
-      export PROMPT_COMMAND="history -a"
       export EDITOR="vim"
+
+      # add my scripts and emacs doom stuff to path
       export PATH="$HOME/bin:$HOME/.emacs.d/bin:$PATH"
+
+      # make work work
       [[ -f "$HOME/nature_robots/devel/dev_tooling/setup/host/setup.bash" ]] && source "$HOME/nature_robots/devel/dev_tooling/setup/host/setup.bash"
     '';
+  };
+  programs.starship = { # (bash) prompt
+    enable = true;
+    settings = {
+      add_newline = true;
+    };
   };
 
   programs.git = {
