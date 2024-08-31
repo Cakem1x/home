@@ -109,6 +109,10 @@
       set -o vi
       export EDITOR="vim"
 
+      # Improve FZF-based shell bindings
+      export FZF_DEFAULT_OPTS="-q\ \!/.\ \!^.\ " # ignore dotfiles
+      export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' -q\ \!/.\ \!^.\ " # preview dir contents
+
       # add my scripts and emacs doom stuff to path
       export PATH="$HOME/bin:$HOME/.emacs.d/bin:$PATH"
 
