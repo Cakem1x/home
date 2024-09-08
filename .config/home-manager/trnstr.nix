@@ -15,17 +15,17 @@ in
   home.packages = with pkgs; [
     # shell basics
     alacritty
+
     # CLI util
-    imagemagick
-    pdftk
-    xournal
+    imagemagick # do things with images
+    ffmpeg # convert/compress videos... and so much more
+    pdftk # append / cut pdfs etc.
     docker-compose
+
     # file viewers
     evince
     feh
-    ffmpeg
     vlc
-    nix-alien-pkgs.nix-alien
 
     # wm, wm system components, UI utils
     i3
@@ -40,29 +40,34 @@ in
     ispell
     libreoffice
     vscode
+
     # latex
     texlive.combined.scheme-full
+
     # fonts
     iosevka
     font-awesome # used as symbols in i3bar-rust
     fira-code
     fira-code-symbols
 
+    # 3D modeling/printing
+    openscad # 3D modeling with code
+    #cura # 3D printing (currently broken)
+
+    # Keys / Secrets / Auth
+    gnupg
+    pinentry # handle secrets
+
     # other apps
     firefox
     gimp
     signal-desktop
-    openscad
-    gnucash
-    aqbanking
-    gnupg
-    pinentry
-    nextcloud-client
-    steam
-    #cura # 3d printing
-
-    # unfree
-    spotify
+    xournal # view pdfs & add text/imgs
+    nextcloud-client # sync nextcloud files
+    steam # games
+    nautilus # file manager
+    simplescreenrecorder # record my screen
+    spotify # music (unfree :( )
   ];
 
   programs.alacritty = {
