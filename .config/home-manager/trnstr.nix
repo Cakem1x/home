@@ -27,7 +27,10 @@
     xkb-switch-i3
     xss-lock
     networkmanagerapplet
-    pwvucontrol # change audio settings (pipewire)
+    # control audio volume via pulseaudio (via pipewire, actually)
+    pavucontrol
+    pulseaudio
+    # pause/stop/next
     playerctl
 
     # editing
