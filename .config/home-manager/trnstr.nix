@@ -1,11 +1,5 @@
 { config, pkgs, ... }:
 
-
-let
-  nix-alien-pkgs = import (
-    builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
-  ) { };
-in
 {
   imports =
     [
@@ -33,7 +27,7 @@ in
     xkb-switch-i3
     xss-lock
     networkmanagerapplet
-    pavucontrol
+    pwvucontrol # change audio settings (pipewire)
     playerctl
 
     # editing
