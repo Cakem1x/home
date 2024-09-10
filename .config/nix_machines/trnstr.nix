@@ -33,12 +33,12 @@
   boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/2042cd58-521b-40cf-8512-c682da50301f";
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/ac1856a7-8d41-46cf-924f-02c7f2d8efb5";
+      device = "/dev/disk/by-label/nixos-root";
       fsType = "ext4";
     };
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/CCAC-B1B4";
+      device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
     };
 
