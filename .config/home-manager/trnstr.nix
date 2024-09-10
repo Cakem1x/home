@@ -65,6 +65,7 @@
     nautilus # file manager
     simplescreenrecorder # record my screen
     spotify # music (unfree :( )
+    quickemu # virtual windows
   ];
 
   programs.alacritty = {
