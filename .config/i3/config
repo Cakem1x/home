@@ -192,9 +192,9 @@ bindsym Print exec --no-startup-id import -window root "/home/$USER/screenshots/
 
 
 for_window [Class="firefox"] border none
-assign [Class="firefox"] → 2: www
-assign [Class="Spotify"] → 8: music
-assign [Class="Emacs"] → 3: doom
+assign [class="firefox"] $ws2
+assign [class="Spotify"] $ws8
+assign [class="Emacs"] $ws3
 
 # launch apps
 exec --no-startup-id firefox
