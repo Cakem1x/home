@@ -15,6 +15,7 @@
     ffmpeg # convert/compress videos... and so much more
     pdftk # append / cut pdfs etc.
     docker-compose
+    hdparm # check details of disks
 
     # file viewers
     evince
