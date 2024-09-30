@@ -192,6 +192,7 @@ bindsym Print exec --no-startup-id import -window root "/home/$USER/screenshots/
 
 
 for_window [Class="firefox"] border none
+for_window [class=".qemu-system-x86_64-wrapped" instance=".qemu-system-x86_64-wrapped"] floating enable # make VM windows float
 assign [class="firefox"] $ws2
 assign [class="Spotify"] $ws8
 assign [class="Emacs"] $ws3
