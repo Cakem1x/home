@@ -21,6 +21,7 @@
     # shell basics
     bashInteractive
     # CLI util
+    arandr
     autorandr
     bat
     eza
@@ -117,6 +118,7 @@
       export PATH="$HOME/bin:$HOME/.emacs.d/bin:$PATH"
 
       # make work work
+      export ROS_DOMAIN_ID=23
       [[ -f "$HOME/nature_robots/devel/dev_tooling/setup/host/setup.bash" ]] && source "$HOME/nature_robots/devel/dev_tooling/setup/host/setup.bash"
     '';
   };
