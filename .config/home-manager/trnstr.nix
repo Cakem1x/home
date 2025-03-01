@@ -60,7 +60,7 @@
     firefox
     gimp
     signal-desktop
-    xournal # view pdfs & add text/imgs
+    xournalpp # view pdfs & add text/imgs
     nextcloud-client # sync nextcloud files
     steam # games
     nautilus # file manager
