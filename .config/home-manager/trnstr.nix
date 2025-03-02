@@ -35,7 +35,6 @@
     playerctl
 
     # editing
-    ispell
     libreoffice
     vscode
 

@@ -47,24 +47,30 @@
     cachix
 
     # editing
-    vim
     emacs
-    helix
+    ispell
+    vim
+    # lang - sh
+    shellcheck
+    # lang - Markdown
+    pandoc # copmile markdown to html; also useful for md preview
     # lang - C / C++
-    gdb
     clang-tools
-    gcc
     cmake
+    cmake-language-server
+    gcc
+    gdb
     gnumake
     # lang - python
     (import ./python-packages.nix { inherit pkgs; })
     # lang - rust
-    rustc
-    clippy
     cargo
+    clippy
+    rust-analyzer
+    rustc
     # lang - nix
-    nixfmt-classic nixos-option
     nil
+    nixfmt-classic nixos-option
   ];
 
   programs.fzf = { enable = true; };
