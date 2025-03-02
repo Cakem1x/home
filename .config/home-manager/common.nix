@@ -53,7 +53,7 @@
     # lang - sh
     shellcheck
     # lang - Markdown
-    pandoc # copmile markdown to html; also useful for md preview
+    discount # copmile markdown to html; also useful for md preview
     # lang - C / C++
     clang-tools
     cmake
