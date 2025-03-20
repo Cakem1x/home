@@ -45,6 +45,7 @@
 
     # nix tools
     cachix
+    nix-index # nix-locate: finds stuff in artifacts in my nix store
 
     # editing
     emacs
