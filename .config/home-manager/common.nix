@@ -42,6 +42,7 @@
     unzip
     usbutils # lsusb
     xclip
+    dvc # data version control
 
     # nix tools
     cachix
