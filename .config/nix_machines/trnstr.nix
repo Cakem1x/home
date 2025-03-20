@@ -52,6 +52,13 @@
     graphics.enable32Bit = true;
   };
 
+  services.flatpak.enable = true;
+  xdg.portal = { # needed for flatpak to function
+    enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    config.common.default = "*";
+  };
+
   services = {
     fwupd.enable = true; # firmware update tool
     fwupd.extraRemotes = [ "lvfs-testing" ];
