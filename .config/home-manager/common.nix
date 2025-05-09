@@ -43,6 +43,7 @@
     usbutils # lsusb
     xclip
     dvc # data version control
+    dysk # nicer df cmd (disk usage, mountpoints, etc)
 
     # nix tools
     cachix
