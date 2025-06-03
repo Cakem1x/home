@@ -41,12 +41,6 @@
     # latex
     texlive.combined.scheme-full
 
-    # fonts
-    iosevka
-    font-awesome # used as symbols in i3bar-rust
-    fira-code
-    fira-code-symbols
-
     # 3D modeling/printing
     openscad # 3D modeling with code
     #cura # 3D printing (currently broken)
@@ -58,7 +52,7 @@
     # other apps
     firefox
     gimp
-    signal-desktop
+    signal-desktop-bin
     xournalpp # view pdfs & add text/imgs
     nextcloud-client # sync nextcloud files
     steam # games
@@ -66,7 +60,9 @@
     simplescreenrecorder # record my screen (video)
     flameshot # screenshots
     spotify # music (unfree :( )
-    quickemu # virtual windows
+    # virtualization
+    qemu
+    libvirt
   ];
 
   programs.alacritty = {
@@ -75,41 +71,47 @@
     settings = {
       font = {
         size = 8;
-        normal.family = "Fira Code";
+        normal.family = "Iosevka";
       };
-      # city lights theme, via https://github.com/alacritty/alacritty-theme
-      colors = {
+
+      # solarized osaka theme, via https://github.com/alacritty/alacritty-theme (source https://github.com/craftzdog/solarized-osaka.nvim)
+        colors = {
         primary = {
-          background = "0x171d23";
-          foreground = "0xffffff";
+          background = "0x001a1d";
+          foreground = "0x839496";
         };
         cursor = {
-          text = "0xfafafa";
-          cursor = "0x008b94";
+          text = "0x839496";  # Not specified, using foreground
+          cursor = "0x268bd2";  # Not specified, using normal blue
         };
         normal = {
-          black = "0x333f4a";
-          red = "0xd95468";
-          green = "0x8bd49c";
-          blue = "0x539afc";
-          magenta = "0xb62d65";
-          cyan = "0x70e1e8";
-          white = "0xb7c5d3";
+          black = "0x073642";
+          red = "0xdc322f";
+          green = "0x859900";
+          yellow = "0xb58900";
+          blue = "0x268bd2";
+          magenta = "0xd33682";
+          cyan = "0x2aa198";
+          white = "0xeee8d5";
         };
         bright = {
-          black = "0x41505e";
-          red = "0xd95468";
-          green = "0x8bd49c";
-          yellow = "0xebbf83";
-          blue = "0x5ec4ff";
-          magenta = "0xe27e8d";
-          cyan = "0x70e1e8";
-          white = "0xffffff";
+          black = "0x4c4c4c";
+          red = "0xcb4b16";
+          green = "0x586e75";
+          yellow = "0x657b83";
+          blue = "0x839496";
+          magenta = "0x6c71c4";
+          cyan = "0x93a1a1";
+          white = "0xfdf6e3";
         };
       };
     };
   };
 
-  # regenerate fonts
-  fonts.fontconfig.enable = true;
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+  };
 }

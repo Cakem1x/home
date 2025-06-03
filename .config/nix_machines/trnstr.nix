@@ -16,7 +16,9 @@
 
 
   boot = {
-    kernelModules = [ "kvm-intel" ];
+    kernelModules = [ "kvm-intel" "kvmgt" ];
+    kernelParams = [ "intel_iommu=on" ];
+
 
     initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
     loader = {
@@ -102,5 +104,12 @@
     };
   };
 
-  users.users.cakemix.extraGroups = ["docker" "dialout"];
+  # VM stuff
+  # ToDo/Notes: for better GPU performance in my VM, look into SR-IOV support. Apparently, Tigerlake does not support GVT-g anymore. However, SR-IOV support on Linux seems to be bad since it is very new
+  programs.virt-manager.enable = true;
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+
+  users.users.cakemix.extraGroups = ["docker" "dialout" "libvirtd" "kvm"];
+
 }
