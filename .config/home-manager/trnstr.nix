@@ -70,39 +70,39 @@
 
     settings = {
       font = {
-        size = 8;
+        size = 10;
         normal.family = "Iosevka";
       };
 
-      # solarized osaka theme, via https://github.com/alacritty/alacritty-theme (source https://github.com/craftzdog/solarized-osaka.nvim)
-        colors = {
+      # Ayu Light theme, via https://github.com/alacritty/alacritty-theme (source https://github.com/ayu-theme/ayu-colors)
+      colors = {
         primary = {
-          background = "0x001a1d";
-          foreground = "0x839496";
+          background = "0xfcfcfc";
+          foreground = "0x5c6166";
         };
         cursor = {
-          text = "0x839496";  # Not specified, using foreground
-          cursor = "0x268bd2";  # Not specified, using normal blue
+          text = "0x5c6166";
+          cursor = "0xeba54d";
         };
         normal = {
-          black = "0x073642";
-          red = "0xdc322f";
-          green = "0x859900";
-          yellow = "0xb58900";
-          blue = "0x268bd2";
-          magenta = "0xd33682";
-          cyan = "0x2aa198";
-          white = "0xeee8d5";
+          black = "0x010101";
+          red = "0xe7666a";
+          green = "0x80ab24";
+          yellow = "0xeba54d";
+          blue = "0x4196df";
+          magenta = "0x9870c3";
+          cyan = "0x51b891";
+          white = "0xc1c1c1";
         };
         bright = {
-          black = "0x4c4c4c";
-          red = "0xcb4b16";
-          green = "0x586e75";
-          yellow = "0x657b83";
-          blue = "0x839496";
-          magenta = "0x6c71c4";
-          cyan = "0x93a1a1";
-          white = "0xfdf6e3";
+          black = "0x343434";
+          red = "0xee9295";
+          green = "0x9fd32f";
+          yellow = "0xf0bc7b";
+          blue = "0x6daee6";
+          magenta = "0xb294d2";
+          cyan = "0x75c7a8";
+          white = "0xdbdbdb";
         };
       };
     };
