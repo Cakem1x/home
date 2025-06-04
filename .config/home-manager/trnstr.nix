@@ -74,35 +74,35 @@
         normal.family = "Iosevka";
       };
 
-      # Ayu Light theme, via https://github.com/alacritty/alacritty-theme (source https://github.com/ayu-theme/ayu-colors)
+      # Solarized Light theme, adapted from https://github.com/alacritty/alacritty-theme and doom-solarized-light
       colors = {
         primary = {
-          background = "0xfcfcfc";
-          foreground = "0x5c6166";
+          background = "0xfdf6e3";
+          foreground = "0x556b72";
         };
         cursor = {
-          text = "0x5c6166";
-          cursor = "0xeba54d";
+          text = "0x556b72";  # Using foreground
+          cursor = "0x268bd2";  # Using normal blue
         };
         normal = {
-          black = "0x010101";
-          red = "0xe7666a";
-          green = "0x80ab24";
-          yellow = "0xeba54d";
-          blue = "0x4196df";
-          magenta = "0x9870c3";
-          cyan = "0x51b891";
-          white = "0xc1c1c1";
+          black = "0x073642";
+          red = "0xdc322f";
+          green = "0x859900";
+          yellow = "0xb58900";
+          blue = "0x268bd2";
+          magenta = "0xd33682";
+          cyan = "0x2aa198";
+          white = "0xeee8d5";
         };
         bright = {
-          black = "0x343434";
-          red = "0xee9295";
-          green = "0x9fd32f";
-          yellow = "0xf0bc7b";
-          blue = "0x6daee6";
-          magenta = "0xb294d2";
-          cyan = "0x75c7a8";
-          white = "0xdbdbdb";
+          black = "0x002b36";
+          red = "0xcb4b16";
+          green = "0x586e75";
+          yellow = "0x657b83";
+          blue = "0x839496";
+          magenta = "0x6c71c4";
+          cyan = "0x93a1a1";
+          white = "0xfdf6e3";
         };
       };
     };
