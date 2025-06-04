@@ -55,7 +55,7 @@
     nix-index # nix-locate: finds stuff in artifacts in my nix store
 
     # editing
-    emacs
+    emacs-pgtk # pure gtk for wayland compat
     ispell
     vim
     # lang - sh
