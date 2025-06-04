@@ -96,6 +96,11 @@ in
         {command = "emacs";}
         {command = "shikane";} # setup screens
       ];
+      input = {
+        "*" = {
+          xkb_layout = "eu";
+        };
+      };
     };
   };
 
