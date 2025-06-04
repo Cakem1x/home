@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   # Solarized Light theme, adapted from https://github.com/alacritty/alacritty-theme and doom-solarized-light
@@ -27,6 +27,20 @@ let
       cyan = "0x93a1a1";
       white = "0xfdf6e3";
     };
+  };
+  wmCfg = {
+    modifier = "Mod4";
+    wsNames = [
+      "1: term"
+      "2: www"
+      "3: ✎"
+      "4"
+      "5"
+      "6"
+      "7"
+      "8: ♪"
+      "9"
+    ];
   };
 in
 {
@@ -88,7 +102,7 @@ in
   wayland.windowManager.sway = {
     enable = true;
     config = {
-      modifier = "Mod4";
+      modifier = wmCfg.modifier;
       terminal = "alacritty";
       startup = [ # Programs to run on startup
         {command = "firefox";}
@@ -101,6 +115,24 @@ in
           xkb_layout = "eu";
         };
       };
+      workspaceAutoBackAndForth = true;
+      assigns = {
+        ${builtins.elemAt wmCfg.wsNames 0} = [{ class = "^Firefox$"; }];
+        ${builtins.elemAt wmCfg.wsNames 3} = [{ class = "^emacs"; }];
+        ${builtins.elemAt wmCfg.wsNames 8} = [{ class = "^Spotify"; }];
+      };
+      keybindings = lib.mkOptionDefault (let
+        switchBindings = builtins.listToAttrs (lib.imap (i: name: {
+          name = "${wmCfg.modifier}+${toString i}";
+          value = "workspace ${name}";
+        }) wmCfg.wsNames);
+        moveBindings = builtins.listToAttrs (lib.imap (i: name: {
+          name = "${wmCfg.modifier}+Shift+${toString i}";
+          value = "move container to workspace ${name}";
+        }) wmCfg.wsNames);
+       in
+        switchBindings // moveBindings
+      );
     };
   };
 
