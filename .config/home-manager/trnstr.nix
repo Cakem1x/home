@@ -67,6 +67,8 @@ in
 
     # wm, wm system components, UI utils
     wdisplays # GUI for display setup
+    pavucontrol # control sound input and output
+    playerctl # control playback (e.g. spotify, vlc)
 
     # editing
     libreoffice
@@ -101,9 +103,14 @@ in
 
   wayland.windowManager.sway = {
     enable = true;
+    systemd.enable = true; # enable sway-session.target
     config = {
       modifier = wmCfg.modifier;
       terminal = "alacritty";
+      fonts = {
+        names = [ "Iosevka" ];
+        size = 8.0;
+      };
       startup = [ # Programs to run on startup
         {command = "firefox";}
         {command = "alacritty";}
@@ -122,6 +129,23 @@ in
         ${builtins.elemAt wmCfg.wsNames 8} = [{ class = "^Spotify"; }];
       };
       keybindings = lib.mkOptionDefault (let
+        otherBindings = {
+          # Use pactl to adjust volume in PulseAudio.
+          XF86AudioRaiseVolume = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%";
+          XF86AudioLowerVolume = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%";
+          XF86AudioMute = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          XF86AudioMicMute = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+          XF86AudioMedia = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+          Pause = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+          # Brightness keys
+          XF86MonBrightnessUp = "exec --no-startup-id light -A 10";
+          XF86MonBrightnessDown = "exec --no-startup-id light -U 10";
+          # Media keys
+          XF86AudioPrev = "exec --no-startup-id playerctl previous";
+          XF86AudioPlay = "exec --no-startup-id playerctl play-pause";
+          XF86AudioNext = "exec --no-startup-id playerctl next";
+          "${wmCfg.modifier}+m" = "move workspace to output next";
+        };
         switchBindings = builtins.listToAttrs (lib.imap (i: name: {
           name = "${wmCfg.modifier}+${toString i}";
           value = "workspace ${name}";
@@ -131,7 +155,7 @@ in
           value = "move container to workspace ${name}";
         }) wmCfg.wsNames);
        in
-        switchBindings // moveBindings
+        switchBindings // moveBindings // otherBindings
       );
     };
   };
