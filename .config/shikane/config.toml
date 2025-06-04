@@ -1,0 +1,33 @@
+[[profile]]
+name = "home_office1"
+
+[[profile.output]]
+enable = true
+search = ["n=eDP-1"]
+mode = "2256x1504@59.999Hz"
+position = "1230,821"
+scale = 2.0
+transform = "normal"
+adaptive_sync = false
+
+[[profile.output]]
+enable = true
+search = ["n=DP-1"]
+mode = "2560x1440@59.951Hz"
+position = "2358,263"
+scale = 1.0
+transform = "normal"
+adaptive_sync = false
+
+[[profile]]
+name = "laptop_only"
+
+[[profile.output]]
+enable = true
+search = ["n=eDP-1"]
+mode = "2256x1504@59.999Hz"
+position = "1230,821"
+scale = 2.0
+transform = "normal"
+adaptive_sync = false
+
