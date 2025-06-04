@@ -22,18 +22,6 @@
     feh
     vlc
 
-    # wm, wm system components, UI utils
-    i3
-    i3status-rust
-    xkb-switch-i3
-    xss-lock
-    networkmanagerapplet
-    # control audio volume via pulseaudio (via pipewire, actually)
-    pavucontrol
-    pulseaudio
-    # pause/stop/next
-    playerctl
-
     # editing
     libreoffice
     vscode
@@ -64,6 +52,18 @@
     qemu
     libvirt
   ];
+
+  wayland.windowManager.sway = {
+    enable = true;
+    config = rec {
+      modifier = "Mod4";
+      terminal = "alacritty";
+      startup = [
+        # Launch Firefox on start
+        {command = "firefox";}
+      ];
+    };
+  };
 
   programs.alacritty = {
     enable = true;

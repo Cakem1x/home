@@ -1,5 +1,8 @@
 { config, lib, pkgs, modulesPath, ... }:
 
+let
+  default_login_session = "${pkgs.sway}/bin/sway";
+in
 {
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
@@ -65,18 +68,20 @@
     fwupd.enable = true; # firmware update tool
     fwupd.extraRemotes = [ "lvfs-testing" ];
     fwupd.uefiCapsuleSettings.DisableCapsuleUpdateOnDisk = true;
-    xserver = {
+
+    # login manager
+    greetd = {
       enable = true;
-      autorun = true;
-      windowManager.i3.enable = true;
-      # dpi = 175; # adjusted for framework notebook screen, scale other screens with lower res / bigger size via xrandr
-      dpi = 150; # adjusted for external screen, but also ok for notebook screen
-      # dpi = 100; # adjusted for 1080p external screen
-    };
-    displayManager = {
-      defaultSession = "none+i3";
-      autoLogin.enable = true;
-      autoLogin.user = "cakemix";
+      settings = {
+        initial_session = { # autologin after decrypting hdd
+          command = "${default_login_session}";
+          user = "cakemix";
+        };
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${default_login_session}";
+          user = "greeter";
+        };
+      };
     };
 
     libinput.enable = true; # touchpad support
