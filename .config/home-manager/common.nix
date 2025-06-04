@@ -21,8 +21,6 @@
     # shell basics
     bashInteractive
     # CLI util
-    arandr
-    autorandr
     bat
     eza
     fd
