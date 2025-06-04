@@ -40,7 +40,7 @@
     unzip
     usbutils # lsusb
     pciutils # lspci
-    xclip
+    wl-clipboard # wayland clipboard utils; CLI: wl-copy, wl-paste
     dvc # data version control
     dysk # nicer df cmd (disk usage, mountpoints, etc)
 
