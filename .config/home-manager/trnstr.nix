@@ -90,9 +90,11 @@ in
     config = {
       modifier = "Mod4";
       terminal = "alacritty";
-      startup = [
-        # Launch Firefox on start
+      startup = [ # Programs to run on startup
         {command = "firefox";}
+        {command = "alacritty";}
+        {command = "emacs";}
+        {command = "shikane";} # setup screens
       ];
     };
   };
@@ -121,4 +123,5 @@ in
       uris = ["qemu:///system"];
     };
   };
+
 }
