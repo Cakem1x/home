@@ -84,9 +84,12 @@
     fira-code-symbols
   ];
 
-  # rtkit is optional but recommended
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
+  security={
+    rtkit.enable = true;
+    polkit.enable = true;
+    pam.services.swaylock = {}; # fix swaylock - otherwise, unlocking won't work even with correct password
+  };
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
