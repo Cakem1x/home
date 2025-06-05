@@ -132,6 +132,9 @@ in
           command = "${pkgs.waybar}/bin/waybar";
         }
       ];
+      #window.hideEdgeBorders = "smart";
+      #gaps.smartGaps = true;
+      #gaps.inner = 100;
       workspaceAutoBackAndForth = true;
       assigns = {
         ${builtins.elemAt wmCfg.wsNames 1} = [{ class = "^Firefox"; }];
@@ -205,7 +208,7 @@ in
       #backlight, #disk, #custom-uptime, #custom-updates, #custom-quote,
       #idle_inhibitor, #tray, #custom-temperature, #bluetooth, #workspaces button {
           margin: 2px;
-          border-radius: 2px;
+          border-radius: 5px;
           border: 1px solid;
           padding: 2px;
           border-color: ${transformColorForCss colorscheme.primary.foreground};
@@ -213,19 +216,14 @@ in
       }
 
       #window {
+          border-radius: 5px;
+          border: 1px solid;
           padding: 2px;
-          border-style: none;
-          border-top-left-radius: 5px;
-          border-top-right-radius: 5px;
+          border-color: ${transformColorForCss colorscheme.primary.foreground};
           background-color: ${transformColorForCss colorscheme.primary.background};
       }
 
       /* Special styling for specific states */
-      #workspaces button.hover {
-          background-color: ${transformColorForCss colorscheme.normal.cyan};
-          color: ${transformColorForCss colorscheme.primary.background};
-      }
-
       #workspaces button.focused {
           background-color: ${transformColorForCss colorscheme.normal.blue};
           color: ${transformColorForCss colorscheme.primary.background};
