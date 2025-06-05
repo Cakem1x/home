@@ -178,50 +178,13 @@ in
   programs.waybar = {
     enable = true;
     style = ''
-      /* Colorscheme Colors */
-      @define-color background ${transformColorForCss colorscheme.primary.background};
-      @define-color foreground ${transformColorForCss colorscheme.primary.foreground};
-      @define-color black ${transformColorForCss colorscheme.normal.black};
-      @define-color red ${transformColorForCss colorscheme.normal.red};
-      @define-color green ${transformColorForCss colorscheme.normal.green};
-      @define-color yellow ${transformColorForCss colorscheme.normal.yellow};
-      @define-color blue ${transformColorForCss colorscheme.normal.blue};
-      @define-color magenta ${transformColorForCss colorscheme.normal.magenta};
-      @define-color cyan ${transformColorForCss colorscheme.normal.cyan};
-      @define-color white ${transformColorForCss colorscheme.normal.white};
-      @define-color orange ${transformColorForCss colorscheme.normal.red};
-
-      /* Module-specific colors */
-      @define-color workspaces-color @foreground;
-      @define-color workspaces-focused-bg @green;
-      @define-color workspaces-urgent-bg @red;
-      @define-color workspaces-urgent-fg @black;
-
-      /* Text and border colors for modules */
-      @define-color mode-color @orange;
-      @define-color mpd-color @magenta;
-      @define-color weather-color @magenta;
-      @define-color playerctl-color @magenta;
-      @define-color clock-color @blue;
-      @define-color cpu-color @green;
-      @define-color memory-color @magenta;
-      @define-color temperature-color @yellow;
-      @define-color temperature-critical-color @red;
-      @define-color battery-color @cyan;
-      @define-color battery-charging-color @green;
-      @define-color battery-warning-color @yellow;
-      @define-color battery-critical-color @red;
-      @define-color network-color @blue;
-      @define-color network-disconnected-color @red;
-      @define-color pulseaudio-color @orange;
-      @define-color pulseaudio-muted-color @red;
-      @define-color backlight-color @yellow;
-      @define-color disk-color @cyan;
-      @define-color uptime-color @green;
-      @define-color updates-color @orange;
-      @define-color quote-color @green;
-      @define-color idle-inhibitor-color @foreground;
-      @define-color idle-inhibitor-active-color @red;
+      /* special state colors */
+      @define-color temperature-critical-color ${transformColorForCss colorscheme.normal.red};
+      @define-color battery-warning-color ${transformColorForCss colorscheme.normal.yellow};
+      @define-color battery-critical-color ${transformColorForCss colorscheme.normal.red};
+      @define-color network-disconnected-color ${transformColorForCss colorscheme.normal.red};
+      @define-color pulseaudio-muted-color ${transformColorForCss colorscheme.normal.magenta};
+      @define-color idle-inhibitor-active-color ${transformColorForCss colorscheme.normal.cyan};
 
       * {
         font-family: Iosevka;
@@ -232,113 +195,50 @@ in
       }
 
       window#waybar {
-          background-color: @background;
-          color: @foreground;
+          background-color: transparent;
+          color: ${transformColorForCss colorscheme.primary.foreground};
       }
 
       /* Common module styling with border-bottom */
       #mode, #custom-weather, #custom-playerctl, #clock, #cpu,
       #memory, #temperature, #battery, #network, #pulseaudio,
       #backlight, #disk, #custom-uptime, #custom-updates, #custom-quote,
-      #idle_inhibitor, #tray {
-          margin: 0 5px;
-          border-bottom: 2px solid transparent;
-          background-color: transparent;
+      #idle_inhibitor, #tray, #custom-temperature, #bluetooth, #workspaces button {
+          margin: 2px;
+          border-radius: 2px;
+          border: 1px solid;
+          padding: 2px;
+          border-color: ${transformColorForCss colorscheme.primary.foreground};
+          background-color: ${transformColorForCss colorscheme.primary.background};
       }
 
-      /* Workspaces styling */
-      #workspaces button {
-          color: ${transformColorForCss colorscheme.primary.foreground};
-          border-bottom: 2px solid transparent;
+      #window {
+          padding: 2px;
+          border-style: none;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
+          background-color: ${transformColorForCss colorscheme.primary.background};
       }
 
-      #workspaces button:hover {
-          background: ${transformColorForCss colorscheme.normal.cyan};
+      /* Special styling for specific states */
+      #workspaces button.hover {
+          background-color: ${transformColorForCss colorscheme.normal.cyan};
+          color: ${transformColorForCss colorscheme.primary.background};
       }
 
       #workspaces button.focused {
-          color: ${transformColorForCss colorscheme.normal.blue};
-          border-bottom-color: ${transformColorForCss colorscheme.normal.blue};
+          background-color: ${transformColorForCss colorscheme.normal.blue};
+          color: ${transformColorForCss colorscheme.primary.background};
       }
 
       #workspaces button.urgent {
           background-color: ${transformColorForCss colorscheme.normal.red};
+          color: ${transformColorForCss colorscheme.primary.background};
       }
 
-      /* Module-specific styling */
       #mode {
-          color: ${transformColorForCss colorscheme.normal.red};
-          border-bottom-color: ${transformColorForCss colorscheme.normal.red};
-      }
-
-      #custom-weather {
-          color: @weather-color;
-          border-bottom-color: @weather-color;
-      }
-
-      #custom-playerctl {
-          color: @playerctl-color;
-          border-bottom-color: @playerctl-color;
-      }
-
-      #custom-playerctl.Playing {
-          color: @cyan;
-          border-bottom-color: @cyan;
-      }
-
-      #custom-playerctl.Paused {
-          color: @orange;
-          border-bottom-color: @orange;
-      }
-
-      #clock {
-          color: @clock-color;
-          border-bottom-color: @clock-color;
-      }
-
-      #cpu {
-          color: @cpu-color;
-          border-bottom-color: @cpu-color;
-      }
-
-      #memory {
-          color: @memory-color;
-          border-bottom-color: @memory-color;
-      }
-
-      #temperature {
-          color: @temperature-color;
-          border-bottom-color: @temperature-color;
-      }
-
-      #temperature.critical {
-          color: @temperature-critical-color;
-          border-bottom-color: @temperature-critical-color;
-      }
-
-      #battery {
-          color: @battery-color;
-          border-bottom-color: @battery-color;
-      }
-
-      #battery.charging, #battery.plugged {
-          color: @battery-charging-color;
-          border-bottom-color: @battery-charging-color;
-      }
-
-      #battery.warning:not(.charging) {
-          color: @battery-warning-color;
-          border-bottom-color: @battery-warning-color;
-      }
-
-      #battery.critical:not(.charging) {
-          color: @battery-critical-color;
-          border-bottom-color: @battery-critical-color;
-      }
-
-      #network {
-          color: @network-color;
-          border-bottom-color: @network-color;
+          background-color: ${transformColorForCss colorscheme.normal.yellow};
+          color: ${transformColorForCss colorscheme.primary.background};
       }
 
       #network.disconnected {
@@ -346,19 +246,9 @@ in
           border-bottom-color: @network-disconnected-color;
       }
 
-      #pulseaudio {
-          color: @pulseaudio-color;
-          border-bottom-color: @pulseaudio-color;
-      }
-
       #pulseaudio.muted {
           color: @pulseaudio-muted-color;
           border-bottom-color: @pulseaudio-muted-color;
-      }
-
-      #backlight {
-          color: @backlight-color;
-          border-bottom-color: @backlight-color;
       }
 
       #disk {
