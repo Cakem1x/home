@@ -120,8 +120,15 @@ in
         {command = "firefox";}
         {command = "alacritty";}
         {command = "emacs";}
-        {command = "shikane";} # setup screens
         {command = "${pkgs.networkmanagerapplet}/bin/nm-applet";}
+        { # setup screens
+          command = "shikane";
+          always= true;
+        }
+        { # setup wallpaper
+          command = "${pkgs.swaybg}/bin/swaybg -i ${pkgs.nixos-artwork.wallpapers.nineish-solarized-light.src} --mode fill";
+          always= true;
+        }
       ];
       input = {
         "*" = {
