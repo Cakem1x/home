@@ -132,14 +132,48 @@ in
           command = "${pkgs.waybar}/bin/waybar";
         }
       ];
-      #window.hideEdgeBorders = "smart";
-      #gaps.smartGaps = true;
-      #gaps.inner = 100;
+
+      # sway window styling
+      window.hideEdgeBorders = "smart";
+      window.border = 3;
+      gaps.smartGaps = true;
+      gaps.inner = 7;
+      colors = {
+        unfocused = {
+          background = transformColorForCss colorscheme.primary.background;
+          border = transformColorForCss colorscheme.primary.foreground;
+          childBorder = transformColorForCss colorscheme.primary.background;
+          indicator = transformColorForCss colorscheme.primary.foreground;
+          text = transformColorForCss colorscheme.primary.foreground;
+        };
+        focused = {
+          background = transformColorForCss colorscheme.normal.blue;
+          border = transformColorForCss colorscheme.bright.blue;
+          childBorder = transformColorForCss colorscheme.normal.blue;
+          indicator = transformColorForCss colorscheme.primary.background;
+          text = transformColorForCss colorscheme.primary.background;
+        };
+        focusedInactive = {
+          background = transformColorForCss colorscheme.normal.magenta;
+          border = transformColorForCss colorscheme.bright.magenta;
+          childBorder = transformColorForCss colorscheme.normal.magenta;
+          indicator = transformColorForCss colorscheme.primary.background;
+          text = transformColorForCss colorscheme.primary.background;
+        };
+        urgent = {
+          background = transformColorForCss colorscheme.normal.red;
+          border = transformColorForCss colorscheme.bright.red;
+          childBorder = transformColorForCss colorscheme.normal.red;
+          indicator = transformColorForCss colorscheme.primary.background;
+          text = transformColorForCss colorscheme.primary.background;
+        };
+      };
+
       workspaceAutoBackAndForth = true;
       assigns = {
-        ${builtins.elemAt wmCfg.wsNames 1} = [{ class = "^Firefox"; }];
-        ${builtins.elemAt wmCfg.wsNames 2} = [{ class = "^emacs"; }];
-        ${builtins.elemAt wmCfg.wsNames 7} = [{ class = "^Spotify"; }];
+        ${builtins.elemAt wmCfg.wsNames 1} = [ {app_id = "firefox";} ];
+        ${builtins.elemAt wmCfg.wsNames 2} = [ {app_id = "emacs";} ];
+        ${builtins.elemAt wmCfg.wsNames 7} = [ { class = "^Spotify";} ];
       };
       keybindings = lib.mkOptionDefault (let
         otherBindings = {
@@ -204,21 +238,12 @@ in
 
       /* Common module styling with border-bottom */
       #mode, #custom-weather, #custom-playerctl, #clock, #cpu,
-      #memory, #temperature, #battery, #network, #pulseaudio,
+      #memory, #temperature, #battery, #network, #pulseaudio, #window,
       #backlight, #disk, #custom-uptime, #custom-updates, #custom-quote,
       #idle_inhibitor, #tray, #custom-temperature, #bluetooth, #workspaces button {
-          margin: 2px;
-          border-radius: 5px;
           border: 1px solid;
           padding: 2px;
-          border-color: ${transformColorForCss colorscheme.primary.foreground};
-          background-color: ${transformColorForCss colorscheme.primary.background};
-      }
-
-      #window {
-          border-radius: 5px;
-          border: 1px solid;
-          padding: 2px;
+          margin: 0 2px;
           border-color: ${transformColorForCss colorscheme.primary.foreground};
           background-color: ${transformColorForCss colorscheme.primary.background};
       }
