@@ -86,7 +86,6 @@ in
 
     libinput.enable = true; # touchpad support
     udisks2.enable = true;  # allows mounting (USB) storage devices more easily
-    autorandr.enable = true; # automatically restore xrandr configurations, based on detected screens
     printing.enable = true;
     avahi = { # discover network printers
       enable = true;
