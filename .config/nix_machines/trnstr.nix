@@ -58,10 +58,10 @@ in
   };
 
   services.flatpak.enable = true;
-  xdg.portal = { # needed for flatpak to function
+  xdg.portal = {
     enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
-    config.common.default = "*";
+    wlr.enable = true; # xdg-desktop-portal backend for wlroots
+    extraPortals = [pkgs.xdg-desktop-portal-gtk]; # make gtk apps happy
   };
 
   services = {

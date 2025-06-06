@@ -110,6 +110,7 @@ in
 
   wayland.windowManager.sway = {
     enable = true;
+    wrapperFeatures.gtk = true; # so that gtk works properly
     systemd.enable = true; # enable sway-session.target
     config = {
       modifier = wmCfg.modifier;
