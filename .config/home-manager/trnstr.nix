@@ -120,6 +120,7 @@ in
         {command = "alacritty";}
         {command = "emacs";}
         {command = "shikane";} # setup screens
+        {command = "${pkgs.networkmanagerapplet}/bin/nm-applet";}
       ];
       input = {
         "*" = {
@@ -231,37 +232,44 @@ in
         min-height: 0;
       }
 
-      window#waybar {
-          background-color: transparent;
-          color: ${transformColorForCss colorscheme.primary.foreground};
+      tooltip {
+        color: ${transformColorForCss colorscheme.primary.foreground};
+        border-color: ${transformColorForCss colorscheme.primary.foreground};
+        border: 1px solid;
+        background-color: ${transformColorForCss colorscheme.primary.background};
       }
 
-      /* Common module styling with border-bottom */
-      #mode, #custom-weather, #custom-playerctl, #clock, #cpu,
+      window#waybar {
+        background-color: transparent;
+        color: ${transformColorForCss colorscheme.primary.foreground};
+      }
+
+      /* Common module styling */
+      #mode, #custom-weather, #custom-mic-volume, #custom-playerctl, #clock, #cpu,
       #memory, #temperature, #battery, #network, #pulseaudio, #window,
-      #backlight, #disk, #custom-uptime, #custom-updates, #custom-quote,
+      #backlight, #disk,
       #idle_inhibitor, #tray, #custom-temperature, #bluetooth, #workspaces button {
-          border: 1px solid;
-          padding: 2px;
-          margin: 0 2px;
-          border-color: ${transformColorForCss colorscheme.primary.foreground};
-          background-color: ${transformColorForCss colorscheme.primary.background};
+        border: 1px solid;
+        padding: 2px;
+        margin: 0 2px;
+        border-color: ${transformColorForCss colorscheme.primary.foreground};
+        background-color: ${transformColorForCss colorscheme.primary.background};
       }
 
       /* Special styling for specific states */
       #workspaces button.focused {
-          background-color: ${transformColorForCss colorscheme.normal.blue};
-          color: ${transformColorForCss colorscheme.primary.background};
+        background-color: ${transformColorForCss colorscheme.normal.blue};
+        color: ${transformColorForCss colorscheme.primary.background};
       }
 
       #workspaces button.urgent {
-          background-color: ${transformColorForCss colorscheme.normal.red};
-          color: ${transformColorForCss colorscheme.primary.background};
+        background-color: ${transformColorForCss colorscheme.normal.red};
+        color: ${transformColorForCss colorscheme.primary.background};
       }
 
       #mode {
-          background-color: ${transformColorForCss colorscheme.normal.yellow};
-          color: ${transformColorForCss colorscheme.primary.background};
+        background-color: ${transformColorForCss colorscheme.normal.yellow};
+        color: ${transformColorForCss colorscheme.primary.background};
       }
 
       #network.disconnected {
@@ -279,21 +287,6 @@ in
           border-bottom-color: @disk-color;
       }
 
-      #custom-uptime {
-          color: @uptime-color;
-          border-bottom-color: @uptime-color;
-      }
-
-      #custom-updates {
-          color: @updates-color;
-          border-bottom-color: @updates-color;
-      }
-
-      #custom-quote {
-          color: @quote-color;
-          border-bottom-color: @quote-color;
-      }
-
       #idle_inhibitor {
           color: @idle-inhibitor-color;
           border-bottom-color: transparent;
@@ -306,6 +299,7 @@ in
 
       #tray {
           background-color: transparent;
+          border: none;
       }
 
       #tray > .passive {
@@ -314,8 +308,7 @@ in
 
       #tray > .needs-attention {
           -gtk-icon-effect: highlight;
-          color: @red;
-          border-bottom-color: @red;
+          border-bottom-color: ${transformColorForCss colorscheme.normal.red};
       }
     '';
 
@@ -336,7 +329,8 @@ in
             "network"
             "battery"
             "bluetooth"
-            "pulseaudio"
+            "pulseaudio#output"
+            "pulseaudio#input"
             "backlight"
             "custom/temperature"
             "memory"
@@ -364,22 +358,26 @@ in
           format-icons = ["󰂎" "󰁼" "󰁿" "󰂁" "󰁹"];
           tooltip = true;
         };
-        pulseaudio = {
+
+        "pulseaudio#input" = {
+          format-source = " {volume}%";
+          format-source-muted = " off";
+          format = "{format_source}";
+          max-volume = 100;
+          on-click = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+          on-scroll-up = "pactl set-source-volume @DEFAULT_SOURCE@ +1%";
+          on-scroll-down = "pactl set-source-volume @DEFAULT_SOURCE@ -1%";
+          on-click-right = "pavucontrol -t 4";
+        };
+        "pulseaudio#output" = {
           format = "{icon} {volume}%";
-          format-muted = " 󰖁 0%";
+          format-muted = "󰖁 off";
           format-icons = {
-            headphone = "";
-            hands-free = "";
-            headset = "";
-            phone = "";
-            portable = "";
-            car = "";
-            default = ["" "" ""];
+              default = ["" "" ""];
           };
+          max-volume = 100;
+          on-click = "pactl -- set-sink-mute @DEFAULT_SINK@ toggle";
           on-click-right = "pavucontrol -t 3";
-          on-click = "pactl -- set-sink-mute 0 toggle";
-          tooltip = true;
-          tooltip-format = "Speaker volume {volume}%";
         };
         "custom/temperature" = {
           exec = "${pkgs.lm_sensors}/bin/sensors | awk '/^Package id 0:/ {print int($4)}'";
@@ -400,12 +398,28 @@ in
         };
 
         clock = {
-          interval = 1;
-          timezone = "Europe/Berlin";
           format = " {:%H:%M}";
+          format-alt = "󰃮 {:%Y-%m-%d}";
           tooltip = true;
-          tooltip-format = "{:L%Y-%m-%d, %A}";
+          tooltip-format = "{calendar}";
+          calendar = {
+              mode = "month";
+              mode-mon-col = 3;
+              weeks-pos = "right";
+              format = {
+                  months =     "<span><b>{}</b></span>";
+                  weeks =      "<span color='${transformColorForCss colorscheme.normal.yellow}'><b>W{}</b></span>";
+                  weekdays =   "<span><b>{}</b></span>";
+                  today =      "<span color='${transformColorForCss colorscheme.normal.blue}'><b><u>{}</u></b></span>";
+              };
+          };
+          actions = {
+              on-click-right = "mode";
+              on-scroll-forward = "shift_up";
+              on-scroll-backward = "shift_down";
+          };
         };
+
 
         backlight = {
           device = "intel_backlight";
