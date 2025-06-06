@@ -6,7 +6,7 @@ enable = true
 search = ["n=eDP-1"]
 mode = "2256x1504@59.999Hz"
 position = "1230,821"
-scale = 2.0
+scale = 1.69921875
 transform = "normal"
 adaptive_sync = false
 
