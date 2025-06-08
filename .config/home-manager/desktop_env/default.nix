@@ -42,7 +42,7 @@ let
     wsNames = [ "1 " "2 󰈹" "3 ✎" "4" "5" "6" "7" "8 ♪" "9" ];
   };
 
-  lockCommand = "${pkgs.swaylock}/bin/swaylock -c ${transformColorForRRGGBB colorscheme.primary.background}";
+  lockCommand = "${pkgs.swaylock}/bin/swaylock -f -c ${transformColorForRRGGBB colorscheme.primary.background}";
 in {
 
   home.packages = with pkgs; [
@@ -167,6 +167,15 @@ in {
 
       in switchBindings // moveBindings // otherBindings);
     };
+  };
+
+  services.swayidle = {
+    enable = true;
+    package = pkgs.swayidle;
+    events = [
+      { event = "before-sleep"; command = lockCommand; }
+      { event = "lock"; command = lockCommand; }
+    ];
   };
 
   gtk.enable = true;
