@@ -4,6 +4,8 @@ let
   # Solarized Light theme, adapted from https://github.com/alacritty/alacritty-theme and doom-solarized-light
   transformColorForCss = colorWith0xPrefix:
     "#${builtins.substring 2 6 colorWith0xPrefix}";
+  transformColorForRRGGBB = colorWith0xPrefix:
+    "${builtins.substring 2 6 colorWith0xPrefix}";
   colorscheme = {
     primary = {
       background = "0xfdf6e3";
@@ -30,6 +32,7 @@ let
       white = "0xfdf6e3";
     };
   };
+
   wmCfg = {
     modifier = "Mod4";
     fonts = {
@@ -38,13 +41,14 @@ let
     };
     wsNames = [ "1 " "2 󰈹" "3 ✎" "4" "5" "6" "7" "8 ♪" "9" ];
   };
+
+  lockCommand = "${pkgs.swaylock}/bin/swaylock -c ${transformColorForRRGGBB colorscheme.primary.background}";
 in {
 
   home.packages = with pkgs; [
     wdisplays # GUI for display setup
     pavucontrol # control sound input and output
     playerctl # control playback (e.g. spotify, vlc)
-    swaylock # lock screen
     fuzzel # run applications
   ];
 
@@ -140,23 +144,27 @@ in {
           XF86AudioPrev = "exec playerctl previous";
           XF86AudioPlay = "exec playerctl play-pause";
           XF86AudioNext = "exec playerctl next";
+
           "${wmCfg.modifier}+m" = ''
             exec "swaymsg -t get_outputs | ${pkgs.jq}/bin/jq '[.[] | select(.active == true)] | .[(map(.focused) | index(true) + 1) % length].name' |xargs swaymsg move workspace to"'';
 
-          "Mod1+Ctrl+l" =
-            "loginctl lock-session"; # lock screen; Mod1 is alt key
+          "Ctrl+Alt+l" = "exec ${lockCommand}"; # lock screen
+
           "Mod4+Shift+r" = "reload";
           "${wmCfg.modifier}+d" =
             "exec ${pkgs.fuzzel}/bin/fuzzel"; # Run applications
         };
+
         switchBindings = builtins.listToAttrs (lib.imap (i: name: {
           name = "${wmCfg.modifier}+${toString i}";
           value = "workspace ${name}";
         }) wmCfg.wsNames);
+
         moveBindings = builtins.listToAttrs (lib.imap (i: name: {
           name = "${wmCfg.modifier}+Shift+${toString i}";
           value = "move container to workspace ${name}";
         }) wmCfg.wsNames);
+
       in switchBindings // moveBindings // otherBindings);
     };
   };
@@ -183,102 +191,6 @@ in {
 
   programs.waybar = {
     enable = true;
-    # style = ''
-    #   /* special state colors */
-    #   @define-color temperature-critical-color ${transformColorForCss colorscheme.normal.red};
-    #   @define-color battery-warning-color ${transformColorForCss colorscheme.normal.yellow};
-    #   @define-color battery-critical-color ${transformColorForCss colorscheme.normal.red};
-    #   @define-color network-disconnected-color ${transformColorForCss colorscheme.normal.red};
-    #   @define-color pulseaudio-muted-color ${transformColorForCss colorscheme.normal.magenta};
-    #   @define-color idle-inhibitor-active-color ${transformColorForCss colorscheme.normal.cyan};
-
-    #   * {
-    #     font-family: Iosevka;
-    #     font-size: 12px;
-    #     border: none;
-    #     border-radius: 0px;
-    #     min-height: 0;
-    #   }
-
-    #   tooltip {
-    #     color: ${transformColorForCss colorscheme.primary.foreground};
-    #     border-color: ${transformColorForCss colorscheme.primary.foreground};
-    #     border: 1px solid;
-    #     background-color: ${transformColorForCss colorscheme.primary.background};
-    #   }
-
-    #   window#waybar {
-    #     background-color: transparent;
-    #     color: ${transformColorForCss colorscheme.primary.foreground};
-    #   }
-
-    #   /* Common module styling */
-    #   #mode, #custom-weather, #custom-mic-volume, #custom-playerctl, #clock, #cpu,
-    #   #memory, #temperature, #battery, #network, #pulseaudio, #window,
-    #   #backlight, #disk,
-    #   #idle_inhibitor, #tray, #custom-temperature, #bluetooth, #workspaces button {
-    #     border: 1px solid;
-    #     padding: 2px;
-    #     margin: 0 2px;
-    #     border-color: ${transformColorForCss colorscheme.primary.foreground};
-    #     background-color: ${transformColorForCss colorscheme.primary.background};
-    #   }
-
-    #   /* Special styling for specific states */
-    #   #workspaces button.focused {
-    #     background-color: ${transformColorForCss colorscheme.normal.blue};
-    #     color: ${transformColorForCss colorscheme.primary.background};
-    #   }
-
-    #   #workspaces button.urgent {
-    #     background-color: ${transformColorForCss colorscheme.normal.red};
-    #     color: ${transformColorForCss colorscheme.primary.background};
-    #   }
-
-    #   #mode {
-    #     background-color: ${transformColorForCss colorscheme.normal.yellow};
-    #     color: ${transformColorForCss colorscheme.primary.background};
-    #   }
-
-    #   #network.disconnected {
-    #       color: @network-disconnected-color;
-    #       border-bottom-color: @network-disconnected-color;
-    #   }
-
-    #   #pulseaudio.muted {
-    #       color: @pulseaudio-muted-color;
-    #       border-bottom-color: @pulseaudio-muted-color;
-    #   }
-
-    #   #disk {
-    #       color: @disk-color;
-    #       border-bottom-color: @disk-color;
-    #   }
-
-    #   #idle_inhibitor {
-    #       color: @idle-inhibitor-color;
-    #       border-bottom-color: transparent;
-    #   }
-
-    #   #idle_inhibitor.activated {
-    #       color: @idle-inhibitor-active-color;
-    #       border-bottom-color: @idle-inhibitor-active-color;
-    #   }
-
-    #   #tray {
-    #       background-color: transparent;
-    #       border: none;
-    #   }
-
-    #   #tray > .passive {
-    #       -gtk-icon-effect: dim;
-    #   }
-
-    #   #tray > .needs-attention {
-    #       -gtk-icon-effect: highlight;
-    #       border-bottom-color: ${transformColorForCss colorscheme.normal.red};
-    #   }
-    # '';
 
     settings = {
       topBar = {
@@ -291,6 +203,7 @@ in {
         modules-center = [ "sway/window" ];
 
         modules-right = [
+          "idle_inhibitor"
           "network"
           "battery"
           "bluetooth"
@@ -303,6 +216,14 @@ in {
           "clock"
           "tray"
         ];
+        idle_inhibitor = {
+          format = "{icon}";
+          format-icons = {
+            activated = "";
+            deactivated = "";
+          };
+          timeout = 30.5;
+        };
         network = {
           format-wifi = " 󰤨 {essid}";
           format-ethernet = " Wired";
@@ -418,5 +339,102 @@ in {
         };
       };
     };
+
+    # style = ''
+    #   /* special state colors */
+    #   @define-color temperature-critical-color ${transformColorForCss colorscheme.normal.red};
+    #   @define-color battery-warning-color ${transformColorForCss colorscheme.normal.yellow};
+    #   @define-color battery-critical-color ${transformColorForCss colorscheme.normal.red};
+    #   @define-color network-disconnected-color ${transformColorForCss colorscheme.normal.red};
+    #   @define-color pulseaudio-muted-color ${transformColorForCss colorscheme.normal.magenta};
+    #   @define-color idle-inhibitor-active-color ${transformColorForCss colorscheme.normal.cyan};
+
+    #   * {
+    #     font-family: Iosevka;
+    #     font-size: 12px;
+    #     border: none;
+    #     border-radius: 0px;
+    #     min-height: 0;
+    #   }
+
+    #   tooltip {
+    #     color: ${transformColorForCss colorscheme.primary.foreground};
+    #     border-color: ${transformColorForCss colorscheme.primary.foreground};
+    #     border: 1px solid;
+    #     background-color: ${transformColorForCss colorscheme.primary.background};
+    #   }
+
+    #   window#waybar {
+    #     background-color: transparent;
+    #     color: ${transformColorForCss colorscheme.primary.foreground};
+    #   }
+
+    #   /* Common module styling */
+    #   #mode, #custom-weather, #custom-mic-volume, #custom-playerctl, #clock, #cpu,
+    #   #memory, #temperature, #battery, #network, #pulseaudio, #window,
+    #   #backlight, #disk,
+    #   #idle_inhibitor, #tray, #custom-temperature, #bluetooth, #workspaces button {
+    #     border: 1px solid;
+    #     padding: 2px;
+    #     margin: 0 2px;
+    #     border-color: ${transformColorForCss colorscheme.primary.foreground};
+    #     background-color: ${transformColorForCss colorscheme.primary.background};
+    #   }
+
+    #   /* Special styling for specific states */
+    #   #workspaces button.focused {
+    #     background-color: ${transformColorForCss colorscheme.normal.blue};
+    #     color: ${transformColorForCss colorscheme.primary.background};
+    #   }
+
+    #   #workspaces button.urgent {
+    #     background-color: ${transformColorForCss colorscheme.normal.red};
+    #     color: ${transformColorForCss colorscheme.primary.background};
+    #   }
+
+    #   #mode {
+    #     background-color: ${transformColorForCss colorscheme.normal.yellow};
+    #     color: ${transformColorForCss colorscheme.primary.background};
+    #   }
+
+    #   #network.disconnected {
+    #       color: @network-disconnected-color;
+    #       border-bottom-color: @network-disconnected-color;
+    #   }
+
+    #   #pulseaudio.muted {
+    #       color: @pulseaudio-muted-color;
+    #       border-bottom-color: @pulseaudio-muted-color;
+    #   }
+
+    #   #disk {
+    #       color: @disk-color;
+    #       border-bottom-color: @disk-color;
+    #   }
+
+    #   #idle_inhibitor {
+    #       color: @idle-inhibitor-color;
+    #       border-bottom-color: transparent;
+    #   }
+
+    #   #idle_inhibitor.activated {
+    #       color: @idle-inhibitor-active-color;
+    #       border-bottom-color: @idle-inhibitor-active-color;
+    #   }
+
+    #   #tray {
+    #       background-color: transparent;
+    #       border: none;
+    #   }
+
+    #   #tray > .passive {
+    #       -gtk-icon-effect: dim;
+    #   }
+
+    #   #tray > .needs-attention {
+    #       -gtk-icon-effect: highlight;
+    #       border-bottom-color: ${transformColorForCss colorscheme.normal.red};
+    #   }
+    # '';
   };
 }
