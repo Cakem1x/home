@@ -66,7 +66,7 @@ in {
         { command = "emacs"; }
         { command = "${pkgs.networkmanagerapplet}/bin/nm-applet"; }
         { # setup screens
-          command = "shikane";
+          command = "${pkgs.shikane}/bin/shikane";
           always = true;
         }
         { # setup wallpaper
