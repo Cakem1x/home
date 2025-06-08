@@ -337,25 +337,18 @@ in {
         };
 
         bluetooth = {
-          format = " {status}";
-          format-connected = " {device_alias}";
-          format-connected-battery =
-            " {device_alias}{device_battery_percentage}%";
-          tooltip-format = ''
-            {controller_alias}	{controller_address}
-
-            {num_connections} connected'';
-          tooltip-format-connected = ''
-            {controller_alias}	{controller_address}
-
-            {num_connections} connected
-
-            {device_enumerate}'';
-          tooltip-format-enumerate-connected =
-            "{device_alias}	{device_address}";
-          tooltip-format-enumerate-connected-battery =
-            "{device_alias}	{device_address}	{device_battery_percentage}%";
+          format = " {status}";
+          format-connected = " {device_alias}";
+          format-connected-battery = " {device_alias} {device_battery_percentage}%";
+          # format-device-preference = [ "device1"; "device2" ]; # preference list deciding the displayed device
+          tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
+          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+          tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
+          on-click = "bluetoothctl power $(bluetoothctl show | grep -q 'Powered: yes' && echo off || echo on)";
+          on-click-right = "alacritty --command ${pkgs.bluetui}/bin/bluetui";
         };
+
       };
     };
 
