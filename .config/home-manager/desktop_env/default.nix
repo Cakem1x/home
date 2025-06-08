@@ -230,9 +230,10 @@ in {
           "pulseaudio#output"
           "pulseaudio#input"
           "backlight"
-          "custom/temperature"
           "memory"
           "cpu"
+          "temperature"
+          "load"
           "clock"
           "tray"
         ];
@@ -243,15 +244,16 @@ in {
             deactivated = "";
           };
         };
+
         network = {
-          format-wifi = " 󰤨 {essid}";
-          format-ethernet = " Wired";
-          tooltip-format = "󰅢 {bandwidthDownBytes}";
-          format-linked = "󱘖 {ifname} (No IP)";
-          format-disconnected = " Disconnected";
-          format-alt = "󰤨 {signalStrength}%";
-          interval = 1;
+          format = "{ifname}";
+          format-wifi = " {essid} ({signalStrength}%)";
+          format-ethernet = " {ipaddr}/{cidr}";
+          format-disconnected = ""; # An empty format will hide the module.
+          tooltip-format = "{bandwidthUpBytes} {bandwidthDownBytes}";
+          max-length = 50;
         };
+
         battery = {
           states = {
             warning = 30;
@@ -282,23 +284,26 @@ in {
           on-click = "pactl -- set-sink-mute @DEFAULT_SINK@ toggle";
           on-click-right = "pavucontrol -t 3";
         };
-        "custom/temperature" = {
-          exec =
-            "${pkgs.lm_sensors}/bin/sensors | awk '/^Package id 0:/ {print int($4)}'";
-          format = " {}°C";
-          interval = 5;
-          tooltip = true;
-          tooltip-format = "CPU: {}°C";
+        temperature = {
+          format = " {temperatureC}°C";
+          thermal-zone = 4; # CPU
+          critical-threshold = 80;
         };
         memory = {
-          format = "ram {used:0.1f}G/{total:0.1f}G";
+          format = " {used:0.1f}G/{total:0.1f}G";
           tooltip = true;
           tooltip-format = "RAM {used:0.2f}G/{total:0.2f}G";
         };
 
         cpu = {
-          format = "cpu {usage}%";
+          format = " {usage}%";
           tooltip = true;
+        };
+
+        load = {
+          interval = 10;
+          format = "󱤎 {load1}";
+          max-length = 10;
         };
 
         clock = {

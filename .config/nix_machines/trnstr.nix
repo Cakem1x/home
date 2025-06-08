@@ -48,10 +48,13 @@ in {
     device = "/swapfile";
     size = 16384;
   }];
+
   powerManagement.cpuFreqGovernor = "powersave";
+
   hardware = {
     cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
     bluetooth.enable = true;
+    bluetooth.powerOnBoot = false;
     # fix steam
     graphics.enable32Bit = true;
   };
