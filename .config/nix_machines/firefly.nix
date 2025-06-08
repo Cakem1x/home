@@ -26,7 +26,7 @@ in {
       device = "/dev/disk/by-label/nix"; # on SSD, connected via USB
       fsType = "ext4";
       options = [ "noatime" ];
-   };
+    };
   };
 
   hardware.raspberry-pi."4" = {
@@ -36,7 +36,7 @@ in {
     i2c0.enable = true;
     i2c1.enable = true;
   };
-  users.users.cakemix.extraGroups = ["i2c"];
+  users.users.cakemix.extraGroups = [ "i2c" ];
 
   services.mosquitto = {
     enable = true;
@@ -66,16 +66,10 @@ in {
     enable = true;
     openFirewall = true;
 
-    extraComponents = [
-      "backup"
-      "file_upload"
-      "met"
-      "mqtt"
-      "radio_browser"
-    ];
+    extraComponents = [ "backup" "file_upload" "met" "mqtt" "radio_browser" ];
 
     config = {
-      default_config = {};
+      default_config = { };
 
       homeassistant = {
         name = "!secret name";
