@@ -176,6 +176,17 @@ in {
       { event = "before-sleep"; command = lockCommand; }
       { event = "lock"; command = lockCommand; }
     ];
+    timeouts = [
+      {
+        timeout = 300;
+        command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
+        resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
+      }
+      {
+        timeout = 305;
+        command = lockCommand;
+      }
+    ];
   };
 
   gtk.enable = true;
@@ -231,7 +242,6 @@ in {
             activated = "";
             deactivated = "";
           };
-          timeout = 30.5;
         };
         network = {
           format-wifi = " 󰤨 {essid}";
