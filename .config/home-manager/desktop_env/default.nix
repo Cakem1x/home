@@ -267,7 +267,7 @@ in {
           format = "{ifname}";
           format-wifi = " {essid} ({signalStrength}%)";
           format-ethernet = " {ipaddr}/{cidr}";
-          format-disconnected = ""; # An empty format will hide the module.
+          format-disconnected = "󰖪";
           tooltip-format = "{bandwidthUpBytes} {bandwidthDownBytes}";
           max-length = 50;
         };
@@ -308,7 +308,7 @@ in {
           critical-threshold = 80;
         };
         memory = {
-          format = " {used:0.1f}G/{total:0.1f}G";
+          format = " {percentage}%";
           tooltip = true;
           tooltip-format = "RAM {used:0.2f}G/{total:0.2f}G";
         };
@@ -375,101 +375,94 @@ in {
       };
     };
 
-    # style = ''
-    #   /* special state colors */
-    #   @define-color temperature-critical-color ${transformColorForCss colorscheme.normal.red};
-    #   @define-color battery-warning-color ${transformColorForCss colorscheme.normal.yellow};
-    #   @define-color battery-critical-color ${transformColorForCss colorscheme.normal.red};
-    #   @define-color network-disconnected-color ${transformColorForCss colorscheme.normal.red};
-    #   @define-color pulseaudio-muted-color ${transformColorForCss colorscheme.normal.magenta};
-    #   @define-color idle-inhibitor-active-color ${transformColorForCss colorscheme.normal.cyan};
+    style = ''
+      * {
+        border: none;
+        border-radius: 0px;
+        min-height: 0;
+      }
 
-    #   * {
-    #     font-family: Adwaita;
-    #     font-size: 12px;
-    #     border: none;
-    #     border-radius: 0px;
-    #     min-height: 0;
-    #   }
+      window#waybar {
+        background-color: transparent;
+      }
 
-    #   tooltip {
-    #     color: ${transformColorForCss colorscheme.primary.foreground};
-    #     border-color: ${transformColorForCss colorscheme.primary.foreground};
-    #     border: 1px solid;
-    #     background-color: ${transformColorForCss colorscheme.primary.background};
-    #   }
+      /* Common module styling */
+      .module {
+        border: 1px solid;
+        padding: 2px;
+        margin: 0 2px;
+        color: ${transformColorForCss colorscheme.primary.foreground};
+        border-color: ${transformColorForCss colorscheme.primary.foreground};
+        background-color: ${transformColorForCss colorscheme.primary.background};
+      }
 
-    #   window#waybar {
-    #     background-color: transparent;
-    #     color: ${transformColorForCss colorscheme.primary.foreground};
-    #   }
+      /* Tooltips */
+      tooltip {
+        background-color: ${transformColorForCss colorscheme.primary.background};
+        border: 1px solid;
+        border-color: ${transformColorForCss colorscheme.primary.foreground};
 
-    #   /* Common module styling */
-    #   #mode, #custom-weather, #custom-mic-volume, #custom-playerctl, #clock, #cpu,
-    #   #memory, #temperature, #battery, #network, #pulseaudio, #window,
-    #   #backlight, #disk,
-    #   #idle_inhibitor, #tray, #custom-temperature, #bluetooth, #workspaces button {
-    #     border: 1px solid;
-    #     padding: 2px;
-    #     margin: 0 2px;
-    #     border-color: ${transformColorForCss colorscheme.primary.foreground};
-    #     background-color: ${transformColorForCss colorscheme.primary.background};
-    #   }
+      }
+      tooltip label {
+        text-shadow: none;
+        color: ${transformColorForCss colorscheme.primary.foreground};
+      }
 
-    #   /* Special styling for specific states */
-    #   #workspaces button.focused {
-    #     background-color: ${transformColorForCss colorscheme.normal.blue};
-    #     color: ${transformColorForCss colorscheme.primary.background};
-    #   }
+      /* Workspace module styling */
+      #workspaces {
+        border: none;
+        padding: 0px;
+        margin: 0px;
+      }
+      #workspaces .text-button {
+        border: 1px solid;
+        padding: 2px;
+        margin: 0 2px;
+        color: ${transformColorForCss colorscheme.primary.foreground};
+        border-color: ${transformColorForCss colorscheme.primary.foreground};
+        background-color: ${transformColorForCss colorscheme.primary.background};
+      }
+      #workspaces button.focused {
+        background-color: ${transformColorForCss colorscheme.normal.blue};
+        color: ${transformColorForCss colorscheme.primary.background};
+      }
+      #workspaces button.urgent {
+        background-color: ${transformColorForCss colorscheme.normal.red};
+        color: ${transformColorForCss colorscheme.primary.background};
+      }
+      #workspaces button:hover {
+        color: ${transformColorForCss colorscheme.normal.blue};
+        background-color: ${transformColorForCss colorscheme.normal.blue};
+      }
 
-    #   #workspaces button.urgent {
-    #     background-color: ${transformColorForCss colorscheme.normal.red};
-    #     color: ${transformColorForCss colorscheme.primary.background};
-    #   }
+      #mode {
+        color: ${transformColorForCss colorscheme.primary.background};
+        background-color: ${transformColorForCss colorscheme.normal.yellow};
+      }
 
-    #   #mode {
-    #     background-color: ${transformColorForCss colorscheme.normal.yellow};
-    #     color: ${transformColorForCss colorscheme.primary.background};
-    #   }
+      #network.disconnected {
+        color: ${transformColorForCss colorscheme.primary.background};
+        background-color: ${transformColorForCss colorscheme.normal.yellow};
+      }
 
-    #   #network.disconnected {
-    #       color: @network-disconnected-color;
-    #       border-bottom-color: @network-disconnected-color;
-    #   }
+      #idle_inhibitor.activated {
+        color: ${transformColorForCss colorscheme.primary.background};
+        background-color: ${transformColorForCss colorscheme.normal.blue};
+      }
 
-    #   #pulseaudio.muted {
-    #       color: @pulseaudio-muted-color;
-    #       border-bottom-color: @pulseaudio-muted-color;
-    #   }
+      #tray {
+        background-color: transparent;
+        border: none;
+      }
 
-    #   #disk {
-    #       color: @disk-color;
-    #       border-bottom-color: @disk-color;
-    #   }
+      #tray > .passive {
+        -gtk-icon-effect: dim;
+      }
 
-    #   #idle_inhibitor {
-    #       color: @idle-inhibitor-color;
-    #       border-bottom-color: transparent;
-    #   }
-
-    #   #idle_inhibitor.activated {
-    #       color: @idle-inhibitor-active-color;
-    #       border-bottom-color: @idle-inhibitor-active-color;
-    #   }
-
-    #   #tray {
-    #       background-color: transparent;
-    #       border: none;
-    #   }
-
-    #   #tray > .passive {
-    #       -gtk-icon-effect: dim;
-    #   }
-
-    #   #tray > .needs-attention {
-    #       -gtk-icon-effect: highlight;
-    #       border-bottom-color: ${transformColorForCss colorscheme.normal.red};
-    #   }
-    # '';
+      #tray > .needs-attention {
+        -gtk-icon-effect: highlight;
+        background-color: ${transformColorForCss colorscheme.normal.red};
+      }
+    '';
   };
 }
