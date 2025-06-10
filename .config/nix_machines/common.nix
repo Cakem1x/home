@@ -77,10 +77,8 @@
   programs.dconf = { enable = true; };
 
   fonts.packages = with pkgs; [
-    iosevka
-    font-awesome # used as symbols in i3bar-rust
-    fira-code
-    fira-code-symbols
+    adwaita-fonts
+    font-awesome # used as symbols in waybar
   ];
 
   security = {

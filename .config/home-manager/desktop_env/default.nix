@@ -36,7 +36,7 @@ let
   wmCfg = {
     modifier = "Mod4";
     fonts = {
-      names = [ "Iosevka" "FontAwesome" ];
+      names = [ "Adwaita" "FontAwesome" ];
       size = 8.0;
     };
     wsNames = [ "1 " "2 󰈹" "3 ✎" "4" "5" "6" "7" "8 ♪" "9" ];
@@ -204,7 +204,7 @@ in {
       name = "Adwaita";
     };
     font = {
-      name = "Iosevka"; # ToDo: use adwaita instead?
+      name = "Adwaita";
       size = 8;
     };
   };
@@ -215,7 +215,7 @@ in {
     settings = {
       font = {
         size = 10;
-        normal.family = "Iosevka";
+        normal.family = "Adwaita Mono";
       };
 
       colors = colorscheme // {
@@ -385,7 +385,7 @@ in {
     #   @define-color idle-inhibitor-active-color ${transformColorForCss colorscheme.normal.cyan};
 
     #   * {
-    #     font-family: Iosevka;
+    #     font-family: Adwaita;
     #     font-size: 12px;
     #     border: none;
     #     border-radius: 0px;
