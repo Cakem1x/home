@@ -189,7 +189,25 @@ in {
     ];
   };
 
-  gtk.enable = true;
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.gnome-themes-extra;
+      name = "Adwaita";
+    };
+    iconTheme = {
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
+    };
+    cursorTheme = {
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
+    };
+    font = {
+      name = "Iosevka"; # ToDo: use adwaita instead?
+      size = 8;
+    };
+  };
 
   programs.alacritty = {
     enable = true;
