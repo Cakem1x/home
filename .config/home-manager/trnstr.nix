@@ -47,7 +47,6 @@
     steam # games
     nautilus # file manager
     simplescreenrecorder # record my screen (video)
-    flameshot # screenshots
     spotify # music (unfree :( )
 
     # virtualization
