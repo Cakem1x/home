@@ -136,6 +136,11 @@ in {
           XF86AudioMedia = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
           Pause = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
+          # screenshot:
+          # TODO Remove wlr support override at some point (it's not cached)
+          # TODO The hardcoded scale factor is very ugly. Workaround for issue that flameshot does not handle fractional scaling correctly. Set to be reciprocal of current screen scale.
+          Print = "exec QT_SCALE_FACTOR=0.588 ${pkgs.flameshot.override { enableWlrSupport = true; }}/bin/flameshot gui -p /home/$USER/screenshots/";
+
           # Brightness keys
           XF86MonBrightnessUp = "exec light -A 10";
           XF86MonBrightnessDown = "exec light -U 10";
