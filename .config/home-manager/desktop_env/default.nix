@@ -52,6 +52,10 @@ in {
     pavucontrol # control sound input and output
     playerctl # control playback (e.g. spotify, vlc)
     fuzzel # run applications
+    # screenshot:
+    slurp # pick screens / areas
+    satty # annotate pics
+    grim # grab wayland screen contents
   ];
 
   wayland.windowManager.sway = {
@@ -138,12 +142,8 @@ in {
           XF86AudioMedia = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
           Pause = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
-          # screenshot:
-          # TODO Remove wlr support override at some point (it's not cached)
-          # TODO The hardcoded scale factor is very ugly. Workaround for issue that flameshot does not handle fractional scaling correctly. Set to be reciprocal of current screen scale.
-          Print = "exec QT_SCALE_FACTOR=0.588 ${
-              pkgs.flameshot.override { enableWlrSupport = true; }
-            }/bin/flameshot gui -p /home/$USER/screenshots/";
+          # screenshot
+          Print = ''exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -o -r -c '${transformColorForCss colorscheme.normal.yellow}')" -t ppm - | ${pkgs.satty}/bin/satty --filename - --output-filename $HOME/screenshots/screenshot_$(date '+%y-%m-%d_%H-%M-%S_%N').png'';
 
           # Brightness keys
           XF86MonBrightnessUp = "exec light -A 10";
