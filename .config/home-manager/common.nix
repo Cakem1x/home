@@ -56,6 +56,7 @@
 
     # editing
     emacs-pgtk # pure gtk for wayland compat
+    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
     ispell
     vim
     # lang - sh
