@@ -28,6 +28,7 @@
     fd
     findutils
     fzf
+    ranger # CLI to move around in filesystem
     git
     htop
     lazydocker
