@@ -45,6 +45,7 @@ let
   lockCommand = "${pkgs.swaylock}/bin/swaylock -f -c ${
       transformColorForRRGGBB colorscheme.primary.background
     }";
+  pactlBin = "${pkgs.pulseaudio}/bin/pactl";
 in {
 
   home.packages = with pkgs; [
@@ -133,14 +134,14 @@ in {
         otherBindings = {
           # Use pactl to adjust volume in PulseAudio.
           XF86AudioRaiseVolume =
-            "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+            "exec ${pactlBin} set-sink-volume @DEFAULT_SINK@ +5%";
           XF86AudioLowerVolume =
-            "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
-          XF86AudioMute = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+            "exec ${pactlBin} set-sink-volume @DEFAULT_SINK@ -5%";
+          XF86AudioMute = "exec ${pactlBin} set-sink-mute @DEFAULT_SINK@ toggle";
           XF86AudioMicMute =
-            "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-          XF86AudioMedia = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-          Pause = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+            "exec ${pactlBin} set-source-mute @DEFAULT_SOURCE@ toggle";
+          XF86AudioMedia = "exec ${pactlBin} set-source-mute @DEFAULT_SOURCE@ toggle";
+          Pause = "exec ${pactlBin} set-source-mute @DEFAULT_SOURCE@ toggle";
 
           # screenshot
           Print = ''exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -o -r -c '${transformColorForCss colorscheme.normal.yellow}')" -t ppm - | ${pkgs.satty}/bin/satty --filename - --output-filename $HOME/screenshots/screenshot_$(date '+%y-%m-%d_%H-%M-%S_%N').png'';
