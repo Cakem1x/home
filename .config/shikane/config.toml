@@ -31,3 +31,53 @@ scale = 1.0
 transform = "normal"
 adaptive_sync = false
 
+[[profile]]
+name = "nr_manu_desk"
+
+[[profile.output]]
+enable = true
+search = ["n=DP-5"]
+mode = "2560x1440@59.951Hz"
+position = "2560,0"
+scale = 1.0
+transform = "normal"
+adaptive_sync = false
+
+[[profile.output]]
+enable = false
+search = ["n=eDP-1"]
+
+[[profile.output]]
+enable = true
+search = ["n=DP-7"]
+mode = "2560x1440@59.951Hz"
+position = "0,0"
+scale = 1.0
+transform = "normal"
+adaptive_sync = false
+
+[[profile]]
+name = "nr_marvin_desk"
+
+[[profile.output]]
+enable = true
+search = ["n=DP-7"]
+mode = "2560x1440@59.951Hz"
+position = "0,0"
+scale = 1.0
+transform = "normal"
+adaptive_sync = false
+
+[[profile.output]]
+enable = true
+search = ["n=DP-5"]
+mode = "2560x1440@59.951Hz"
+position = "2560,0"
+scale = 1.0
+transform = "normal"
+adaptive_sync = false
+
+[[profile.output]]
+enable = false
+search = ["n=eDP-1"]
+
