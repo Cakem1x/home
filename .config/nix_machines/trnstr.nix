@@ -124,6 +124,11 @@ in {
     qemu.package = pkgs.qemu_kvm;
   };
   virtualisation.spiceUSBRedirection.enable = true;
+  # Fix network for VMs
+  networking.firewall.interfaces."virbr0" = {
+    allowedUDPPorts = [ 53 67 68 ];
+    allowedTCPPorts = [ 53 ];
+  };
 
   users.users.cakemix.extraGroups = [ "docker" "dialout" "libvirtd" "kvm" ];
 
