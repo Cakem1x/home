@@ -46,7 +46,8 @@
     nextcloud-client # sync nextcloud files
     steam # games
     nautilus # file manager
-    simplescreenrecorder # record my screen (video)
+    obs-studio # record screen
+    kdePackages.kdenlive # cut vids
     spotify # music (unfree :( )
 
     # virtualization
