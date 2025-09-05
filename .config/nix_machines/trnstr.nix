@@ -84,7 +84,7 @@ in {
         };
         default_session = {
           command =
-            "${pkgs.greetd.tuigreet}/bin/tuigreet --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${default_login_session}";
+            "${pkgs.tuigreet}/bin/tuigreet --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${default_login_session}";
           user = "greeter";
         };
       };
