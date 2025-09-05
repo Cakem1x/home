@@ -39,7 +39,31 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/documents/org/")
+
+;; Setup literature research / annotation tools
+(setq! citar-bibliography '("~/documents/literature/references.bib")
+       citar-library-paths '("~/documents/literature/files/")
+       citar-notes-paths '("~/documents/literature/notes/"))
+(setq! rmh-elfeed-org-files '("~/.doom.d/elfeed.org"))
+;; Scores papers in elfeed stream by looking at buzzwords
+(use-package! elfeed-score
+  :after elfeed
+  :config
+  (elfeed-score-load-score-file "~/.doom.d/elfeed.score") ; See the elfeed-score documentation for the score file syntax
+  (elfeed-score-enable)
+  (define-key elfeed-search-mode-map "=" elfeed-score-map))
+;; custom functions for using elfeed for literature research
+(load "~/.doom.d/elfeed-papers-config.el")
+;; elfeed shall use the custom print function
+(after! elfeed
+  (setq elfeed-search-print-entry-function #'literature-search-print-fn
+        elfeed-search-date-format '("%y-%m-%d" 10 :left)
+        elfeed-search-title-max-width 120
+        elfeed-search-filter "@4-week-ago"
+  )
+  (add-hook! 'elfeed-search-mode-hook 'elfeed-update)
+)
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an

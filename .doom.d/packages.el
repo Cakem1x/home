@@ -50,3 +50,4 @@
 ;(unpin! t)
 
 (package! scad-mode)
+(package! elfeed-score)
