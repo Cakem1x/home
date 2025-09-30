@@ -268,9 +268,11 @@ in {
           "cpu"
           "temperature"
           "load"
-          "clock"
+          "clock#date"
+          "clock#time"
           "tray"
         ];
+
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
@@ -300,7 +302,7 @@ in {
           };
           format = "{icon} {capacity}%";
           format-charging = "󱐋 {capacity}%";
-          interval = 1;
+          interval = 30;
           format-icons = [ "󰂎" "󰁼" "󰁿" "󰂁" "󰁹" ];
           tooltip = true;
         };
@@ -340,14 +342,13 @@ in {
         };
 
         load = {
-          interval = 10;
+          interval = 1;
           format = "󱤎 {load1}";
           max-length = 10;
         };
 
-        clock = {
-          format = " {:%H:%M}";
-          format-alt = "󰃮 {:%Y-%m-%d}";
+        "clock#date" = {
+          format = "󰃮 {:%Y-%m-%d}";
           tooltip = true;
           tooltip-format = "{calendar}";
           calendar = {
@@ -366,10 +367,14 @@ in {
             };
           };
           actions = {
-            on-click-right = "mode";
             on-scroll-forward = "shift_up";
             on-scroll-backward = "shift_down";
           };
+        };
+
+        "clock#time" = {
+          format = " {:%H:%M}";
+          interval = 60;
         };
 
         backlight = {
