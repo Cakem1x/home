@@ -57,31 +57,6 @@ transform = "normal"
 adaptive_sync = false
 
 [[profile]]
-name = "nr_marvin_desk"
-
-[[profile.output]]
-enable = true
-search = ["n=DP-7"]
-mode = "2560x1440@59.951Hz"
-position = "0,0"
-scale = 1.0
-transform = "normal"
-adaptive_sync = false
-
-[[profile.output]]
-enable = true
-search = ["n=DP-5"]
-mode = "2560x1440@59.951Hz"
-position = "2560,0"
-scale = 1.0
-transform = "normal"
-adaptive_sync = false
-
-[[profile.output]]
-enable = false
-search = ["n=eDP-1"]
-
-[[profile]]
 name = "home_office2"
 
 [[profile.output]]
@@ -98,6 +73,47 @@ enable = true
 search = ["n=eDP-1"]
 mode = "2256x1504@59.999Hz"
 position = "1770,557"
+scale = 2.0
+transform = "normal"
+adaptive_sync = false
+[[profile]]
+name = "nr_desk1"
+
+[[profile.output]]
+enable = true
+search = ["n=eDP-1"]
+mode = "2256x1504@59.999Hz"
+position = "0,1896"
+scale = 1.69921875
+transform = "normal"
+adaptive_sync = false
+
+[[profile.output]]
+enable = true
+search = ["n=DP-1"]
+mode = "3840x2160@59.997Hz"
+position = "1327,933"
+scale = 2.0
+transform = "normal"
+adaptive_sync = false
+
+[[profile]]
+name = "nr_desk2"
+
+[[profile.output]]
+enable = true
+search = ["n=eDP-1"]
+mode = "2256x1504@59.999Hz"
+position = "3840,816"
+scale = 2.0
+transform = "normal"
+adaptive_sync = false
+
+[[profile.output]]
+enable = true
+search = ["n=DP-4"]
+mode = "3840x2160@59.997Hz"
+position = "1920,0"
 scale = 2.0
 transform = "normal"
 adaptive_sync = false
