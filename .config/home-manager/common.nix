@@ -46,6 +46,7 @@
     wl-clipboard # wayland clipboard utils; CLI: wl-copy, wl-paste
     dvc # data version control
     dysk # nicer df cmd (disk usage, mountpoints, etc)
+    tldr # use like man pages, but provides community examples
     # switch display configurations for wayland compositors. Use
     # shikanectl export -n laptop_only >> $XDG_CONFIG_HOME/shikane/config.toml
     # to save current configuration
