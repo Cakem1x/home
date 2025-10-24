@@ -25,6 +25,7 @@
     # CLI util
     bat
     eza
+    fastfetch # show quick overview of system (OS, Kernel, Hardware, ...)
     fd
     findutils
     fzf
