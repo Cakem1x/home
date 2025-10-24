@@ -147,20 +147,24 @@
     };
   };
 
-  programs.git = {
-    delta = {
-      enable = true;
-      options = {
-        features = "line-numbers";
-      };
-    };
+  programs.delta = { # for nicer (git) diffs
     enable = true;
-    userName = "Matthias Holoch";
-    userEmail = "mholoch@gmail.com";
-    aliases = {
-      "co" = "checkout";
-      "st" = "status";
-      "lg" = "log --graph --pretty=oneline --abbrev-commit";
+    enableGitIntegration = true;
+    options = {
+      features = "line-numbers";
+    };
+  };
+  programs.git = {
+    enable = true;
+
+    settings = {
+      user.name = "Matthias Holoch";
+      user.email = "mholoch@gmail.com";
+      alias = {
+        "co" = "checkout";
+        "st" = "status";
+        "lg" = "log --graph --pretty=oneline --abbrev-commit";
+      };
     };
   };
 }
