@@ -24,30 +24,30 @@
     bashInteractive
     # CLI util
     bat
+    dvc # data version control
+    dysk # nicer df cmd (disk usage, mountpoints, etc)
     eza
     fastfetch # show quick overview of system (OS, Kernel, Hardware, ...)
     fd
     findutils
     fzf
-    ranger # CLI to move around in filesystem
     git
     htop
     lazydocker
     ncdu
-    ripgrep
+    pciutils # lspci
+    ranger # CLI to move around in filesystem
     repgrep # rgr (rg based search and replace)
+    ripgrep
     sops # used via nix-sops for handling secrets in system cfg
     sshfs
     tig
+    tldr # use like man pages, but provides community examples
     tree
     udisks # mount disks
     unzip
     usbutils # lsusb
-    pciutils # lspci
     wl-clipboard # wayland clipboard utils; CLI: wl-copy, wl-paste
-    dvc # data version control
-    dysk # nicer df cmd (disk usage, mountpoints, etc)
-    tldr # use like man pages, but provides community examples
     # switch display configurations for wayland compositors. Use
     # shikanectl export -n laptop_only >> $XDG_CONFIG_HOME/shikane/config.toml
     # to save current configuration
