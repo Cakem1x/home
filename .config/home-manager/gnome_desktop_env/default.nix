@@ -58,7 +58,7 @@ with lib.hm.gvariant; # easy access for e.g. mkTuple
         mru-sources = [ (mkTuple [ "xkb" "eu" ]) ];
         show-all-sources = true;
         sources = [ (mkTuple [ "xkb" "us+altgr-weur" ]) (mkTuple [ "xkb" "de" ]) ];
-        xkb-options = [ "lv3:lalt_switch" ];
+        xkb-options = [ "lv3:ralt_switch" ];
       };
     };
   };
