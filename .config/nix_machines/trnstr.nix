@@ -66,8 +66,7 @@ in {
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     config.common.default = [ "gtk" ];
   };
-  environment.sessionVariables.NIXOS_OZONE_WL =
-    "1"; # enable wayland for chromium and electron based apps
+  environment.sessionVariables.NIXOS_OZONE_WL = "1"; # enable wayland for chromium and electron based apps
 
   services = {
     fwupd.enable = true; # firmware update tool
@@ -98,8 +97,7 @@ in {
       nssmdns4 = true;
       openFirewall = true;
     };
-    gvfs.enable =
-      true; # dbus daemon that enables mounting samba shares via file managers like Nautilus
+    gvfs.enable = true; # dbus daemon that enables mounting samba shares via file managers like Nautilus
   };
 
   virtualisation.docker = {
