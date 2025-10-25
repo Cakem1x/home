@@ -2,6 +2,7 @@
 
 with lib.hm.gvariant; # easy access for e.g. mkTuple
 {
+
   home.packages = with pkgs; [
     dconf2nix # convert dconf to nix expressions (helps bringing gnome settings to nix cfg)
   ];
@@ -54,10 +55,10 @@ with lib.hm.gvariant; # easy access for e.g. mkTuple
       };
 
       "org/gnome/desktop/input-sources" = {
-          mru-sources = [ (mkTuple [ "xkb" "eu" ]) ];
-          show-all-sources = true;
-          sources = [ (mkTuple [ "xkb" "us+altgr-weur" ]) (mkTuple [ "xkb" "de" ]) ];
-          xkb-options = [ "lv3:lalt_switch" ];
+        mru-sources = [ (mkTuple [ "xkb" "eu" ]) ];
+        show-all-sources = true;
+        sources = [ (mkTuple [ "xkb" "us+altgr-weur" ]) (mkTuple [ "xkb" "de" ]) ];
+        xkb-options = [ "lv3:lalt_switch" ];
       };
     };
   };
