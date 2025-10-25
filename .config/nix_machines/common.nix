@@ -63,23 +63,7 @@
     LC_MEASUREMENT = "de_DE.UTF-8";
   };
 
-  console = {
-    font = "Lat2-Terminus16";
-    useXkbConfig = true; # use xkbOptions in tty.
-  };
-
-  # Enable the X11 windowing system.
-  services.xserver = {
-    xkb.layout = "eu";
-    exportConfiguration = true; # fixes localectl
-  };
-
   programs.dconf = { enable = true; };
-
-  fonts.packages = with pkgs; [
-    adwaita-fonts
-    font-awesome # used as symbols in waybar
-  ];
 
   security = {
     rtkit.enable = true;
