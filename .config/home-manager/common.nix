@@ -48,10 +48,6 @@
     unzip
     usbutils # lsusb
     wl-clipboard # wayland clipboard utils; CLI: wl-copy, wl-paste
-    # switch display configurations for wayland compositors. Use
-    # shikanectl export -n laptop_only >> $XDG_CONFIG_HOME/shikane/config.toml
-    # to save current configuration
-    shikane
 
     # nix tools
     cachix

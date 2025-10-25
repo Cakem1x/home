@@ -1,0 +1,1 @@
+/home/cakemix/.config/home-manager/trnstr.nix

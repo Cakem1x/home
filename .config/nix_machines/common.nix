@@ -84,8 +84,6 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
-    pam.services.swaylock =
-      { }; # fix swaylock - otherwise, unlocking won't work even with correct password
   };
 
   services.pipewire = {
@@ -109,7 +107,6 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  programs.ssh.startAgent = true;
 
   programs.gnupg.agent = { enable = true; };
 

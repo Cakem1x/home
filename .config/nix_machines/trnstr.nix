@@ -1,7 +1,6 @@
 { config, lib, pkgs, modulesPath, ... }:
 
-let default_login_session = "${pkgs.sway}/bin/sway";
-in {
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     <nixos-hardware/framework/13-inch/11th-gen-intel>
@@ -49,8 +48,6 @@ in {
     size = 16384;
   }];
 
-  powerManagement.cpuFreqGovernor = "powersave";
-
   hardware = {
     cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
     bluetooth.enable = true;
@@ -68,26 +65,35 @@ in {
   };
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # enable wayland for chromium and electron based apps
 
+
+  # gnome desktop
+  services.displayManager = {
+    gdm.enable = true;
+    defaultSession = "gnome";
+    autoLogin = {
+      enable = true;
+      user = "cakemix";
+    };
+  };
+  services.desktopManager.gnome.enable = true;
+  # don't install a bunch of software here; most sw is installed via home manager (per user)
+  services.gnome.core-apps.enable = false;
+  services.gnome.core-developer-tools.enable = false;
+  services.gnome.games.enable = false;
+  environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
+
   services = {
-    fwupd.enable = true; # firmware update tool
+    # don't let logitech receiver (i.e. external mouse) wake you from your slumber (suspend)
+    udev = {
+      enable = true;
+      extraRules = ''
+        ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c548", ATTR{power/wakeup}="disabled"
+      '';
+    };
+    # framework firmware update tool
+    fwupd.enable = true;
     fwupd.extraRemotes = [ "lvfs-testing" ];
     fwupd.uefiCapsuleSettings.DisableCapsuleUpdateOnDisk = true;
-
-    # login manager
-    greetd = {
-      enable = true;
-      settings = {
-        initial_session = { # autologin after decrypting hdd
-          command = "${default_login_session}";
-          user = "cakemix";
-        };
-        default_session = {
-          command =
-            "${pkgs.tuigreet}/bin/tuigreet --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${default_login_session}";
-          user = "greeter";
-        };
-      };
-    };
 
     libinput.enable = true; # touchpad support
     udisks2.enable = true; # allows mounting (USB) storage devices more easily
