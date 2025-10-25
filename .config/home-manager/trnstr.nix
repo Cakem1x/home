@@ -4,7 +4,7 @@
   imports =
     [
       ./common.nix
-      ./desktop_env
+      ./sway_desktop_env
     ];
 
   home.packages = with pkgs; [
