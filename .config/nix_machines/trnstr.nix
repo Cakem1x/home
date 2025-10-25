@@ -81,6 +81,9 @@
   services.gnome.core-developer-tools.enable = false;
   services.gnome.games.enable = false;
   environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
+  environment.systemPackages = with pkgs; [
+    gnomeExtensions.paperwm
+  ];
 
   services = {
     # don't let logitech receiver (i.e. external mouse) wake you from your slumber (suspend)
