@@ -43,7 +43,7 @@
     gimp
     signal-desktop-bin
     xournalpp # view pdfs & add text/imgs
-    nextcloud-client # sync nextcloud files
+    #nextcloud-client # sync nextcloud files
     steam # games
     nautilus # file manager
     obs-studio # record screen
@@ -51,8 +51,7 @@
     spotify # music (unfree :( )
 
     # virtualization
-    qemu
-    libvirt
+    quickemu
   ];
   fonts.fontconfig.enable = true; # make fonts available
 

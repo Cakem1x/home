@@ -115,19 +115,9 @@ in {
 
   # VM stuff
   # ToDo/Notes: for better GPU performance in my VM, look into SR-IOV support. Apparently, Tigerlake does not support GVT-g anymore. However, SR-IOV support on Linux seems to be bad since it is very new
-  programs.virt-manager.enable = true;
-  environment.systemPackages = with pkgs; [ virt-manager libvirt OVMF ];
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu.package = pkgs.qemu_kvm;
-  };
+  virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
-  # Fix network for VMs
-  networking.firewall.interfaces."virbr0" = {
-    allowedUDPPorts = [ 53 67 68 ];
-    allowedTCPPorts = [ 53 ];
-  };
 
-  users.users.cakemix.extraGroups = [ "docker" "dialout" "libvirtd" "kvm" ];
+  users.users.cakemix.extraGroups = [ "docker" "dialout" "libvirtd" ];
 
 }
