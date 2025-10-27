@@ -103,7 +103,7 @@
       os-update = "nix flake update --flake /home/cakemix/.config/nix_system_configuration";
       os-upgrade-system = "sudo nixos-rebuild switch --flake /home/cakemix/.config/nix_system_configuration";
       os-upgrade-user = "home-manager switch --flake /home/cakemix/.config/nix_system_configuration/";
-      os-update-and-upgrade-all = "os-update && os-update-user && os-update-user";
+      os-update-and-upgrade-all = "os-update && os-upgrade-system && os-upgrade-user";
       os-clean-all = "nix-collect-garbage  --delete-older-than 30d && sudo nix-collect-garbage --delete-older-than 30d";
     };
 
