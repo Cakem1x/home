@@ -100,10 +100,11 @@
       ll = "eza --git-repos -l";
       lh = "eza --git-repos -lh";
 
-      os-update-user = "nix-channel --update && home-manager switch";
-      os-update-system = "sudo nix-channel --update && sudo nixos-rebuild switch";
-      os-update-all = "os-update-system && os-update-user";
-      os-clean-all = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
+      os-update = "nix flake update --flake /home/cakemix/.config/nix_system_configuration";
+      os-upgrade-system = "sudo nixos-rebuild switch --flake /home/cakemix/.config/nix_system_configuration";
+      os-upgrade-user = "home-manager switch --flake /home/cakemix/.config/nix_system_configuration/";
+      os-update-and-upgrade-all = "os-update && os-update-user && os-update-user";
+      os-clean-all = "nix-collect-garbage  --delete-older-than 30d && sudo nix-collect-garbage --delete-older-than 30d";
     };
 
     # only for interactive shells

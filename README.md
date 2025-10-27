@@ -11,9 +11,9 @@ For convenience, use git alias with special `git-dir`, so other `git` invocation
 
 System Setup
 ============
-- The NixOS system configurations are stored in `.config/nix_machines`. Make a system config active via `bin/bootstrap-system.sh`
-- The userspace programs (and their configs) are managed by home-manager. See https://nix-community.github.io/home-manager/index.html#sec-install-standalone on how to install `home-manager` in standalone mode.
-  Relevant files are in `.config/home-manager/`. Make a user config active via `bin/bootstrap-user.sh`.
+- Flake-based setup, main flake dir is `.config/nix_system_configuration/`
+    - NixOS system configurations are stored in `.config/nix_system_configuration/machines` subdir.
+    - The userspace programs (and their configs) are stored in `.config/nix_system_configuration/home-manager`. See https://nix-community.github.io/home-manager/index.html#sec-install-standalone on how to install `home-manager` in standalone mode.
 - Editor is doomemacs, which comes via submodule. Run `home submodule init` and `home submodule update`. Finally, run `doom install`.
 
 Managed Machines

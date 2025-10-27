@@ -2,11 +2,15 @@
   description = "NixOS system configuration flake";
 
   inputs = {
-    nixpkgs.url = github:nixos/nixpkgs?ref=nixos-unstable;
+    nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
     nixos-hardware.url = github:NixOS/nixos-hardware;
+    home-manager = {
+      url = github:nix-community/home-manager; # unstable
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -25,5 +29,11 @@
           ];
         };
       };
+
+      homeConfigurations."cakemix"= home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./home-manager/trnstr.nix ];
+      };
+
     };
 }
