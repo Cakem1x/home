@@ -21,7 +21,7 @@
         trnstr = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit system inputs; };
           modules = [
-            ./trnstr.nix
+            ./machines/trnstr.nix
           ];
         };
       };
