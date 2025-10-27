@@ -3,6 +3,7 @@
 {
   imports = [
     ./common.nix
+    # TODO breaks atm due to qt6 build issue ../style
     inputs.nixos-hardware.nixosModules.framework-11th-gen-intel
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
