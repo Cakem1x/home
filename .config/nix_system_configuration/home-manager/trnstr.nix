@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, stylix, ... }:
 
 {
   imports =
@@ -54,5 +54,10 @@
     quickemu
   ];
   fonts.fontconfig.enable = true; # make fonts available
+
+  stylix = {
+      enable = true;
+      image = ./wallpapers/celeste.png;
+  };
 
 }

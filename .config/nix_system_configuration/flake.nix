@@ -8,6 +8,10 @@
       url = github:nix-community/home-manager; # unstable
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... } @ inputs:
@@ -26,13 +30,17 @@
           specialArgs = { inherit system inputs; };
           modules = [
             ./machines/trnstr.nix
+            inputs.stylix.nixosModules.stylix
           ];
         };
       };
 
       homeConfigurations."cakemix"= home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home-manager/trnstr.nix ];
+        modules = [
+          ./home-manager/trnstr.nix
+          inputs.stylix.homeModules.stylix
+        ];
       };
 
     };
