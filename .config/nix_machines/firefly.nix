@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 let
   mqttPort = 1883;
@@ -8,7 +8,7 @@ let
   pi_topic = "${topic_prefix}/pi";
 in {
   imports = [
-    <nixos-hardware/raspberry-pi/4>
+    inputs.nixos-hardware.nixosModules.raspberry-pi-4
     /home/cakemix/devel/pi_local_mqtt_client/service.nix # for local testing
     ./common.nix
   ];

@@ -1,10 +1,10 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, pkgs, inputs, modulesPath, ... }:
 
 {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-    <nixos-hardware/framework/13-inch/11th-gen-intel>
     ./common.nix
+    inputs.nixos-hardware.nixosModules.framework-11th-gen-intel
+    (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   networking.hostName = "trnstr"; # Define your hostname.
@@ -48,6 +48,7 @@
     size = 16384;
   }];
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware = {
     cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
     bluetooth.enable = true;
