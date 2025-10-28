@@ -4,8 +4,7 @@
     stylix = {
         enable = true;
         base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-light.yaml";
-        image = ./wallpapers/nix_rainbow_solarized_light.png;
-        targets.alacritty.enable=true;
+        image = pkgs.nixos-artwork.wallpapers.nineish-solarized-light.src;
         fonts = {
             serif = {
                 package = pkgs.adwaita-fonts;
