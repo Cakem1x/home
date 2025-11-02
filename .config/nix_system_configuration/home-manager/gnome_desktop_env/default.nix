@@ -13,7 +13,7 @@ with lib.hm.gvariant; # easy access for e.g. mkTuple
     settings = {
 
       "org/gnome/shell" = {
-        # Apparently, extensions need to get installed via system cfg to load properly
+        # Apparently, extensions need to get installed via system cfg to load properly (via environment.systemPackages = [...];)
         enabled-extensions = [
           "paperwm@paperwm.github.com"
         ];
