@@ -37,7 +37,7 @@
 
         # Keys / Secrets / Auth
         gnupg
-        pinentry # handle secrets
+        pinentry-gnome3 # handle secrets
 
         # other apps
         firefox
