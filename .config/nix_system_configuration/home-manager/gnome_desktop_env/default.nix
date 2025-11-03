@@ -59,7 +59,7 @@ with lib.hm.gvariant; # easy access for e.g. mkTuple
       "org/gnome/desktop/input-sources" = {
         mru-sources = [ (mkTuple [ "xkb" "eu" ]) ];
         show-all-sources = true;
-        sources = [ (mkTuple [ "xkb" "us+altgr-weur" ]) (mkTuple [ "xkb" "de" ]) ];
+        sources = [ (mkTuple [ "xkb" "eu" ]) (mkTuple [ "xkb" "de" ]) ];
         xkb-options = [ "lv3:ralt_switch" ];
       };
     };
