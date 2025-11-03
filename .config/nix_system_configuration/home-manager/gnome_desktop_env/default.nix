@@ -5,6 +5,7 @@ with lib.hm.gvariant; # easy access for e.g. mkTuple
 
   home.packages = with pkgs; [
     dconf2nix # convert dconf to nix expressions (helps bringing gnome settings to nix cfg)
+    seahorse # inspect gnome keyring
   ];
 
   # gnome configuration:
