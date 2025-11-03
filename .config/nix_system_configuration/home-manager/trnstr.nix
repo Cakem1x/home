@@ -44,7 +44,7 @@
         gimp
         signal-desktop-bin
         xournalpp # view pdfs & add text/imgs
-        #nextcloud-client # sync nextcloud files
+        nextcloud-client # sync nextcloud files
         steam # games
         nautilus # file manager
         obs-studio # record screen

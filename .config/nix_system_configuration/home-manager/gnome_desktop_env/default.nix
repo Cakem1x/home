@@ -15,7 +15,8 @@ with lib.hm.gvariant; # easy access for e.g. mkTuple
       "org/gnome/shell" = {
         # Apparently, extensions need to get installed via system cfg to load properly (via environment.systemPackages = [...];)
         enabled-extensions = [
-          "paperwm@paperwm.github.com"
+          pkgs.gnomeExtensions.paperwm.extensionUuid
+          pkgs.gnomeExtensions.appindicator.extensionUuid
         ];
       };
 

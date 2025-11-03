@@ -86,13 +86,14 @@
   environment.systemPackages = with pkgs; [
     gnomeExtensions.paperwm
     gnomeExtensions.pop-shell
+    gnomeExtensions.appindicator
   ];
 
   services = {
-    # don't let logitech receiver (i.e. external mouse) wake you from your slumber (suspend)
     udev = {
       enable = true;
-      extraRules = ''
+      packages = [ pkgs.gnome-settings-daemon ]; # for tray icons, via gnomeExtensions.appindicator
+      extraRules = '' # don't let logitech receiver (i.e. external mouse) wake you from your slumber (suspend)
         ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c548", ATTR{power/wakeup}="disabled"
       '';
     };
