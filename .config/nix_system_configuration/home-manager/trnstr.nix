@@ -5,7 +5,7 @@
         [
             ../style
             ./common.nix
-            ./gnome_desktop_env
+            ./niri_desktop_env
         ];
 
     home.packages = with pkgs; [

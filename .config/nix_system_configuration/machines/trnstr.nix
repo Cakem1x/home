@@ -1,6 +1,7 @@
 { config, lib, pkgs, inputs, modulesPath, ... }:
 
-{
+let default_login_session = "${pkgs.niri}/bin/niri";
+in {
   imports = [
     ./common.nix
     # TODO breaks atm due to qt6 build issue ../style
@@ -67,27 +68,20 @@
   };
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # enable wayland for chromium and electron based apps
 
-
-  # gnome desktop
-  services.displayManager = {
-    gdm.enable = true;
-    defaultSession = "gnome";
-    autoLogin = {
-      enable = true;
-      user = "cakemix";
+  # login manager
+  services.greetd = {
+    enable = true;
+    settings = {
+      initial_session = { # autologin after decrypting hdd
+        command = "${default_login_session}";
+        user = "cakemix";
+      };
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${default_login_session}";
+        user = "greeter";
+      };
     };
   };
-  services.desktopManager.gnome.enable = true;
-  # don't install a bunch of software here; most sw is installed via home manager (per user)
-  services.gnome.core-apps.enable = false;
-  services.gnome.core-developer-tools.enable = false;
-  services.gnome.games.enable = false;
-  environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
-  environment.systemPackages = with pkgs; [
-    gnomeExtensions.paperwm
-    gnomeExtensions.pop-shell
-    gnomeExtensions.appindicator
-  ];
 
   services = {
     udev = {
@@ -132,5 +126,4 @@
   virtualisation.spiceUSBRedirection.enable = true;
 
   users.users.cakemix.extraGroups = [ "docker" "dialout" "libvirtd" ];
-
 }
