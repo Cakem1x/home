@@ -27,10 +27,18 @@ window#waybar {
 .modules-right {
 	background-image: linear-gradient(180deg, @base00, @base01);;
 	border: 2px;
-    padding-left: 4px;
-    padding-right: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+	border-radius: 12px;
 	border-style: none solid solid none;
-	border-radius: 14px;
+}
+.modules-left {
+	background-image: linear-gradient(180deg, @base00, @base01);;
+	border: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+	border-radius: 12px;
+	border-style: none solid solid none;
 }
 
 #tray > .needs-attention {
