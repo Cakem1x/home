@@ -62,9 +62,8 @@ in {
   services.flatpak.enable = true;
   xdg.portal = {
     enable = true;
+    config.common.default = "*";
     wlr.enable = true; # xdg-desktop-portal backend for wlroots
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config.common.default = [ "gtk" ];
   };
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # enable wayland for chromium and electron based apps
 

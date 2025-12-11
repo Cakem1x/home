@@ -1,0 +1,160 @@
+[
+  {
+    "backlight": {
+      "device": "intel_backlight",
+      "format": "{icon} {percent}%",
+      "format-icons": [
+        "󰃞",
+        "󰃝",
+        "󰃟",
+        "󰃠"
+      ],
+      "tooltip": true,
+      "tooltip-format": "Sceen Brightness {percent}%"
+    },
+    "battery": {
+      "format": "{icon} {capacity}%",
+      "format-charging": "󱐋 {capacity}%",
+      "format-icons": [
+        "󰂎",
+        "󰁼",
+        "󰁿",
+        "󰂁",
+        "󰁹"
+      ],
+      "interval": 30,
+      "states": {
+        "critical": 15,
+        "warning": 30
+      },
+      "tooltip": true
+    },
+    "bluetooth": {
+      "format": " {status}",
+      "format-connected": " {device_alias}",
+      "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+      "on-click": "bluetoothctl power $(bluetoothctl show | grep -q 'Powered: yes' && echo off || echo on)",
+      "on-click-right": "alacritty --command /nix/store/8yyzznxbbrykv4924vs0451jnpq6f4nr-bluetui-0.8.0/bin/bluetui",
+      "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+      "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+    },
+    "clock#date": {
+      "actions": {
+        "on-scroll-backward": "shift_down",
+        "on-scroll-forward": "shift_up"
+      },
+      "calendar": {
+        "format": {
+          "months": "<span><b>{}</b></span>",
+          "today": "<span color='#268bd2'><b><u>{}</u></b></span>",
+          "weekdays": "<span><b>{}</b></span>",
+          "weeks": "<span color='#b58900'><b>W{}</b></span>"
+        },
+        "mode": "month",
+        "mode-mon-col": 3,
+        "weeks-pos": "right"
+      },
+      "format": "󰃮 {:%Y-%m-%d}",
+      "tooltip": true,
+      "tooltip-format": "{calendar}"
+    },
+    "clock#time": {
+      "format": " {:%H:%M}",
+      "interval": 60
+    },
+    "cpu": {
+      "format": " {usage}%",
+      "tooltip": true
+    },
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      }
+    },
+    "layer": "top",
+    "load": {
+      "format": "󱤎 {load1}",
+      "interval": 1,
+      "max-length": 10
+    },
+    "memory": {
+      "format": "🐏 {percentage}%",
+      "tooltip": true,
+      "tooltip-format": "RAM {used:0.2f}G/{total:0.2f}G"
+    },
+    "modules-center": [
+      "sway/window"
+    ],
+    "modules-left": [
+      "sway/workspaces",
+      "sway/mode"
+    ],
+    "modules-right": [
+      "idle_inhibitor",
+      "network",
+      "battery",
+      "bluetooth",
+      "pulseaudio#output",
+      "pulseaudio#input",
+      "backlight",
+      "memory",
+      "cpu",
+      "temperature",
+      "load",
+      "clock#date",
+      "clock#time",
+      "tray"
+    ],
+    "network": {
+      "format": "{ifname}",
+      "format-disconnected": "󰖪",
+      "format-ethernet": " {ipaddr}/{cidr}",
+      "format-wifi": "{signalStrength}% {essid}",
+      "max-length": 15,
+      "tooltip-format": "{bandwidthUpBytes} {bandwidthDownBytes}"
+    },
+    "position": "top",
+    "pulseaudio#input": {
+      "format": "{format_source}",
+      "format-source": " {volume}%",
+      "format-source-muted": " off",
+      "max-volume": 100,
+      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+      "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ -1%",
+      "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ +1%",
+      "on-click-right": "pavucontrol -t 4"
+    },
+    "pulseaudio#output": {
+      "format": "{icon} {volume}%",
+      "format-icons": {
+        "default": [
+          "",
+          "",
+          ""
+        ]
+      },
+      "format-muted": "󰖁 off",
+      "max-volume": 100,
+      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+      "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ -1%",
+      "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ +1%",
+      "on-click-right": "pavucontrol -t 3"
+    },
+    "sway/mode": {
+      "format": "{}"
+    },
+    "sway/window": {
+      "all-outputs": true,
+      "max-length": 60
+    },
+    "temperature": {
+      "critical-threshold": 80,
+      "format": " {temperatureC}°C",
+      "thermal-zone": 4
+    }
+  }
+]
