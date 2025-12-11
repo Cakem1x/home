@@ -92,7 +92,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  programs.ssh.startAgent = true;
+  #programs.ssh.startAgent = true;
   programs.gnupg.agent = { enable = true; };
 
   # This value determines the NixOS release from which the default

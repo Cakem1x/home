@@ -1,6 +1,6 @@
 { config, lib, pkgs, inputs, modulesPath, ... }:
 
-let default_login_session = "${pkgs.niri}/bin/niri";
+let default_login_session = "${pkgs.niri}/bin/niri-session";
 in {
   imports = [
     ./common.nix
@@ -62,9 +62,9 @@ in {
   services.flatpak.enable = true;
   xdg.portal = {
     enable = true;
-    config.common.default = "*";
     wlr.enable = true; # xdg-desktop-portal backend for wlroots
   };
+  programs.niri.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # enable wayland for chromium and electron based apps
 
   # login manager
@@ -76,8 +76,8 @@ in {
         user = "cakemix";
       };
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${default_login_session}";
-        user = "greeter";
+        command = "${pkgs.tuigreet}/bin/tuigreet --greeting 'Welcome to NixOS!' --asterisks --time --cmd ${default_login_session}";
+        user = "cakemix";
       };
     };
   };
