@@ -65,7 +65,7 @@ layout {
         // Color of the ring on the active monitor.
         active-color "#268bd2"
         // Color of the ring on inactive monitors.
-        inactive-color "#6c71c4"
+        inactive-color "#93a1a1"
     }
 
     border {

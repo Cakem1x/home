@@ -22,11 +22,11 @@ window#waybar {
     border-style: none none solid none;
     padding: 2px;
     margin: 0 2px;
-    border-color: @base0E;
+    border-color: @base02;
 }
 
-.module#hover {
-    border-color: @base09;
+.module:hover {
+    border-color: @base0D;
 }
 
 .modules-right {
