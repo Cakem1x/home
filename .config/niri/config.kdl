@@ -9,8 +9,8 @@
 input {
     keyboard {
         xkb {
-            layout "us,de"
-            variant "altgr-intl,nodeadkeys"
+            layout "eu,de"
+            variant ",nodeadkeys"
         }
         // Enable numlock on startup
         numlock
