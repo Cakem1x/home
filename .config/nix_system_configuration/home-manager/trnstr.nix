@@ -50,6 +50,7 @@
         obs-studio # record screen
         kdePackages.kdenlive # cut vids
         spotify # music (unfree :( )
+        supersonic-wayland
 
         # virtualization
         quickemu
