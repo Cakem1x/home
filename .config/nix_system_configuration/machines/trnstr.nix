@@ -100,7 +100,7 @@ in {
     printing.enable = true;
     avahi = { # discover network printers
       enable = true;
-      nssmdns4 = true;
+      nssmdns = true;
       openFirewall = true;
     };
     gvfs.enable = true; # dbus daemon that enables mounting samba shares via file managers like Nautilus
