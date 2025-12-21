@@ -27,6 +27,7 @@
         # editing
         libreoffice
         vscode
+        arduino-ide
 
         # latex
         texlive.combined.scheme-full
