@@ -34,6 +34,7 @@
     git
     htop
     lazydocker
+    lazygit
     ncdu
     pciutils # lspci
     ranger # CLI to move around in filesystem
@@ -41,7 +42,6 @@
     ripgrep
     sops # used via nix-sops for handling secrets in system cfg
     sshfs
-    tig
     tldr # use like man pages, but provides community examples
     tree
     udisks # mount disks
