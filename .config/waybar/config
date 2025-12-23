@@ -120,8 +120,8 @@
       "format-source-muted": " off",
       "max-volume": 100,
       "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-      "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ -1%",
-      "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ +1%",
+      "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%-",
+      "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+",
       "on-click-right": "pavucontrol -t 4"
     },
     "pulseaudio#output": {
@@ -136,8 +136,8 @@
       "format-muted": "󰖁 off",
       "max-volume": 100,
       "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-      "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ -1%",
-      "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ +1%",
+      "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-",
+      "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+",
       "on-click-right": "pavucontrol -t 3"
     },
     "sway/mode": {
