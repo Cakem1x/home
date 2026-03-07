@@ -9,6 +9,7 @@
     fuzzel # run applications
     mako
     swaylock
+    bluetui
     niri
     waybar
     xwayland-satellite
