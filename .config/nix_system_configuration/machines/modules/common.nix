@@ -2,11 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, username, ... }:
+{ config, pkgs, lib, username, machine_name, ... }:
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.trusted-users = [ "root" "${username}" ];
+
+  networking.hostName = machine_name;
 
   networking = {
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -62,11 +64,28 @@
     wget
   ];
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  services = {
+    udev = {
+      enable = true;
+      packages = [ pkgs.gnome-settings-daemon ]; # for tray icons, via gnomeExtensions.appindicator
+      extraRules = '' # don't let logitech receiver (i.e. external mouse) wake you from your slumber (suspend)
+        ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c548", ATTR{power/wakeup}="disabled"
+      '';
+    };
+  };
+
+  hardware = {
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    # fix steam
+    graphics.enable32Bit = true;
+  };
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
   users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" ];
-    packages = with pkgs; [ ];
+    packages = with pkgs; [ vim ];
   };
 
   # Enable the OpenSSH daemon.

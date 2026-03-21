@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, modulesPath, ... }:
+{ config, lib, pkgs, inputs, modulesPath, username, ... }:
 
 {
   imports = [
@@ -7,9 +7,9 @@
     inputs.nixos-hardware.nixosModules.framework-11th-gen-intel
     (modulesPath + "/installer/scan/not-detected.nix")
     ./modules/niri_desktop.nix
+    ./modules/bluetooth.nix
   ];
 
-  networking.hostName = "trnstr"; # Define your hostname.
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -44,30 +44,14 @@
     fsType = "vfat";
   };
 
-  programs.light.enable = true; # backlight
   swapDevices = [{
     device = "/swapfile";
     size = 16384;
   }];
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware = {
-    cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
-    bluetooth.enable = true;
-    bluetooth.powerOnBoot = true;
-    # fix steam
-    graphics.enable32Bit = true;
-  };
+  programs.light.enable = true; # backlight
 
   services = {
-    udev = {
-      enable = true;
-      packages = [ pkgs.gnome-settings-daemon ]; # for tray icons, via gnomeExtensions.appindicator
-      extraRules = '' # don't let logitech receiver (i.e. external mouse) wake you from your slumber (suspend)
-        ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c548", ATTR{power/wakeup}="disabled"
-      '';
-    };
-
     # framework firmware update tool
     fwupd.enable = true;
     fwupd.extraRemotes = [ "lvfs-testing" ];
@@ -94,5 +78,5 @@
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
-  users.users.cakemix.extraGroups = [ "docker" "dialout" "libvirtd" ];
+  users.users.${username}.extraGroups = [ "docker" "dialout" "libvirtd" ];
 }

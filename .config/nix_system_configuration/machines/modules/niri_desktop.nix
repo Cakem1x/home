@@ -15,11 +15,11 @@ in {
     settings = {
       initial_session = { # autologin after decrypting hdd
         command = "${default_login_session}";
-        username = "${username}";
+        user = username;
       };
       default_session = {
         command = "${pkgs.tuigreet}/bin/tuigreet --greeting 'Welcome to NixOS!' --asterisks --time --cmd ${default_login_session}";
-        username = "${username}";
+        user = username;
       };
     };
   };

@@ -43,19 +43,46 @@
           specialArgs = {
             inherit system inputs;
             username = "cakemix";
+            machine_name = "trnstr";
           };
           modules = [
             inputs.stylix.nixosModules.stylix
             ./machines/trnstr.nix
           ];
         };
+        charcoal = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit system inputs;
+            username = "miner";
+            machine_name = "charcoal";
+          };
+          modules = [
+            inputs.stylix.nixosModules.stylix
+            ./machines/charcoal.nix
+          ];
+        };
       };
 
       homeConfigurations."cakemix"= home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+        extraSpecialArgs = {
+          username = "cakemix";
+          machine_name = "trnstr";
+        };
         modules = [
           inputs.stylix.homeModules.stylix
           ./home-manager/trnstr.nix
+        ];
+      };
+      homeConfigurations."miner"= home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = {
+          username = "miner";
+          machine_name = "charcoal";
+        };
+        modules = [
+          inputs.stylix.homeModules.stylix
+          ./home-manager/charcoal.nix
         ];
       };
 

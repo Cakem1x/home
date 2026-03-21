@@ -1,5 +1,7 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, username, ... }:
+let 
+  home_dir = "/home/${username}";
+in {
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
@@ -14,8 +16,8 @@
   programs.home-manager.enable = true;
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "cakemix";
-  home.homeDirectory = "/home/cakemix";
+  home.username = username;
+  home.homeDirectory = home_dir;
 
   xdg.enable = true; # sets XDG env vars, e.g. to config in ~/.config
 
@@ -100,9 +102,9 @@
       ll = "eza --git-repos -l";
       lh = "eza --git-repos -lh";
 
-      os-update = "nix flake update --flake /home/cakemix/.config/nix_system_configuration";
-      os-upgrade-system = "sudo nixos-rebuild switch --flake /home/cakemix/.config/nix_system_configuration";
-      os-upgrade-user = "home-manager switch --flake /home/cakemix/.config/nix_system_configuration/";
+      os-update = "nix flake update --flake ${home_dir}/.config/nix_system_configuration";
+      os-upgrade-system = "sudo nixos-rebuild switch --flake ${home_dir}/.config/nix_system_configuration";
+      os-upgrade-user = "home-manager switch --flake ${home_dir}/.config/nix_system_configuration/";
       os-update-and-upgrade-all = "os-update && os-upgrade-system && os-upgrade-user";
       os-clean-all = "nix-collect-garbage  --delete-older-than 30d && sudo nix-collect-garbage --delete-older-than 30d";
     };
