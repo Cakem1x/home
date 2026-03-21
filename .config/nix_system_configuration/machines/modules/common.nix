@@ -2,51 +2,22 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, username, ... }:
 
 {
-  imports = let sops-commit = "855b8d51fc3991bd817978f0f093aa6ae0fae738";
-  in [
-    "${
-      builtins.fetchTarball {
-        url = "https://github.com/Mic92/sops-nix/archive/${sops-commit}.tar.gz";
-        # replace this with an actual hash
-        sha256 = "1mnnjxf4wrv91kzy0pj2f8pw1vrkaqs3cn4ixix4ghwbx43qvmk2";
-      }
-    }/modules/sops"
-  ];
-
-  sops = {
-    # This will add secrets.yml to the nix store
-    # You can avoid this by adding a string to the full path instead, i.e.
-    # sops.defaultSopsFile = "/root/.sops/secrets/example.yaml";
-    defaultSopsFile = ./secrets/secrets.yaml;
-    # Auto-generate and use age key based on a machines ssh key.
-    # Mostly used for decrytping on machines where cfg is deployed.
-    age = {
-      sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-      keyFile = "/var/lib/sops-nix/key.txt";
-      generateKey = true;
-    };
-  };
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.trusted-users = [ "root" "cakemix" ];
+  nix.settings.trusted-users = [ "root" "${username}" ];
 
   networking = {
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
     # (the default) this is the recommended approach. When using systemd-networkd it's
     # still possible to use this option, but it's recommended to use it in conjunction
     # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-    networkmanager.enable =
-      true; # Easiest to use and most distros use this by default.
+    networkmanager.enable = true; # Easiest to use and most distros use this by default.
     # true would yield names like wlp3s0 instead of wlan0.
     # wlan0 is easier, bc e.g. i3bar cfgs can use the same string over multiple machines.
     # when having multiple interfaces of the same type on a machine, setting this to true might be important to get reproducable names.
     usePredictableInterfaceNames = false;
-    extraHosts = ''
-      192.168.0.3 firefly
-    '';
   };
 
   # Set your time zone.
@@ -77,6 +48,14 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+  services.udisks2.enable = true; # allows mounting (USB) storage devices more easily
+  services.printing.enable = true;
+  services.avahi = { # discover network printers
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+  services.gvfs.enable = true; # dbus daemon that enables mounting samba shares via file managers like Nautilus
 
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -84,7 +63,7 @@
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.cakemix = {
+  users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" ];
     packages = with pkgs; [ ];

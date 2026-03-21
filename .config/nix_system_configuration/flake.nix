@@ -40,7 +40,10 @@
     in {
       nixosConfigurations = {
         trnstr = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit system inputs; };
+          specialArgs = {
+            inherit system inputs;
+            username = "cakemix";
+          };
           modules = [
             inputs.stylix.nixosModules.stylix
             ./machines/trnstr.nix
