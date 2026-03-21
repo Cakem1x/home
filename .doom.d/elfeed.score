@@ -1,0 +1,33 @@
+;;; Elfeed score file                                     -*- lisp -*-
+((version 10)
+ ("title-or-content"
+  ; looks like a SLAM paper
+  (:text "SLAM" :title-value 100 :content-value 50 :type s)
+  (:text "Localization" :title-value 50 :content-value 25 :type s)
+  (:text "Mapping" :title-value 50 :content-value 25 :type s)
+  ; SLAM subfields
+  (:text "active" :title-value 50 :content-value 10 :type s)
+  (:text "lifelong" :title-value 50 :content-value 10 :type s)
+  (:text "map update" :title-value 50 :content-value 30 :type s)
+  (:text "semantic" :title-value 50 :content-value 30 :type s)
+  (:text "scene understanding" :title-value 50 :content-value 30 :type s)
+  ; sensors
+  (:text "Imu" :title-value 20 :content-value 20 :type s)
+  (:text "Inertial" :title-value 20 :content-value 20 :type s)
+  (:text "Lidar" :title-value 20 :content-value 20 :type s)
+  (:text "Camera" :title-value 20 :content-value 20 :type s)
+  (:text "Radar" :title-value 20 :content-value 20 :type s)
+  ; slam related concepts
+  (:text "Odometry" :title-value 20 :content-value 20 :type s)
+  (:text "factor graph" :title-value 30 :content-value 30 :type s)
+  (:text "pose graph" :title-value 30 :content-value 30 :type s)
+  (:text "manifold" :title-value 30 :content-value 30 :type s)
+  (:text "registration" :title-value 30 :content-value 30 :type s)
+  (:text "gaussian splatting" :title-value 30 :content-value 30 :type s)
+  (:text "nerf" :title-value 30 :content-value 30 :type s)
+  (:text "scene graph" :title-value 30 :content-value 30 :type s)
+  ; dynamic env
+  (:text "Change Detection" :title-value 30 :content-value 30 :type s)
+  (:text "Dynamic" :title-value 30 :content-value 10 :type s))
+ (mark nil)
+ ("adjust-tags"))

@@ -1,0 +1,4 @@
+* root :elfeed:
+** Literature :literature:
+*** Arxiv
+**** [[https://export.arxiv.org/api/query?search_query=all:SLAM&start=0&max_results=20&sortBy=submittedDate&sortOrder=descending][SLAM]]
