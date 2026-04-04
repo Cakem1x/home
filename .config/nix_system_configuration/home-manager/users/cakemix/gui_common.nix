@@ -1,13 +1,6 @@
 { config, pkgs, lib, ... }:
 
 {
-    imports =
-        [
-            ../style
-            ./common.nix
-            ./niri_desktop_env
-        ];
-
     home.packages = with pkgs; [
         # shell basics
         alacritty

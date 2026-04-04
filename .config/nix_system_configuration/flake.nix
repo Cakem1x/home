@@ -81,7 +81,10 @@
         };
         modules = [
           inputs.stylix.homeModules.stylix
-          ./home-manager/trnstr.nix
+          ./home-manager/desktop_envs/niri
+          ./home-manager/users/cakemix/gui_common.nix
+          ./home-manager/users/cakemix/cli_common.nix
+          ./style
         ];
       };
       homeConfigurations."miner"= home-manager.lib.homeManagerConfiguration {
@@ -91,7 +94,8 @@
         };
         modules = [
           inputs.stylix.homeModules.stylix
-          ./home-manager/charcoal.nix
+          ./home-manager/users/cakemix/gui_common.nix
+          ./home-manager/users/cakemix/cli_common.nix
         ];
       };
 
