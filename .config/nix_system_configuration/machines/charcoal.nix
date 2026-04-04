@@ -14,7 +14,6 @@
   boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelParams = [ "nvidia-drm.modeset=1" ];
   boot.extraModulePackages = [ ];
   fileSystems."/" =
     { device = "/dev/mapper/cryptroot";
@@ -30,17 +29,4 @@
     device = "/swapfile";
     size = 17 * 1024;
   }];
-
-  hardware.graphics.enable = true;
-  hardware.nvidia = {
-    open = false;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    nvidiaSettings = true;
-  };
-  services.xserver.videoDrivers = [ "nvidia" ];
-  nixpkgs.config.allowUnfree = true;
-
-  users.users.${username}.extraGroups = [ "docker" "dialout" "libvirtd" ];
 }

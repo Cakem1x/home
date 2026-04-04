@@ -8,13 +8,10 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ./modules/niri_desktop.nix
     ./modules/bluetooth.nix
+    ./modules/notebook.nix
+    ./modules/docker.nix
+    ./modules/vm_stuff.nix
   ];
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   boot = {
     kernelModules = [ "kvm-intel" "kvmgt" ];
@@ -49,34 +46,5 @@
     size = 16384;
   }];
 
-  programs.light.enable = true; # backlight
-
-  services = {
-    # framework firmware update tool
-    fwupd.enable = true;
-    fwupd.extraRemotes = [ "lvfs-testing" ];
-    fwupd.uefiCapsuleSettings.DisableCapsuleUpdateOnDisk = true;
-
-    libinput.enable = true; # touchpad support
-  };
-
-  virtualisation.docker = {
-    enable = true;
-    daemon.settings =
-      { # fix for WifiOnICE; Moves docker network IP ranges away from what the Deutsche Bahn wifi uses.
-        bip = "172.39.1.5/24";
-        fixed-cidr = "172.39.1.0/25";
-        default-address-pools = [{
-          base = "172.39.0.0/16";
-          size = 24;
-        }];
-      };
-  };
-
-  # VM stuff
-  # ToDo/Notes: for better GPU performance in my VM, look into SR-IOV support. Apparently, Tigerlake does not support GVT-g anymore. However, SR-IOV support on Linux seems to be bad since it is very new
-  virtualisation.libvirtd.enable = true;
-  virtualisation.spiceUSBRedirection.enable = true;
-
-  users.users.${username}.extraGroups = [ "docker" "dialout" "libvirtd" ];
+  users.users.${username}.extraGroups = [ "dialout" ]; # access serial devices (e.g. for arduino dev)
 }
