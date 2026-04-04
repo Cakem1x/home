@@ -11,15 +11,10 @@ in {
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "22.05";
-
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
+
   home.username = username;
   home.homeDirectory = home_dir;
-
-  xdg.enable = true; # sets XDG env vars, e.g. to config in ~/.config
 
   home.packages = with pkgs; [
     # shell basics
@@ -82,6 +77,8 @@ in {
     nil
     nixfmt-classic nixos-option
   ];
+
+  xdg.enable = true; # sets XDG env vars, e.g. to config in ~/.config
 
   programs.fzf = { enable = true; };
 

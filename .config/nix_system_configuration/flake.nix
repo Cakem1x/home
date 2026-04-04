@@ -61,13 +61,23 @@
             ./machines/charcoal.nix
           ];
         };
+        peptide = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit system inputs;
+            username = "cakemix";
+            machine_name = "peptide";
+          };
+          modules = [
+            inputs.stylix.nixosModules.stylix
+            ./machines/peptide.nix
+          ];
+        };
       };
 
       homeConfigurations."cakemix"= home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {
           username = "cakemix";
-          machine_name = "trnstr";
         };
         modules = [
           inputs.stylix.homeModules.stylix
@@ -78,7 +88,6 @@
         inherit pkgs;
         extraSpecialArgs = {
           username = "miner";
-          machine_name = "charcoal";
         };
         modules = [
           inputs.stylix.homeModules.stylix

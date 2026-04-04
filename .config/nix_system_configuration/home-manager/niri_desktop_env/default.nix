@@ -14,9 +14,12 @@
     waybar
     xwayland-satellite
     networkmanagerapplet
+    nerd-fonts.symbols-only # used in waybar
   ];
 
   services.mako.enable = true;
   services.blueman-applet.enable = true;
   services.network-manager-applet.enable = true;
+
+  fonts.fontconfig.enable = true; # make installed fonts discoverable
 }
