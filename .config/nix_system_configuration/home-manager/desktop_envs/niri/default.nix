@@ -17,7 +17,12 @@
     nerd-fonts.symbols-only # used in waybar
   ];
 
-  services.mako.enable = true;
+  services.mako = {
+    enable = true;
+    settings = {
+      default-timeout = 3000; # ms
+    };
+  };
   services.blueman-applet.enable = true;
   services.network-manager-applet.enable = true;
 
