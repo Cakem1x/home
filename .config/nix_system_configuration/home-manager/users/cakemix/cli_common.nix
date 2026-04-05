@@ -76,6 +76,9 @@ in {
     # lang - nix
     nil
     nixfmt-classic nixos-option
+
+    # agentic coding tools
+    claude-code
   ];
 
   xdg.enable = true; # sets XDG env vars, e.g. to config in ~/.config
@@ -161,6 +164,8 @@ in {
         "st" = "status";
         "lg" = "log --graph --pretty=oneline --abbrev-commit";
       };
+
+      init.defaultBranch = "main";
     };
   };
 }
