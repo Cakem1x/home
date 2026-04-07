@@ -21,7 +21,6 @@
         # editing
         libreoffice
         vscode
-        arduino-ide
 
         # latex
         texlive.combined.scheme-full
@@ -36,27 +35,13 @@
 
         # other apps
         firefox
-        gimp
-        signal-desktop-bin
         xournalpp # view pdfs & add text/imgs
-        nextcloud-client # sync nextcloud files
-        steam # games
+        gimp # edit imgs
         nautilus # file manager
-        obs-studio # record screen
-        kdePackages.kdenlive # cut vids
         spotify # music (unfree :( )
-        supersonic-wayland
-
-        # editing
-        vscode
 
         # latex
         texlive.combined.scheme-full
-
-        # other apps
-        gimp # edit imgs
-        xournalpp # view pdfs & add text/imgs
-        spotify # music (unfree :( )
     ];
 
     fonts.fontconfig.enable = true; # make fonts available
