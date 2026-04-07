@@ -133,10 +133,6 @@ in {
 
       # add my scripts and emacs doom stuff to path
       export PATH="$HOME/bin:$HOME/.emacs.d/bin:$PATH"
-
-      # make work work
-      export ROS_DOMAIN_ID=23
-      [[ -f "$HOME/nature_robots/devel/dev_tooling/setup/host/setup.bash" ]] && source "$HOME/nature_robots/devel/dev_tooling/setup/host/setup.bash"
     '';
   };
   programs.starship = { # (bash) prompt
@@ -157,8 +153,6 @@ in {
     enable = true;
 
     settings = {
-      user.name = "Matthias Holoch";
-      user.email = "mholoch@gmail.com";
       alias = {
         "co" = "checkout";
         "st" = "status";
