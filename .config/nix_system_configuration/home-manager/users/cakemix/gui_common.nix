@@ -3,6 +3,7 @@
 {
     home.packages = with pkgs; [
         # shell basics
+        adwaita-fonts
         alacritty
 
         # CLI util
@@ -46,9 +47,18 @@
         spotify # music (unfree :( )
         supersonic-wayland
 
-        # virtualization
-        quickemu
+        # editing
+        vscode
+
+        # latex
+        texlive.combined.scheme-full
+
+        # other apps
+        gimp # edit imgs
+        xournalpp # view pdfs & add text/imgs
+        spotify # music (unfree :( )
     ];
+
     fonts.fontconfig.enable = true; # make fonts available
 
     programs.alacritty.enable = true;

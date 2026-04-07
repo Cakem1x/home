@@ -84,6 +84,8 @@
           ./home-manager/desktop_envs/niri
           ./home-manager/users/cakemix/gui_common.nix
           ./home-manager/users/cakemix/cli_common.nix
+          ./home-manager/users/cakemix/gui_nonwork.nix
+          ./home-manager/users/cakemix/wayland_apps.nix
           ./style
         ];
       };
@@ -94,8 +96,12 @@
         };
         modules = [
           inputs.stylix.homeModules.stylix
-          ./home-manager/users/cakemix/gui_common.nix
+          ./home-manager/desktop_envs/niri
           ./home-manager/users/cakemix/cli_common.nix
+          ./home-manager/users/cakemix/gui_common.nix
+          ./home-manager/users/cakemix/gui_nonwork.nix
+          ./home-manager/users/cakemix/wayland_apps.nix
+          ./style
         ];
       };
 

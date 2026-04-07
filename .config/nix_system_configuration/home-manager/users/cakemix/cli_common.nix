@@ -1,4 +1,4 @@
-{ config, pkgs, username, ... }:
+{ lib, config, pkgs, username, ... }:
 let 
   home_dir = "/home/${username}";
 in {
@@ -79,6 +79,7 @@ in {
 
     # agentic coding tools
     claude-code
+    codex
   ];
 
   xdg.enable = true; # sets XDG env vars, e.g. to config in ~/.config
@@ -165,6 +166,8 @@ in {
         "lg" = "log --graph --pretty=oneline --abbrev-commit";
       };
 
+      user.name = "Matthias Holoch";
+      user.email = lib.mkDefault "mholoch@gmail.com";
       init.defaultBranch = "main";
     };
   };
