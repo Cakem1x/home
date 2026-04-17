@@ -5,12 +5,24 @@
     nixos-hardware.url = github:NixOS/nixos-hardware;
 
     nixpkgs.url = github:nixos/nixpkgs/nixos-25.11;
+
     home-manager = {
       url = github:nix-community/home-manager/release-25.11;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     stylix = {
       url = github:nix-community/stylix/release-25.11;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixgl = {
+      url = github:nix-community/nixGL;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

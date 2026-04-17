@@ -48,7 +48,6 @@ in {
 
     # nix tools
     cachix
-    nix-index # nix-locate: finds stuff in artifacts in my nix store
 
     # editing
     (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
@@ -79,6 +78,7 @@ in {
     # agentic coding tools
     claude-code
     codex
+    gh # access to github via CLI
   ];
 
   xdg.enable = true; # sets XDG env vars, e.g. to config in ~/.config
@@ -164,4 +164,13 @@ in {
       init.defaultBranch = "main";
     };
   };
+
+  programs.direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      nix-direnv.enable = true;
+    };
+
+  programs.nix-index.enable = true; # hook up shell's cmd not found function with nix-index
+
 }
