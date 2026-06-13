@@ -5,6 +5,7 @@
     ./modules/common.nix
     (modulesPath + "/installer/scan/not-detected.nix")
     ./modules/niri_desktop.nix
+    ./modules/gaming.nix
   ];
 
   # boot and filesystem setup

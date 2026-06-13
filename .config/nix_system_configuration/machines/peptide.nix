@@ -9,6 +9,7 @@
     ./modules/niri_desktop.nix
     ./modules/bluetooth.nix
     ./modules/fwupd.nix
+    ./modules/gaming.nix
   ];
 
   boot = {

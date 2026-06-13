@@ -11,6 +11,7 @@
     ./modules/notebook.nix
     ./modules/docker.nix
     ./modules/vm_stuff.nix
+    ./modules/gaming.nix
   ];
 
   boot = {
