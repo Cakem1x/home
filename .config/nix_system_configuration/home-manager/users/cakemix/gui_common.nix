@@ -21,6 +21,7 @@
         # editing
         libreoffice
         vscode
+        antigravity
 
         # latex
         texlive.combined.scheme-full

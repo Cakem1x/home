@@ -48,6 +48,7 @@ in {
 
     # nix tools
     cachix
+    nix-tree # great for tracking down dependencies
 
     # editing
     (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
