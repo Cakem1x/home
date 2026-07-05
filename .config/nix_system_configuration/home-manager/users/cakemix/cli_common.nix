@@ -31,7 +31,7 @@ in {
     git
     htop
     lazydocker
-    lazygit
+    tig
     ncdu
     pciutils # lspci
     ranger # CLI to move around in filesystem
