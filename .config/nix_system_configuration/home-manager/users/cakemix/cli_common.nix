@@ -77,7 +77,6 @@ in {
     nixfmt-classic nixos-option
 
     # agentic coding tools
-    claude-code
     codex
     gh # access to github via CLI
   ];

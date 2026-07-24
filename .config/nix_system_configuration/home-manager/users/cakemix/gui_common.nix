@@ -38,6 +38,7 @@
         firefox
         xournalpp # view pdfs & add text/imgs
         gimp # edit imgs
+        pinta # simple img editor (paint like)
         nautilus # file manager
         spotify # music (unfree :( )
 
