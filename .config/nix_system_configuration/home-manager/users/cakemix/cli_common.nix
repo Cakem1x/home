@@ -131,8 +131,8 @@ in {
       export FZF_DEFAULT_OPTS="-q\ \!/.\ \!^.\ " # ignore dotfiles
       export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' -q\ \!/.\ \!^.\ " # preview dir contents
 
-      # add my scripts and emacs doom stuff to path
-      export PATH="$HOME/bin:$HOME/.emacs.d/bin:$PATH"
+      # add local bin, my scripts and emacs doom stuff to path
+      export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.emacs.d/bin:$PATH"
     '';
   };
   programs.starship = { # (bash) prompt
