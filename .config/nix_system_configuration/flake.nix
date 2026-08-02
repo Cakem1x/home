@@ -98,6 +98,7 @@
         modules = [
           inputs.stylix.homeModules.stylix
           ./home-manager/desktop_envs/niri
+          ./home-manager/users/cakemix/syncthing.nix
           ./home-manager/users/cakemix/gui_common.nix
           ./home-manager/users/cakemix/cli_common.nix
           ./home-manager/users/cakemix/gui_nonwork.nix
