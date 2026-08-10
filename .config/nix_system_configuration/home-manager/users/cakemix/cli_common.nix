@@ -162,6 +162,7 @@ in {
       user.name = "Matthias Holoch";
       user.email = lib.mkDefault "mholoch@gmail.com";
       init.defaultBranch = "main";
+      submodule.recurse = true;
     };
   };
 
