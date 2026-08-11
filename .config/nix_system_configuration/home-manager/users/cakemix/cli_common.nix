@@ -172,6 +172,4 @@ in {
       nix-direnv.enable = true;
     };
 
-  programs.nix-index.enable = true; # hook up shell's cmd not found function with nix-index
-
 }
