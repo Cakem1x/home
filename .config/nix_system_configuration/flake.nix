@@ -4,11 +4,6 @@
   inputs = {
     nixos-hardware.url = github:NixOS/nixos-hardware;
 
-    nur = {
-        url = "github:nix-community/NUR";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixgl = {
       url = github:nix-community/nixGL;
       inputs.nixpkgs.follows = "nixpkgs";
