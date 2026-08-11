@@ -45,6 +45,7 @@ in {
     unzip
     usbutils # lsusb
     wl-clipboard # wayland clipboard utils; CLI: wl-copy, wl-paste
+    herdr
 
     # nix tools
     cachix
@@ -74,7 +75,6 @@ in {
     rustc
     # lang - nix
     nil
-    nixfmt-classic nixos-option
 
     # agentic coding tools
     codex

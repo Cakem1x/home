@@ -20,11 +20,10 @@
 
         # editing
         libreoffice
-        vscode
-        antigravity
+        antigravity-ide
 
         # latex
-        texlive.combined.scheme-full
+        texliveSmall
 
         # 3D modeling/printing
         openscad # 3D modeling with code
@@ -41,9 +40,6 @@
         pinta # simple img editor (paint like)
         nautilus # file manager
         spotify # music (unfree :( )
-
-        # latex
-        texlive.combined.scheme-full
     ];
 
     fonts.fontconfig.enable = true; # make fonts available
