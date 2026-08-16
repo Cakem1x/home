@@ -9,8 +9,9 @@
     ./modules/niri_desktop.nix
     ./modules/bluetooth.nix
     ./modules/fwupd.nix
-    ./modules/gaming.nix
+#    ./modules/gaming.nix
   ];
+  hardware.graphics.enable32Bit = true; # TODO replace by gaming
 
   boot = {
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usbhid" "usb_storage" "sd_mod" ];
