@@ -132,7 +132,7 @@ in {
       export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' -q\ \!/.\ \!^.\ " # preview dir contents
 
       # add local bin, my scripts and emacs doom stuff to path
-      export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.emacs.d/bin:$PATH"
+      export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:$HOME/.emacs.d/bin:$PATH"
     '';
   };
   programs.starship = { # (bash) prompt
