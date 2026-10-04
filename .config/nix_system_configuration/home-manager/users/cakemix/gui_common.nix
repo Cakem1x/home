@@ -20,7 +20,6 @@
 
         # editing
         libreoffice
-        antigravity-ide
 
         # latex
         texliveSmall
