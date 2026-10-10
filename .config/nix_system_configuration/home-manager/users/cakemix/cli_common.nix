@@ -52,7 +52,7 @@ in {
     nix-tree # great for tracking down dependencies
 
     # editing
-    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
+    (aspellWithDicts (dicts: with dicts; [ en ]))
     ispell
     vim
     # lang - sh
@@ -172,4 +172,9 @@ in {
       nix-direnv.enable = true;
     };
 
+  services.ollama = {
+    enable = true;
+  };
+
 }
+
