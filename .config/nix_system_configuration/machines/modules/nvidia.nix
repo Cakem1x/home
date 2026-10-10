@@ -6,7 +6,7 @@
   hardware.graphics.enable = true;
   hardware.nvidia = {
     open = false;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
     modesetting.enable = true;
     powerManagement.enable = false;
     nvidiaSettings = true;
