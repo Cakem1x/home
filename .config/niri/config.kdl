@@ -3,6 +3,17 @@
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
+// Output section for display configs
+output "Samsung Electric Company LS27D60xU HK2Y901878" {
+    mode "2560x1440@99.946"
+    position x=0 y=0
+}
+
+output "Samsung Electric Company LS27D60xU HK2L100186" {
+    mode "2560x1440@99.946"
+    position x=2560 y=0
+}
+
 // Input device configuration.
 // Find the full list of options on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input

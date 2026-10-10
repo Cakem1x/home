@@ -4,41 +4,20 @@
   inputs = {
     nixos-hardware.url = github:NixOS/nixos-hardware;
 
-    nixpkgs.url = github:nixos/nixpkgs/nixos-25.11;
-
-    home-manager = {
-      url = github:nix-community/home-manager/release-25.11;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    stylix = {
-      url = github:nix-community/stylix/release-25.11;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nur = {
-        url = "github:nix-community/NUR";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixgl = {
       url = github:nix-community/nixGL;
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
+    # unstable srcs
+    nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
+    home-manager= {
+      url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # unstable srcs
-    nixpkgs-unstable.url = github:nixos/nixpkgs/nixos-unstable;
-    home-manager-unstable = {
-      url = github:nix-community/home-manager;
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-    stylix-unstable = {
+    stylix = {
       url = github:nix-community/stylix;
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
@@ -98,6 +77,7 @@
         modules = [
           inputs.stylix.homeModules.stylix
           ./home-manager/desktop_envs/niri
+          ./home-manager/users/cakemix/syncthing.nix
           ./home-manager/users/cakemix/gui_common.nix
           ./home-manager/users/cakemix/cli_common.nix
           ./home-manager/users/cakemix/gui_nonwork.nix

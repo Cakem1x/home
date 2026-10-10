@@ -6,6 +6,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ./modules/niri_desktop.nix
     ./modules/nvidia.nix
+    ./modules/gaming.nix
   ];
 
   # boot and filesystem setup

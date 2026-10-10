@@ -31,7 +31,7 @@ in {
     git
     htop
     lazydocker
-    lazygit
+    tig
     ncdu
     pciutils # lspci
     ranger # CLI to move around in filesystem
@@ -45,9 +45,11 @@ in {
     unzip
     usbutils # lsusb
     wl-clipboard # wayland clipboard utils; CLI: wl-copy, wl-paste
+    herdr
 
     # nix tools
     cachix
+    nix-tree # great for tracking down dependencies
 
     # editing
     (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
@@ -73,10 +75,8 @@ in {
     rustc
     # lang - nix
     nil
-    nixfmt-classic nixos-option
 
     # agentic coding tools
-    claude-code
     codex
     gh # access to github via CLI
   ];
@@ -131,8 +131,8 @@ in {
       export FZF_DEFAULT_OPTS="-q\ \!/.\ \!^.\ " # ignore dotfiles
       export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' -q\ \!/.\ \!^.\ " # preview dir contents
 
-      # add my scripts and emacs doom stuff to path
-      export PATH="$HOME/bin:$HOME/.emacs.d/bin:$PATH"
+      # add local bin, my scripts and emacs doom stuff to path
+      export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:$HOME/.emacs.d/bin:$PATH"
     '';
   };
   programs.starship = { # (bash) prompt
@@ -162,6 +162,7 @@ in {
       user.name = "Matthias Holoch";
       user.email = lib.mkDefault "mholoch@gmail.com";
       init.defaultBranch = "main";
+      submodule.recurse = true;
     };
   };
 
@@ -170,7 +171,5 @@ in {
       enableBashIntegration = true;
       nix-direnv.enable = true;
     };
-
-  programs.nix-index.enable = true; # hook up shell's cmd not found function with nix-index
 
 }

@@ -3,6 +3,7 @@
 {
   virtualisation.docker = {
     enable = true;
+    package = pkgs.docker_29;
     daemon.settings =
       { # fix for WifiOnICE; Moves docker network IP ranges away from what the Deutsche Bahn wifi uses.
         bip = "172.39.1.5/24";

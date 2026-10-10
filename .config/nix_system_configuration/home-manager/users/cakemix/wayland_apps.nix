@@ -2,7 +2,7 @@
 
 {
     home.packages = with pkgs; [
-        supersonic-wayland
+        supersonic
         emacs-pgtk # pure gtk for wayland compat
     ];
 }

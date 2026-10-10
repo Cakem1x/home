@@ -4,7 +4,7 @@
     home.packages = with pkgs; [
         steam # games
         quickemu # virtualization
-        signal-desktop-bin
+        signal-desktop
         nextcloud-client # sync nextcloud files
     ];
 }
