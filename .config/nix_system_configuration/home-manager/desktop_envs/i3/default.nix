@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, username, ... }:
 
 let
   colors = {
@@ -17,7 +17,6 @@ in
     autorandr
     dunst
     feh
-    flameshot
     font-awesome  # icon font required by i3status-rust "awesome6" icon set
     networkmanagerapplet
     pavucontrol
@@ -29,12 +28,32 @@ in
     xss-lock
   ];
 
-  # autorandr: save/restore monitor layouts; auto-applies on hotplug via udev
-  programs.autorandr.enable = true;
+  # autorandr: save/restore monitor layouts; auto-applies on hotplug via udev.
+  # The postswitch hook re-applies the wallpaper after every output reconfiguration
+  # so feh always runs *after* autorandr has finished setting up all screens.
+  programs.autorandr = {
+    enable = true;
+    hooks.postswitch = {
+      "set-wallpaper" = "${pkgs.feh}/bin/feh --bg-fill ${pkgs.nixos-artwork.wallpapers.nineish-solarized-light.src}";
+    };
+  };
 
   services.dunst = {
     enable = true;
     settings.global.default_timeout = 3000;
+  };
+
+  services.flameshot = {
+    enable = true;
+    settings = {
+      General = {
+        savePath = "/home/${username}/screenshots";
+        # Whether to enable legacy (pre-xdg-desktop-portal) screenshotting on X11
+        useX11LegacyScreenshot = true;
+        # Whether to skip display selection prompt (X11-only)
+        captureActiveMonitor = true;
+      };
+    };
   };
 
   xsession.windowManager.i3 = {
@@ -62,9 +81,6 @@ in
         { command = "${pkgs.feh}/bin/feh --bg-fill ${pkgs.nixos-artwork.wallpapers.nineish-solarized-light.src}"; always = true; notification = false; }
         { command = "${pkgs.picom}/bin/picom"; always = true; notification = false; }
         { command = "${pkgs.xss-lock}/bin/xss-lock -- ${lockCommand}"; always = true; notification = false; }
-        # flameshot daemon must be running before `flameshot gui` keybind works;
-        # QT_QPA_PLATFORM=xcb forces X11 backend (avoids Wayland fallback breaking capture)
-        { command = "env QT_QPA_PLATFORM=xcb ${pkgs.flameshot}/bin/flameshot"; always = false; notification = false; }
       ];
       bars = [ {
         position = "top";
@@ -115,7 +131,7 @@ in
       keybindings = lib.mkOptionDefault {
         "${config.xsession.windowManager.i3.config.modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
         "${alt}+Ctrl+l" = "exec ${lockCommand}";
-        "Print" = "exec --no-startup-id env QT_QPA_PLATFORM=xcb ${pkgs.flameshot}/bin/flameshot gui";
+        "Print" = "exec --no-startup-id flameshot gui -p '/home/${username}/screenshots/' # import -window root '/home/${username}/screenshots/screenshot_$(date +%y-%m-%d_%H-%M-\%S_%N).png'";
         "XF86AudioRaiseVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ +5%";
         "XF86AudioLowerVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ -5%";
         "XF86AudioMute" = "exec ${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
