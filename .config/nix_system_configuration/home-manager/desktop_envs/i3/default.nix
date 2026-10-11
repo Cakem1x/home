@@ -13,9 +13,11 @@ let
 in
 {
   home.packages = with pkgs; [
+    autorandr
     dunst
     feh
     flameshot
+    font-awesome  # icon font required by i3status-rust "awesome6" icon set
     networkmanagerapplet
     pavucontrol
     picom
@@ -25,6 +27,9 @@ in
     xrandr
     xss-lock
   ];
+
+  # autorandr: save/restore monitor layouts; auto-applies on hotplug via udev
+  programs.autorandr.enable = true;
 
   services.dunst = {
     enable = true;
@@ -49,16 +54,26 @@ in
         ];
       };
       startup = [
+        { command = "${pkgs.autorandr}/bin/autorandr --change"; always = true; notification = false; }
         { command = "${pkgs.dunst}/bin/dunst"; always = true; notification = false; }
         { command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"; always = true; notification = false; }
         { command = "${pkgs.feh}/bin/feh --bg-fill ${pkgs.nixos-artwork.wallpapers.nineish-solarized-light.src}"; always = true; notification = false; }
         { command = "${pkgs.picom}/bin/picom"; always = true; notification = false; }
         { command = "${pkgs.xss-lock}/bin/xss-lock -- ${lockCommand}"; always = true; notification = false; }
+        # flameshot daemon must be running before `flameshot gui` keybind works;
+        # QT_QPA_PLATFORM=xcb forces X11 backend (avoids Wayland fallback breaking capture)
+        { command = "env QT_QPA_PLATFORM=xcb ${pkgs.flameshot}/bin/flameshot"; always = false; notification = false; }
       ];
       bars = [ {
         position = "top";
         statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${config.xdg.configHome}/i3status-rust/config.toml";
         trayOutput = "primary";
+        # List both fonts: the monospace for text, Font Awesome for glyphs.
+        # i3bar picks the first font that contains the requested glyph.
+        fonts = {
+          names = [ "Adwaita Mono" "Font Awesome 6 Free" "Font Awesome 6 Brands" ];
+          size = 10.0;
+        };
         colors = with config.lib.stylix.colors.withHashtag; {
           background = base00;
           statusline = base05;
@@ -98,7 +113,7 @@ in
       keybindings = lib.mkOptionDefault {
         "${config.xsession.windowManager.i3.config.modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
         "${alt}+Ctrl+l" = "exec ${lockCommand}";
-        "Print" = "exec ${pkgs.flameshot}/bin/flameshot gui";
+        "Print" = "exec --no-startup-id env QT_QPA_PLATFORM=xcb ${pkgs.flameshot}/bin/flameshot gui";
         "XF86AudioRaiseVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ +5%";
         "XF86AudioLowerVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ -5%";
         "XF86AudioMute" = "exec ${pactl} set-sink-mute @DEFAULT_SINK@ toggle";

@@ -10,6 +10,10 @@
     windowManager.i3.enable = true;
   };
 
+  # autorandr: udev hook that calls `autorandr --change` when monitors are
+  # connected/disconnected. Profiles are saved with `autorandr --save <name>`.
+  services.autorandr.enable = true;
+
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];

@@ -4,6 +4,7 @@
     home.packages = with pkgs; [
         # shell basics
         adwaita-fonts
+        nerd-fonts.symbols-only  # Symbols Nerd Font — required by Doom Emacs (nerd-icons)
         alacritty
 
         # CLI util
