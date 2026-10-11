@@ -13,6 +13,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    arandr
     autorandr
     dunst
     feh
@@ -41,6 +42,7 @@ in
     config = {
       modifier = "Mod4";
       terminal = "alacritty";
+      workspaceAutoBackAndForth = true;
       menu = "${pkgs.rofi}/bin/rofi -show drun";
       gaps = {
         inner = 6;
@@ -118,6 +120,8 @@ in
         "XF86AudioLowerVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ -5%";
         "XF86AudioMute" = "exec ${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
         "XF86AudioMicMute" = "exec ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle";
+        "XF86AudioMedia" = "exec ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle";
+        "Pause" = "exec ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle";
         "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
         "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
         "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
@@ -126,9 +130,25 @@ in
         "XF86MonBrightnessUp" = "exec light -A 10";
         "XF86MonBrightnessDown" = "exec light -U 10";
 
+        # Split orientation
+        "${config.xsession.windowManager.i3.config.modifier}+i" = "split h";
+        "${config.xsession.windowManager.i3.config.modifier}+o" = "split v";
+
         # Floating toggles
         "${alt}+Shift+space" = "floating toggle";
         "${alt}+space" = "focus mode_toggle";
+
+        # Vim-style focus
+        "${config.xsession.windowManager.i3.config.modifier}+h" = "focus left";
+        "${config.xsession.windowManager.i3.config.modifier}+j" = "focus down";
+        "${config.xsession.windowManager.i3.config.modifier}+k" = "focus up";
+        "${config.xsession.windowManager.i3.config.modifier}+l" = "focus right";
+
+        # Vim-style move
+        "${config.xsession.windowManager.i3.config.modifier}+Shift+h" = "move left";
+        "${config.xsession.windowManager.i3.config.modifier}+Shift+j" = "move down";
+        "${config.xsession.windowManager.i3.config.modifier}+Shift+k" = "move up";
+        "${config.xsession.windowManager.i3.config.modifier}+Shift+l" = "move right";
 
         # Workspaces
         "${config.xsession.windowManager.i3.config.modifier}+1" = "workspace number \"1: term\"";
@@ -143,6 +163,24 @@ in
 
         # Monitors
         "${config.xsession.windowManager.i3.config.modifier}+m" = "move workspace to output next";
+      };
+      modes = {
+        resize = {
+          # Vim-style resize
+          h = "resize shrink width 10 px or 10 ppt";
+          j = "resize shrink height 10 px or 10 ppt";
+          k = "resize grow height 10 px or 10 ppt";
+          l = "resize grow width 10 px or 10 ppt";
+          # Arrow keys
+          Left  = "resize shrink width 10 px or 10 ppt";
+          Down  = "resize grow height 10 px or 10 ppt";
+          Up    = "resize shrink height 10 px or 10 ppt";
+          Right = "resize grow width 10 px or 10 ppt";
+          # Exit resize mode
+          Return = "mode default";
+          Escape = "mode default";
+          "${config.xsession.windowManager.i3.config.modifier}+r" = "mode default";
+        };
       };
     };
   };
