@@ -34,7 +34,7 @@ in
   programs.autorandr = {
     enable = true;
     hooks.postswitch = {
-      "set-wallpaper" = "${pkgs.feh}/bin/feh --bg-fill ${pkgs.nixos-artwork.wallpapers.nineish-solarized-light.src}";
+      "set-wallpaper" = "${pkgs.feh}/bin/feh --bg-fill ${config.stylix.image}";
     };
   };
 
@@ -78,7 +78,7 @@ in
         { command = "${pkgs.autorandr}/bin/autorandr --change"; always = true; notification = false; }
         { command = "${pkgs.dunst}/bin/dunst"; always = true; notification = false; }
         { command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"; always = true; notification = false; }
-        { command = "${pkgs.feh}/bin/feh --bg-fill ${pkgs.nixos-artwork.wallpapers.nineish-solarized-light.src}"; always = true; notification = false; }
+        { command = "${pkgs.feh}/bin/feh --bg-fill ${config.stylix.image}"; always = true; notification = false; }
         { command = "${pkgs.picom}/bin/picom"; always = true; notification = false; }
         { command = "${pkgs.xss-lock}/bin/xss-lock -- ${lockCommand}"; always = true; notification = false; }
       ];

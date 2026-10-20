@@ -78,7 +78,7 @@ in {
         }
         { # setup wallpaper
           command =
-            "${pkgs.swaybg}/bin/swaybg -i ${pkgs.nixos-artwork.wallpapers.nineish-solarized-light.src} --mode fill";
+            "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} --mode fill";
           always = true;
         }
       ];

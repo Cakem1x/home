@@ -21,7 +21,6 @@ in {
     bashInteractive
     # CLI util
     bat
-    dvc # data version control
     dysk # nicer df cmd (disk usage, mountpoints, etc)
     eza
     fastfetch # show quick overview of system (OS, Kernel, Hardware, ...)
