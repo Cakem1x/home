@@ -45,6 +45,7 @@ in {
     usbutils # lsusb
     wl-clipboard # wayland clipboard utils; CLI: wl-copy, wl-paste
     herdr
+    jq
 
     # nix tools
     cachix
