@@ -19,19 +19,21 @@
       url = github:nix-community/stylix;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    claude-code.url = "github:sadjow/claude-code-nix";
 
   };
 
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, claude-code, ... } @ inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
 
         config = {
-          allowUnfree = true; # spotify :/
+          allowUnfree = true; # spotify, claude code :/
           nvidia.acceptLicense = true;
         };
+        overlays = [ claude-code.overlays.default ];
       };
     in {
       nixosConfigurations = {

@@ -76,7 +76,8 @@ in {
     nil
 
     # agentic coding tools
-    codex
+    #codex
+    claude-code
     gh # access to github via CLI
   ];
 
