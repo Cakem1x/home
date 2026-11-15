@@ -1,12 +1,10 @@
 { config, inputs, modulesPath, username, ... }:
 
 {
-  programs.steam.enable = true;
-
   imports = [
     ./modules/common.nix
     (modulesPath + "/installer/scan/not-detected.nix")
-    ./modules/i3_desktop.nix
+    ./modules/niri_desktop.nix
     ./modules/nvidia.nix
     ./modules/gaming.nix
   ];

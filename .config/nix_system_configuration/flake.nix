@@ -95,11 +95,11 @@
         };
         modules = [
           inputs.stylix.homeModules.stylix
-          ./home-manager/desktop_envs/i3
+          ./home-manager/desktop_envs/niri
           ./home-manager/users/cakemix/cli_common.nix
           ./home-manager/users/cakemix/gui_common.nix
           ./home-manager/users/cakemix/gui_nonwork.nix
-          ./home-manager/users/cakemix/x_apps.nix
+          ./home-manager/users/cakemix/wayland_apps.nix
           ./style
         ];
       };
