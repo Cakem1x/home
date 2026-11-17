@@ -177,5 +177,19 @@ in {
     enable = true;
   };
 
+  programs.mpv = {
+    enable = true;
+
+    config = {
+      vo = "gpu";
+      gpu-api = "opengl";
+
+      target-prim = "bt.709";
+      target-trc = "bt.1886";
+      tone-mapping = "bt.2390";
+    };
+  };
+
+
 }
 
