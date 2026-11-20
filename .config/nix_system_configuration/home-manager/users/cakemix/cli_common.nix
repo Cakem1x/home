@@ -84,6 +84,18 @@ in {
 
   xdg.enable = true; # sets XDG env vars, e.g. to config in ~/.config
 
+  # herdr (terminal workspace manager for AI coding agents)
+  xdg.configFile."herdr/config.toml".text = ''
+    onboarding = false
+
+    [theme]
+    name = "solarized-light"
+    auto_switch = false
+
+    [keys]
+    prefix = "ctrl+w"
+  '';
+
   programs.fzf = { enable = true; };
 
   programs.bash = {
